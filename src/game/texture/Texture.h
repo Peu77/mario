@@ -15,10 +15,8 @@ class Texture {
     std::string m_FilePath;
     unsigned char *m_LocalBuffer;
     int m_Width, m_Height, m_BPP;
-    static std::unordered_map<std::string, Texture *> textureCache;
 
-public:
-    static Texture* getTexture(const std::string& path);
+
 
 public:
     Texture(const std::string &path);
@@ -32,7 +30,26 @@ public:
     inline int GetWidth() const { return m_Width; }
 
     inline int GetHeight() const { return m_Height; }
+
+public:
+    static Texture getTexture(const std::string path);
 };
+
+static std::unordered_map<std::string, Texture*> textureCache;
+
+static Texture* getTexture(const std::string path) {
+    std::cout << "try to load " << path << std::endl;
+    if(textureCache.contains(path)){
+        std::cout << "load texture: " << path << " from cache" << std::endl;
+        return textureCache[path];
+    }
+
+
+    auto* texture = new Texture(path);
+    textureCache[path] = texture;
+
+    return texture;
+}
 
 
 #endif //MARIO_TEXTURE_H

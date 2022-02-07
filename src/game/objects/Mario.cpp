@@ -5,7 +5,7 @@
 #include "Mario.h"
 
 Mario::Mario(b2World &world, glm::vec2 spawnPosition, GLFWwindow* window): windowId(window) {
-    texture = Texture::getTexture("res/textures/mario.png");
+    texture = getTexture("res/textures/mario.png");
     position = {spawnPosition.x, spawnPosition.y};
 
     scale = {100, 100};

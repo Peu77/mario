@@ -5,17 +5,7 @@
 #include "Texture.h"
 #include "../../../libs/std_image/std_image.h"
 
-Texture *Texture::getTexture(const std::string& path) {
-    if(textureCache.contains(path)){
-        std::cout << "load texture: " << path << " from cache" << std::endl;
-        return textureCache[path];
-    }
 
-    auto* texture = new Texture(path);
-    textureCache[path] = texture;
-
-    return texture;
-}
 
 Texture::Texture(const std::string &path)
 :m_RendererID(0) ,m_FilePath(path), m_LocalBuffer(nullptr), m_Width(0), m_Height(0), m_BPP(0)

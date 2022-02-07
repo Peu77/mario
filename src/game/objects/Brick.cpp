@@ -7,7 +7,7 @@
 
 
 Brick::Brick(b2World &world, glm::vec2 spawnPosition) {
-    texture = Texture::getTexture("res/textures/brick.png");
+    texture = getTexture("res/textures/brick.png");
     position = {spawnPosition.x, spawnPosition.y};
 
     scale = {100, 100};
