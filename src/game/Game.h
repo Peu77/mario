@@ -11,10 +11,9 @@
 #include "Box2dInclude.h"
 #include "vector"
 #include "objects/GameObject.h"
-
 class Game {
 private:
-    std::vector<GameObject> objects;
+    std::vector<GameObject*> objects;
     Window *window;
     Camera* camera;
     b2World* physicsWorld;

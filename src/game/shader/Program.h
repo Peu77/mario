@@ -2,8 +2,8 @@
 // Created by peu77 on 2/4/22.
 //
 
-#ifndef PONG_PROGRAM_H
-#define PONG_PROGRAM_H
+#ifndef MARIO_PROGRAM_H
+#define MARIO_PROGRAM_H
 
 #include "Shader.h"
 
@@ -26,6 +26,7 @@ public:
 
     void uploadUniformMat4f(const std::string& name, const glm::mat4& matrix);
     void uploadUniform2f(const std::string& name, float v0, float v1);
+    void uploadUniform1i(const std::string& name, int i);
 };
 
 

@@ -34,7 +34,6 @@ void Program::bind() {
 
 void Program::uploadUniformMat4f(const std::string &name, const glm::mat4 &matrix) {
     auto location = getUniformLocation(name);
-    std::cout << "location " << location << std::endl;
     glUniformMatrix4fv(location, 1, GL_FALSE, &matrix[0][0]);
 }
 
@@ -54,4 +53,8 @@ int Program::getUniformLocation(const std::string &name) {
 
 void Program::uploadUniform2f(const std::string &name, float v0, float v1) {
     glUniform2f(getUniformLocation(name), v0, v1);
+}
+
+void Program::uploadUniform1i(const std::string &name, int i) {
+    glUniform1i(getUniformLocation(name), i);
 }

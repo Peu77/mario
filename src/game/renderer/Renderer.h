@@ -9,12 +9,14 @@
 #include "../shader/Program.h"
 #include "glad/include/glad/glad.h"
 #include "GLFW/glfw3.h"
+#include "../texture/Texture.h"
 
 struct RenderData {
     unsigned int vertexArray;
     unsigned int arrayBuffer;
     unsigned int indexBuffer;
     Program* program;
+    Program* programTexture;
 };
 
 static RenderData* renderData;
@@ -28,6 +30,7 @@ public:
     static void beginScene(const Camera &camera);
 
     static void drawQuad(glm::vec2 position, glm::vec2 scale);
+    static void drawQuad(glm::vec2 position, glm::vec2 scale, Texture* texture);
 };
 
 

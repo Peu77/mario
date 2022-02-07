@@ -9,6 +9,8 @@
 #include "../Box2dInclude.h"
 #include "../renderer/Renderer.h"
 
+static float PIXEL_TO_M = 150.0f;
+
 class GameObject {
 public:
     virtual void update(float deltaTime) =0;

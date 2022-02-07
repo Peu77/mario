@@ -2,12 +2,12 @@
 // Created by peu77 on 2/7/22.
 //
 
-#ifndef MARIO_BRICK_H
-#define MARIO_BRICK_H
+#ifndef BRICK_H
+#define BRICK_H
 
 #include "GameObject.h"
 
-class Brick : GameObject {
+class Brick : public GameObject {
 public:
     Brick(b2World &world, glm::vec2 spawnPosition);
 
@@ -21,7 +21,8 @@ public:
 
 private:
     b2Body* body;
+    Texture* texture;
 };
 
 
-#endif //MARIO_BRICK_H
+#endif

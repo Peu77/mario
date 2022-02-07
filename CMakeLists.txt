@@ -16,7 +16,23 @@ add_executable(mario
         src/game/shader/Shader.cpp
         src/game/shader/Program.h
         src/game/shader/Program.cpp
-        src/game/renderer/Renderer.cpp src/game/renderer/Renderer.h src/game/camera/Camera.cpp src/game/camera/Camera.h src/game/GlmInclude.h src/game/objects/GameObject.h src/game/objects/Brick.cpp src/game/objects/Brick.h src/game/Box2dInclude.h)
+        src/game/renderer/Renderer.cpp
+        src/game/renderer/Renderer.h
+        src/game/camera/Camera.cpp
+        src/game/camera/Camera.h
+        src/game/GlmInclude.h
+        src/game/objects/GameObject.h
+        src/game/objects/Brick.cpp
+        src/game/objects/Brick.h
+        src/game/objects/Mario.cpp
+        src/game/objects/Mario.h
+        src/game/Box2dInclude.h
+        src/game/collisionListener/CollisionListener.cpp
+        src/game/collisionListener/CollisionListener.h
+        src/game/texture/Texture.h
+        src/game/texture/Texture.cpp
+        libs/std_image/std_image.h
+        libs/std_image/std_image.cpp)
 target_link_libraries(mario glfw dl)
 target_link_libraries(mario box2d dl)
 target_link_libraries(mario OpenGL::GL)
