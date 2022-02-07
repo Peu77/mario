@@ -1,0 +1,18 @@
+# ninja log v5
+1	1181	1644254526787624314	CMakeFiles/mario.dir/src/game/objects/Brick.cpp.o	1c7be848f8bc8db
+0	479	1644244747761340062	CMakeFiles/mario.dir/window/Window.cpp.o	3b13703c7860072e
+1	1275	1644250313901122392	CMakeFiles/mario.dir/src/game/shader/Shader.cpp.o	a23152673f2b37b7
+0	1285	1644246683017931047	CMakeFiles/mario.dir/src/game/shader/Program.cpp.o	14b5bcb4b405c391
+0	24	1644254809854279910	build.ninja	3f08a5de6c37acfa
+1	498	1644251505164409144	CMakeFiles/mario.dir/src/game/camera/Camera.cpp.o	739d6855f8a22cc0
+0	505	1644244675704676212	CMakeFiles/mario.dir/main.cpp.o	e582b22fd0e1627b
+1209	1289	1644253500737664438	mario	b9210101d14973c8
+1	1097	1644254507417625071	CMakeFiles/mario.dir/src/game/Game.cpp.o	b7605f1463ae1121
+1	1135	1644254507454291736	CMakeFiles/mario.dir/src/main.cpp.o	50c73784b6f74256
+1	1246	1644252372601041890	CMakeFiles/mario.dir/src/game/renderer/Renderer.cpp.o	1c20056d631fa008
+1	512	1644247483334566414	CMakeFiles/mario.dir/src/window/Window.cpp.o	7fcce28fc173bcce
+0	171	1644243390691393135	CMakeFiles/mario.dir/libs/glad/src/glad.c.o	d479fc346d6fdc9d
+0	20	1644254809854279910	build.ninja	3f08a5de6c37acfa
+1	1100	1644254810960946533	CMakeFiles/mario.dir/src/game/objects/Brick.cpp.o	1c7be848f8bc8db
+1	1043	1644255009904272085	CMakeFiles/mario.dir/src/game/objects/Brick.cpp.o	1c7be848f8bc8db
+1043	1137	1644255009997605415	mario	ec7dc3f39dc5b445
