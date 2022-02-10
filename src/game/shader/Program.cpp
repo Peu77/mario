@@ -58,3 +58,7 @@ void Program::uploadUniform2f(const std::string &name, float v0, float v1) {
 void Program::uploadUniform1i(const std::string &name, int i) {
     glUniform1i(getUniformLocation(name), i);
 }
+
+void Program::uploadUniform3f(const std::string &name, float v0, float v1, float v2) {
+    glUniform3f(getUniformLocation(name), v0, v1, v2);
+}

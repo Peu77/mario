@@ -30,9 +30,6 @@ public:
     inline int GetWidth() const { return m_Width; }
 
     inline int GetHeight() const { return m_Height; }
-
-public:
-    static Texture getTexture(const std::string path);
 };
 
 static std::unordered_map<std::string, Texture*> textureCache;

@@ -22,6 +22,9 @@ public:
 private:
     b2Body* body;
     Texture* texture;
+
+    float tile_count = 200;
+    float tile_width = 100;
 };
 
 

@@ -10,6 +10,7 @@ CollisionListener::CollisionListener(b2World &physicsWorld) {
 }
 
 void CollisionListener::BeginContact(b2Contact *contact) {
+
     b2Body* bodyA = contact->GetFixtureA()->GetBody();
     b2Body* bodyB = contact->GetFixtureB()->GetBody();
 
@@ -18,7 +19,7 @@ void CollisionListener::BeginContact(b2Contact *contact) {
 
     if (objA && objB)
     {
-        objA->onCollision(objB);
         objB->onCollision(objA);
+        objA->onCollision(objB);
     }
 }

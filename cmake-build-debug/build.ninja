@@ -75,93 +75,100 @@ build cmake_object_order_depends_target_mario: phony || CMakeFiles/mario.dir
 build CMakeFiles/mario.dir/src/main.cpp.o: CXX_COMPILER__mario_Debug /home/peu77/Coding/private/mario/src/main.cpp || cmake_object_order_depends_target_mario
   DEP_FILE = CMakeFiles/mario.dir/src/main.cpp.o.d
   FLAGS = -g -std=gnu++23
-  INCLUDES = -I/home/peu77/Coding/private/mario/./libs
+  INCLUDES = -I/usr/include/freetype2 -I/home/peu77/Coding/private/mario/./libs
   OBJECT_DIR = CMakeFiles/mario.dir
   OBJECT_FILE_DIR = CMakeFiles/mario.dir/src
 
 build CMakeFiles/mario.dir/libs/glad/src/glad.c.o: C_COMPILER__mario_Debug /home/peu77/Coding/private/mario/libs/glad/src/glad.c || cmake_object_order_depends_target_mario
   DEP_FILE = CMakeFiles/mario.dir/libs/glad/src/glad.c.o.d
   FLAGS = -g
-  INCLUDES = -I/home/peu77/Coding/private/mario/./libs
+  INCLUDES = -I/usr/include/freetype2 -I/home/peu77/Coding/private/mario/./libs
   OBJECT_DIR = CMakeFiles/mario.dir
   OBJECT_FILE_DIR = CMakeFiles/mario.dir/libs/glad/src
 
 build CMakeFiles/mario.dir/src/window/Window.cpp.o: CXX_COMPILER__mario_Debug /home/peu77/Coding/private/mario/src/window/Window.cpp || cmake_object_order_depends_target_mario
   DEP_FILE = CMakeFiles/mario.dir/src/window/Window.cpp.o.d
   FLAGS = -g -std=gnu++23
-  INCLUDES = -I/home/peu77/Coding/private/mario/./libs
+  INCLUDES = -I/usr/include/freetype2 -I/home/peu77/Coding/private/mario/./libs
   OBJECT_DIR = CMakeFiles/mario.dir
   OBJECT_FILE_DIR = CMakeFiles/mario.dir/src/window
 
 build CMakeFiles/mario.dir/src/game/Game.cpp.o: CXX_COMPILER__mario_Debug /home/peu77/Coding/private/mario/src/game/Game.cpp || cmake_object_order_depends_target_mario
   DEP_FILE = CMakeFiles/mario.dir/src/game/Game.cpp.o.d
   FLAGS = -g -std=gnu++23
-  INCLUDES = -I/home/peu77/Coding/private/mario/./libs
+  INCLUDES = -I/usr/include/freetype2 -I/home/peu77/Coding/private/mario/./libs
   OBJECT_DIR = CMakeFiles/mario.dir
   OBJECT_FILE_DIR = CMakeFiles/mario.dir/src/game
 
 build CMakeFiles/mario.dir/src/game/shader/Shader.cpp.o: CXX_COMPILER__mario_Debug /home/peu77/Coding/private/mario/src/game/shader/Shader.cpp || cmake_object_order_depends_target_mario
   DEP_FILE = CMakeFiles/mario.dir/src/game/shader/Shader.cpp.o.d
   FLAGS = -g -std=gnu++23
-  INCLUDES = -I/home/peu77/Coding/private/mario/./libs
+  INCLUDES = -I/usr/include/freetype2 -I/home/peu77/Coding/private/mario/./libs
   OBJECT_DIR = CMakeFiles/mario.dir
   OBJECT_FILE_DIR = CMakeFiles/mario.dir/src/game/shader
 
 build CMakeFiles/mario.dir/src/game/shader/Program.cpp.o: CXX_COMPILER__mario_Debug /home/peu77/Coding/private/mario/src/game/shader/Program.cpp || cmake_object_order_depends_target_mario
   DEP_FILE = CMakeFiles/mario.dir/src/game/shader/Program.cpp.o.d
   FLAGS = -g -std=gnu++23
-  INCLUDES = -I/home/peu77/Coding/private/mario/./libs
+  INCLUDES = -I/usr/include/freetype2 -I/home/peu77/Coding/private/mario/./libs
   OBJECT_DIR = CMakeFiles/mario.dir
   OBJECT_FILE_DIR = CMakeFiles/mario.dir/src/game/shader
 
 build CMakeFiles/mario.dir/src/game/renderer/Renderer.cpp.o: CXX_COMPILER__mario_Debug /home/peu77/Coding/private/mario/src/game/renderer/Renderer.cpp || cmake_object_order_depends_target_mario
   DEP_FILE = CMakeFiles/mario.dir/src/game/renderer/Renderer.cpp.o.d
   FLAGS = -g -std=gnu++23
-  INCLUDES = -I/home/peu77/Coding/private/mario/./libs
+  INCLUDES = -I/usr/include/freetype2 -I/home/peu77/Coding/private/mario/./libs
   OBJECT_DIR = CMakeFiles/mario.dir
   OBJECT_FILE_DIR = CMakeFiles/mario.dir/src/game/renderer
 
 build CMakeFiles/mario.dir/src/game/camera/Camera.cpp.o: CXX_COMPILER__mario_Debug /home/peu77/Coding/private/mario/src/game/camera/Camera.cpp || cmake_object_order_depends_target_mario
   DEP_FILE = CMakeFiles/mario.dir/src/game/camera/Camera.cpp.o.d
   FLAGS = -g -std=gnu++23
-  INCLUDES = -I/home/peu77/Coding/private/mario/./libs
+  INCLUDES = -I/usr/include/freetype2 -I/home/peu77/Coding/private/mario/./libs
   OBJECT_DIR = CMakeFiles/mario.dir
   OBJECT_FILE_DIR = CMakeFiles/mario.dir/src/game/camera
 
 build CMakeFiles/mario.dir/src/game/objects/Brick.cpp.o: CXX_COMPILER__mario_Debug /home/peu77/Coding/private/mario/src/game/objects/Brick.cpp || cmake_object_order_depends_target_mario
   DEP_FILE = CMakeFiles/mario.dir/src/game/objects/Brick.cpp.o.d
   FLAGS = -g -std=gnu++23
-  INCLUDES = -I/home/peu77/Coding/private/mario/./libs
+  INCLUDES = -I/usr/include/freetype2 -I/home/peu77/Coding/private/mario/./libs
   OBJECT_DIR = CMakeFiles/mario.dir
   OBJECT_FILE_DIR = CMakeFiles/mario.dir/src/game/objects
 
 build CMakeFiles/mario.dir/src/game/objects/Mario.cpp.o: CXX_COMPILER__mario_Debug /home/peu77/Coding/private/mario/src/game/objects/Mario.cpp || cmake_object_order_depends_target_mario
   DEP_FILE = CMakeFiles/mario.dir/src/game/objects/Mario.cpp.o.d
   FLAGS = -g -std=gnu++23
-  INCLUDES = -I/home/peu77/Coding/private/mario/./libs
+  INCLUDES = -I/usr/include/freetype2 -I/home/peu77/Coding/private/mario/./libs
   OBJECT_DIR = CMakeFiles/mario.dir
   OBJECT_FILE_DIR = CMakeFiles/mario.dir/src/game/objects
 
 build CMakeFiles/mario.dir/src/game/collisionListener/CollisionListener.cpp.o: CXX_COMPILER__mario_Debug /home/peu77/Coding/private/mario/src/game/collisionListener/CollisionListener.cpp || cmake_object_order_depends_target_mario
   DEP_FILE = CMakeFiles/mario.dir/src/game/collisionListener/CollisionListener.cpp.o.d
   FLAGS = -g -std=gnu++23
-  INCLUDES = -I/home/peu77/Coding/private/mario/./libs
+  INCLUDES = -I/usr/include/freetype2 -I/home/peu77/Coding/private/mario/./libs
   OBJECT_DIR = CMakeFiles/mario.dir
   OBJECT_FILE_DIR = CMakeFiles/mario.dir/src/game/collisionListener
 
 build CMakeFiles/mario.dir/src/game/texture/Texture.cpp.o: CXX_COMPILER__mario_Debug /home/peu77/Coding/private/mario/src/game/texture/Texture.cpp || cmake_object_order_depends_target_mario
   DEP_FILE = CMakeFiles/mario.dir/src/game/texture/Texture.cpp.o.d
   FLAGS = -g -std=gnu++23
-  INCLUDES = -I/home/peu77/Coding/private/mario/./libs
+  INCLUDES = -I/usr/include/freetype2 -I/home/peu77/Coding/private/mario/./libs
   OBJECT_DIR = CMakeFiles/mario.dir
   OBJECT_FILE_DIR = CMakeFiles/mario.dir/src/game/texture
 
 build CMakeFiles/mario.dir/libs/std_image/std_image.cpp.o: CXX_COMPILER__mario_Debug /home/peu77/Coding/private/mario/libs/std_image/std_image.cpp || cmake_object_order_depends_target_mario
   DEP_FILE = CMakeFiles/mario.dir/libs/std_image/std_image.cpp.o.d
   FLAGS = -g -std=gnu++23
-  INCLUDES = -I/home/peu77/Coding/private/mario/./libs
+  INCLUDES = -I/usr/include/freetype2 -I/home/peu77/Coding/private/mario/./libs
   OBJECT_DIR = CMakeFiles/mario.dir
   OBJECT_FILE_DIR = CMakeFiles/mario.dir/libs/std_image
+
+build CMakeFiles/mario.dir/src/game/objects/Enemy.cpp.o: CXX_COMPILER__mario_Debug /home/peu77/Coding/private/mario/src/game/objects/Enemy.cpp || cmake_object_order_depends_target_mario
+  DEP_FILE = CMakeFiles/mario.dir/src/game/objects/Enemy.cpp.o.d
+  FLAGS = -g -std=gnu++23
+  INCLUDES = -I/usr/include/freetype2 -I/home/peu77/Coding/private/mario/./libs
+  OBJECT_DIR = CMakeFiles/mario.dir
+  OBJECT_FILE_DIR = CMakeFiles/mario.dir/src/game/objects
 
 
 # =============================================================================
@@ -171,9 +178,9 @@ build CMakeFiles/mario.dir/libs/std_image/std_image.cpp.o: CXX_COMPILER__mario_D
 #############################################
 # Link the executable mario
 
-build mario: CXX_EXECUTABLE_LINKER__mario_Debug CMakeFiles/mario.dir/src/main.cpp.o CMakeFiles/mario.dir/libs/glad/src/glad.c.o CMakeFiles/mario.dir/src/window/Window.cpp.o CMakeFiles/mario.dir/src/game/Game.cpp.o CMakeFiles/mario.dir/src/game/shader/Shader.cpp.o CMakeFiles/mario.dir/src/game/shader/Program.cpp.o CMakeFiles/mario.dir/src/game/renderer/Renderer.cpp.o CMakeFiles/mario.dir/src/game/camera/Camera.cpp.o CMakeFiles/mario.dir/src/game/objects/Brick.cpp.o CMakeFiles/mario.dir/src/game/objects/Mario.cpp.o CMakeFiles/mario.dir/src/game/collisionListener/CollisionListener.cpp.o CMakeFiles/mario.dir/src/game/texture/Texture.cpp.o CMakeFiles/mario.dir/libs/std_image/std_image.cpp.o | /usr/lib/libglfw.so.3.3 /usr/lib/libGLX.so /usr/lib/libOpenGL.so
+build mario: CXX_EXECUTABLE_LINKER__mario_Debug CMakeFiles/mario.dir/src/main.cpp.o CMakeFiles/mario.dir/libs/glad/src/glad.c.o CMakeFiles/mario.dir/src/window/Window.cpp.o CMakeFiles/mario.dir/src/game/Game.cpp.o CMakeFiles/mario.dir/src/game/shader/Shader.cpp.o CMakeFiles/mario.dir/src/game/shader/Program.cpp.o CMakeFiles/mario.dir/src/game/renderer/Renderer.cpp.o CMakeFiles/mario.dir/src/game/camera/Camera.cpp.o CMakeFiles/mario.dir/src/game/objects/Brick.cpp.o CMakeFiles/mario.dir/src/game/objects/Mario.cpp.o CMakeFiles/mario.dir/src/game/collisionListener/CollisionListener.cpp.o CMakeFiles/mario.dir/src/game/texture/Texture.cpp.o CMakeFiles/mario.dir/libs/std_image/std_image.cpp.o CMakeFiles/mario.dir/src/game/objects/Enemy.cpp.o | /usr/lib/libglfw.so.3.3 /usr/lib/libfreetype.so /usr/lib/libfreetype.so /usr/lib/libGLX.so /usr/lib/libOpenGL.so
   FLAGS = -g
-  LINK_LIBRARIES = /usr/lib/libglfw.so.3.3  -ldl  -lbox2d  -ldl  -lbox2d  /usr/lib/libGLX.so  /usr/lib/libOpenGL.so
+  LINK_LIBRARIES = /usr/lib/libglfw.so.3.3  -ldl  -lbox2d  -ldl  /usr/lib/libfreetype.so  -lbox2d  /usr/lib/libfreetype.so  /usr/lib/libGLX.so  /usr/lib/libOpenGL.so
   OBJECT_DIR = CMakeFiles/mario.dir
   POST_BUILD = :
   PRE_LINK = :
@@ -200,14 +207,14 @@ build all: phony mario
 #############################################
 # Re-run CMake if any of its inputs changed.
 
-build build.ninja: RERUN_CMAKE | ../CMakeLists.txt /home/peu77/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/213.6461.75/bin/cmake/linux/share/cmake-3.21/Modules/CMakeCInformation.cmake /home/peu77/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/213.6461.75/bin/cmake/linux/share/cmake-3.21/Modules/CMakeCXXInformation.cmake /home/peu77/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/213.6461.75/bin/cmake/linux/share/cmake-3.21/Modules/CMakeCommonLanguageInclude.cmake /home/peu77/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/213.6461.75/bin/cmake/linux/share/cmake-3.21/Modules/CMakeGenericSystem.cmake /home/peu77/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/213.6461.75/bin/cmake/linux/share/cmake-3.21/Modules/CMakeInitializeConfigs.cmake /home/peu77/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/213.6461.75/bin/cmake/linux/share/cmake-3.21/Modules/CMakeLanguageInformation.cmake /home/peu77/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/213.6461.75/bin/cmake/linux/share/cmake-3.21/Modules/CMakeSystemSpecificInformation.cmake /home/peu77/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/213.6461.75/bin/cmake/linux/share/cmake-3.21/Modules/CMakeSystemSpecificInitialize.cmake /home/peu77/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/213.6461.75/bin/cmake/linux/share/cmake-3.21/Modules/Compiler/CMakeCommonCompilerMacros.cmake /home/peu77/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/213.6461.75/bin/cmake/linux/share/cmake-3.21/Modules/Compiler/GNU-C.cmake /home/peu77/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/213.6461.75/bin/cmake/linux/share/cmake-3.21/Modules/Compiler/GNU-CXX.cmake /home/peu77/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/213.6461.75/bin/cmake/linux/share/cmake-3.21/Modules/Compiler/GNU.cmake /home/peu77/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/213.6461.75/bin/cmake/linux/share/cmake-3.21/Modules/FindOpenGL.cmake /home/peu77/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/213.6461.75/bin/cmake/linux/share/cmake-3.21/Modules/FindPackageHandleStandardArgs.cmake /home/peu77/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/213.6461.75/bin/cmake/linux/share/cmake-3.21/Modules/FindPackageMessage.cmake /home/peu77/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/213.6461.75/bin/cmake/linux/share/cmake-3.21/Modules/Platform/Linux-GNU-C.cmake /home/peu77/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/213.6461.75/bin/cmake/linux/share/cmake-3.21/Modules/Platform/Linux-GNU-CXX.cmake /home/peu77/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/213.6461.75/bin/cmake/linux/share/cmake-3.21/Modules/Platform/Linux-GNU.cmake /home/peu77/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/213.6461.75/bin/cmake/linux/share/cmake-3.21/Modules/Platform/Linux.cmake /home/peu77/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/213.6461.75/bin/cmake/linux/share/cmake-3.21/Modules/Platform/UnixPaths.cmake /usr/lib64/cmake/glfw3/glfw3Config.cmake /usr/lib64/cmake/glfw3/glfw3ConfigVersion.cmake /usr/lib64/cmake/glfw3/glfw3Targets-noconfig.cmake /usr/lib64/cmake/glfw3/glfw3Targets.cmake /usr/local/lib/cmake/box2d/box2dConfig-noconfig.cmake /usr/local/lib/cmake/box2d/box2dConfig.cmake /usr/local/lib/cmake/box2d/box2dConfigVersion.cmake CMakeCache.txt CMakeFiles/3.21.1/CMakeCCompiler.cmake CMakeFiles/3.21.1/CMakeCXXCompiler.cmake CMakeFiles/3.21.1/CMakeSystem.cmake
+build build.ninja: RERUN_CMAKE | ../CMakeLists.txt /home/peu77/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/213.6461.75/bin/cmake/linux/share/cmake-3.21/Modules/CMakeCInformation.cmake /home/peu77/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/213.6461.75/bin/cmake/linux/share/cmake-3.21/Modules/CMakeCXXInformation.cmake /home/peu77/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/213.6461.75/bin/cmake/linux/share/cmake-3.21/Modules/CMakeCommonLanguageInclude.cmake /home/peu77/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/213.6461.75/bin/cmake/linux/share/cmake-3.21/Modules/CMakeGenericSystem.cmake /home/peu77/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/213.6461.75/bin/cmake/linux/share/cmake-3.21/Modules/CMakeInitializeConfigs.cmake /home/peu77/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/213.6461.75/bin/cmake/linux/share/cmake-3.21/Modules/CMakeLanguageInformation.cmake /home/peu77/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/213.6461.75/bin/cmake/linux/share/cmake-3.21/Modules/CMakeSystemSpecificInformation.cmake /home/peu77/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/213.6461.75/bin/cmake/linux/share/cmake-3.21/Modules/CMakeSystemSpecificInitialize.cmake /home/peu77/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/213.6461.75/bin/cmake/linux/share/cmake-3.21/Modules/Compiler/CMakeCommonCompilerMacros.cmake /home/peu77/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/213.6461.75/bin/cmake/linux/share/cmake-3.21/Modules/Compiler/GNU-C.cmake /home/peu77/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/213.6461.75/bin/cmake/linux/share/cmake-3.21/Modules/Compiler/GNU-CXX.cmake /home/peu77/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/213.6461.75/bin/cmake/linux/share/cmake-3.21/Modules/Compiler/GNU.cmake /home/peu77/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/213.6461.75/bin/cmake/linux/share/cmake-3.21/Modules/FindFreetype.cmake /home/peu77/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/213.6461.75/bin/cmake/linux/share/cmake-3.21/Modules/FindOpenGL.cmake /home/peu77/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/213.6461.75/bin/cmake/linux/share/cmake-3.21/Modules/FindPackageHandleStandardArgs.cmake /home/peu77/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/213.6461.75/bin/cmake/linux/share/cmake-3.21/Modules/FindPackageMessage.cmake /home/peu77/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/213.6461.75/bin/cmake/linux/share/cmake-3.21/Modules/Platform/Linux-GNU-C.cmake /home/peu77/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/213.6461.75/bin/cmake/linux/share/cmake-3.21/Modules/Platform/Linux-GNU-CXX.cmake /home/peu77/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/213.6461.75/bin/cmake/linux/share/cmake-3.21/Modules/Platform/Linux-GNU.cmake /home/peu77/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/213.6461.75/bin/cmake/linux/share/cmake-3.21/Modules/Platform/Linux.cmake /home/peu77/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/213.6461.75/bin/cmake/linux/share/cmake-3.21/Modules/Platform/UnixPaths.cmake /home/peu77/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/213.6461.75/bin/cmake/linux/share/cmake-3.21/Modules/SelectLibraryConfigurations.cmake /usr/lib64/cmake/glfw3/glfw3Config.cmake /usr/lib64/cmake/glfw3/glfw3ConfigVersion.cmake /usr/lib64/cmake/glfw3/glfw3Targets-noconfig.cmake /usr/lib64/cmake/glfw3/glfw3Targets.cmake /usr/local/lib/cmake/box2d/box2dConfig-noconfig.cmake /usr/local/lib/cmake/box2d/box2dConfig.cmake /usr/local/lib/cmake/box2d/box2dConfigVersion.cmake CMakeCache.txt CMakeFiles/3.21.1/CMakeCCompiler.cmake CMakeFiles/3.21.1/CMakeCXXCompiler.cmake CMakeFiles/3.21.1/CMakeSystem.cmake
   pool = console
 
 
 #############################################
 # A missing CMake input file is not an error.
 
-build ../CMakeLists.txt /home/peu77/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/213.6461.75/bin/cmake/linux/share/cmake-3.21/Modules/CMakeCInformation.cmake /home/peu77/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/213.6461.75/bin/cmake/linux/share/cmake-3.21/Modules/CMakeCXXInformation.cmake /home/peu77/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/213.6461.75/bin/cmake/linux/share/cmake-3.21/Modules/CMakeCommonLanguageInclude.cmake /home/peu77/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/213.6461.75/bin/cmake/linux/share/cmake-3.21/Modules/CMakeGenericSystem.cmake /home/peu77/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/213.6461.75/bin/cmake/linux/share/cmake-3.21/Modules/CMakeInitializeConfigs.cmake /home/peu77/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/213.6461.75/bin/cmake/linux/share/cmake-3.21/Modules/CMakeLanguageInformation.cmake /home/peu77/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/213.6461.75/bin/cmake/linux/share/cmake-3.21/Modules/CMakeSystemSpecificInformation.cmake /home/peu77/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/213.6461.75/bin/cmake/linux/share/cmake-3.21/Modules/CMakeSystemSpecificInitialize.cmake /home/peu77/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/213.6461.75/bin/cmake/linux/share/cmake-3.21/Modules/Compiler/CMakeCommonCompilerMacros.cmake /home/peu77/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/213.6461.75/bin/cmake/linux/share/cmake-3.21/Modules/Compiler/GNU-C.cmake /home/peu77/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/213.6461.75/bin/cmake/linux/share/cmake-3.21/Modules/Compiler/GNU-CXX.cmake /home/peu77/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/213.6461.75/bin/cmake/linux/share/cmake-3.21/Modules/Compiler/GNU.cmake /home/peu77/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/213.6461.75/bin/cmake/linux/share/cmake-3.21/Modules/FindOpenGL.cmake /home/peu77/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/213.6461.75/bin/cmake/linux/share/cmake-3.21/Modules/FindPackageHandleStandardArgs.cmake /home/peu77/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/213.6461.75/bin/cmake/linux/share/cmake-3.21/Modules/FindPackageMessage.cmake /home/peu77/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/213.6461.75/bin/cmake/linux/share/cmake-3.21/Modules/Platform/Linux-GNU-C.cmake /home/peu77/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/213.6461.75/bin/cmake/linux/share/cmake-3.21/Modules/Platform/Linux-GNU-CXX.cmake /home/peu77/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/213.6461.75/bin/cmake/linux/share/cmake-3.21/Modules/Platform/Linux-GNU.cmake /home/peu77/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/213.6461.75/bin/cmake/linux/share/cmake-3.21/Modules/Platform/Linux.cmake /home/peu77/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/213.6461.75/bin/cmake/linux/share/cmake-3.21/Modules/Platform/UnixPaths.cmake /usr/lib64/cmake/glfw3/glfw3Config.cmake /usr/lib64/cmake/glfw3/glfw3ConfigVersion.cmake /usr/lib64/cmake/glfw3/glfw3Targets-noconfig.cmake /usr/lib64/cmake/glfw3/glfw3Targets.cmake /usr/local/lib/cmake/box2d/box2dConfig-noconfig.cmake /usr/local/lib/cmake/box2d/box2dConfig.cmake /usr/local/lib/cmake/box2d/box2dConfigVersion.cmake CMakeCache.txt CMakeFiles/3.21.1/CMakeCCompiler.cmake CMakeFiles/3.21.1/CMakeCXXCompiler.cmake CMakeFiles/3.21.1/CMakeSystem.cmake: phony
+build ../CMakeLists.txt /home/peu77/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/213.6461.75/bin/cmake/linux/share/cmake-3.21/Modules/CMakeCInformation.cmake /home/peu77/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/213.6461.75/bin/cmake/linux/share/cmake-3.21/Modules/CMakeCXXInformation.cmake /home/peu77/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/213.6461.75/bin/cmake/linux/share/cmake-3.21/Modules/CMakeCommonLanguageInclude.cmake /home/peu77/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/213.6461.75/bin/cmake/linux/share/cmake-3.21/Modules/CMakeGenericSystem.cmake /home/peu77/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/213.6461.75/bin/cmake/linux/share/cmake-3.21/Modules/CMakeInitializeConfigs.cmake /home/peu77/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/213.6461.75/bin/cmake/linux/share/cmake-3.21/Modules/CMakeLanguageInformation.cmake /home/peu77/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/213.6461.75/bin/cmake/linux/share/cmake-3.21/Modules/CMakeSystemSpecificInformation.cmake /home/peu77/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/213.6461.75/bin/cmake/linux/share/cmake-3.21/Modules/CMakeSystemSpecificInitialize.cmake /home/peu77/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/213.6461.75/bin/cmake/linux/share/cmake-3.21/Modules/Compiler/CMakeCommonCompilerMacros.cmake /home/peu77/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/213.6461.75/bin/cmake/linux/share/cmake-3.21/Modules/Compiler/GNU-C.cmake /home/peu77/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/213.6461.75/bin/cmake/linux/share/cmake-3.21/Modules/Compiler/GNU-CXX.cmake /home/peu77/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/213.6461.75/bin/cmake/linux/share/cmake-3.21/Modules/Compiler/GNU.cmake /home/peu77/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/213.6461.75/bin/cmake/linux/share/cmake-3.21/Modules/FindFreetype.cmake /home/peu77/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/213.6461.75/bin/cmake/linux/share/cmake-3.21/Modules/FindOpenGL.cmake /home/peu77/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/213.6461.75/bin/cmake/linux/share/cmake-3.21/Modules/FindPackageHandleStandardArgs.cmake /home/peu77/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/213.6461.75/bin/cmake/linux/share/cmake-3.21/Modules/FindPackageMessage.cmake /home/peu77/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/213.6461.75/bin/cmake/linux/share/cmake-3.21/Modules/Platform/Linux-GNU-C.cmake /home/peu77/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/213.6461.75/bin/cmake/linux/share/cmake-3.21/Modules/Platform/Linux-GNU-CXX.cmake /home/peu77/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/213.6461.75/bin/cmake/linux/share/cmake-3.21/Modules/Platform/Linux-GNU.cmake /home/peu77/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/213.6461.75/bin/cmake/linux/share/cmake-3.21/Modules/Platform/Linux.cmake /home/peu77/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/213.6461.75/bin/cmake/linux/share/cmake-3.21/Modules/Platform/UnixPaths.cmake /home/peu77/.local/share/JetBrains/Toolbox/apps/CLion/ch-0/213.6461.75/bin/cmake/linux/share/cmake-3.21/Modules/SelectLibraryConfigurations.cmake /usr/lib64/cmake/glfw3/glfw3Config.cmake /usr/lib64/cmake/glfw3/glfw3ConfigVersion.cmake /usr/lib64/cmake/glfw3/glfw3Targets-noconfig.cmake /usr/lib64/cmake/glfw3/glfw3Targets.cmake /usr/local/lib/cmake/box2d/box2dConfig-noconfig.cmake /usr/local/lib/cmake/box2d/box2dConfig.cmake /usr/local/lib/cmake/box2d/box2dConfigVersion.cmake CMakeCache.txt CMakeFiles/3.21.1/CMakeCCompiler.cmake CMakeFiles/3.21.1/CMakeCXXCompiler.cmake CMakeFiles/3.21.1/CMakeSystem.cmake: phony
 
 
 #############################################

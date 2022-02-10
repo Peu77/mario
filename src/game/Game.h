@@ -11,12 +11,23 @@
 #include "Box2dInclude.h"
 #include "vector"
 #include "objects/GameObject.h"
+#include "objects/Enemy.h"
+#include "objects/Mario.h"
+
+
 class Game {
 private:
-    std::vector<GameObject*> objects;
     Window *window;
-    Camera* camera;
-    b2World* physicsWorld;
+    Camera *camera;
+    b2World *physicsWorld;
+    Mario *mario;
+    std::vector<GameObject *> objects;
+
+    void removeObject(GameObject &object) {
+        for (int i = 0; i < objects.size(); i++)
+            if (objects.at(i) == &object)
+                objects.erase(objects.begin() + i);
+    }
 
 public:
     Game();

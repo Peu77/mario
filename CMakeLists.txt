@@ -5,6 +5,7 @@ set(CMAKE_CXX_STANDARD 23)
 find_package(OpenGL REQUIRED)
 find_package(glfw3 3.3 REQUIRED)
 find_package(box2d REQUIRED)
+find_package(Freetype REQUIRED)
 add_executable(mario
         src/main.cpp
         libs/glad/src/glad.c
@@ -32,9 +33,10 @@ add_executable(mario
         src/game/texture/Texture.h
         src/game/texture/Texture.cpp
         libs/std_image/std_image.h
-        libs/std_image/std_image.cpp)
+        libs/std_image/std_image.cpp src/game/objects/Enemy.cpp src/game/objects/Enemy.h)
 target_link_libraries(mario glfw dl)
 target_link_libraries(mario box2d dl)
 target_link_libraries(mario OpenGL::GL)
-
+target_link_libraries(mario ${FREETYPE_LIBRARIES})
+target_include_directories(mario PRIVATE ${FREETYPE_INCLUDE_DIRS})
 target_include_directories(mario PRIVATE ./libs)

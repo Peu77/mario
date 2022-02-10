@@ -26,6 +26,7 @@ public:
 
     void uploadUniformMat4f(const std::string& name, const glm::mat4& matrix);
     void uploadUniform2f(const std::string& name, float v0, float v1);
+    void uploadUniform3f(const std::string& name, float v0, float v1, float v2);
     void uploadUniform1i(const std::string& name, int i);
 };
 

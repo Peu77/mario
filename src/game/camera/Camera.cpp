@@ -11,5 +11,6 @@ Camera::Camera(int width, int height) {
 }
 
 void Camera::updateView() {
-    view = glm::translate(view, {position.x, position.y, 0.0f});
+    view = glm::translate(glm::mat4(1), {position.x, position.y, 0.0f});
+    view = glm::inverse(view);
 }
