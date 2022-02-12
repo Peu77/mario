@@ -29,7 +29,7 @@ Mario::~Mario() {
 }
 
 void Mario::update(float deleteTime) {
-    body->vel.y -= 30;
+    body->vel.y -= GRAVITY;
     movement(deleteTime);
     bool both = glfwGetKey(windowId, GLFW_KEY_A) && glfwGetKey(windowId, GLFW_KEY_D);
 
@@ -65,6 +65,7 @@ void Mario::render() {
 }
 
 void Mario::onCollision() {
+    if(body->contact[0] != nullptr)
     if (jumping) {
         jumping = false;
     }

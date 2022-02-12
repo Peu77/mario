@@ -12,6 +12,7 @@ Enemy::Enemy(b2World &world, glm::vec2 spawnPosition) {
     //position = {spawnPosition.x, spawnPosition.y};
     scale = {100, 100};
     body = new Body();
+    body->friction = {0.6f, 0.9f};
     body->pos = spawnPosition;
     body->size = scale;
 

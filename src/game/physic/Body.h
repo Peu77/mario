@@ -13,6 +13,7 @@ struct Body {
     glm::vec2 pos;
     glm::vec2 size;
     glm::vec2 vel;
+    glm::vec2 friction;
     Body* contact[4];
     void* data;
     bool dynamic = false;

@@ -38,6 +38,9 @@ void World::step(float deltaTime) {
                 if (ResolveDynamicRectVsRect(item, deltaTime, bodies[j.first])) {
                     auto gameObject = (GameObject *) item->data;
                     gameObject->onCollision();
+                    glm::vec2 friction = bodies[j.first]->friction;
+                    item->vel.x =  friction.x * item->vel.x;
+                    item->vel.y =  friction.y * item->vel.y;
                 }
 
             item->pos += item->vel * deltaTime;

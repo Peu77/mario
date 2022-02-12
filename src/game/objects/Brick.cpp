@@ -9,6 +9,7 @@ Brick::Brick(b2World &world, glm::vec2 spawnPosition, float tiles) : tile_count(
     texture = getTexture("res/textures/brick.png");
     scale = {100, 100};
     body = new Body();
+    body->friction = {0.8f, 0.9f};
     body->pos = spawnPosition;
     body->size = scale;
     /*

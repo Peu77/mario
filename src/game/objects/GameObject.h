@@ -12,6 +12,7 @@
 #include "../physic/Body.h"
 
 static float PIXEL_TO_M = 150.0f;
+static float GRAVITY = 40.0f;
 
 class GameObject {
 public:

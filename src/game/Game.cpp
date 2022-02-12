@@ -40,6 +40,14 @@ Game::Game() {
         }
     }
 
+    for (int i = 0; i < 10; ++i) {
+        {
+            auto brick = new Brick(*physicsWorld, {100 * 10, 20 + i * 100}, 10);
+            world->registerBody(brick->body);
+            objects.push_back(brick);
+        }
+    }
+
     {
         auto brick = new Brick(*physicsWorld, {600, 120}, 10);
         world->registerBody(brick->body);
