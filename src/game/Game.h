@@ -8,9 +8,9 @@
 #include "../window/Window.h"
 #include "renderer/Renderer.h"
 #include "camera/Camera.h"
-#include "Box2dInclude.h"
 #include "vector"
-#include "objects/GameObject.h"
+
+#include "objects/Brick.h"
 #include "objects/Enemy.h"
 #include "objects/Mario.h"
 

@@ -21,11 +21,11 @@ public:
 
     void render() override;
 
-    void onCollision(GameObject *object) override;
+    void onCollision() override;
 
 private:
     void movement(float deltaTime);
-    void jump(b2Vec2& vel);
+    void jump();
     void flip();
     void runAnimation(float deltaTime);
 
@@ -34,11 +34,11 @@ private:
     b2World* world;
     bool faceRight = true;
     bool jumping = false;
-    float jumpForce = 17;
+    float jumpForce = 1440;
     int animationState = 0;
     float animationSpeed = 0.1f;
     float animationTime = animationSpeed;
-    float speed = 5.0f;
+    float speed = 500.0f;
     Texture* texture;
     Texture* textureJump;
     Texture* textureIdle;

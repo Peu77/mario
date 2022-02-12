@@ -28,12 +28,10 @@ add_executable(mario
         src/game/objects/Mario.cpp
         src/game/objects/Mario.h
         src/game/Box2dInclude.h
-        src/game/collisionListener/CollisionListener.cpp
-        src/game/collisionListener/CollisionListener.h
         src/game/texture/Texture.h
         src/game/texture/Texture.cpp
         libs/std_image/std_image.h
-        libs/std_image/std_image.cpp src/game/objects/Enemy.cpp src/game/objects/Enemy.h)
+        libs/std_image/std_image.cpp src/game/objects/Enemy.cpp src/game/objects/Enemy.h src/game/physic/Body.h src/game/physic/World.cpp src/game/physic/World.h)
 target_link_libraries(mario glfw dl)
 target_link_libraries(mario box2d dl)
 target_link_libraries(mario OpenGL::GL)

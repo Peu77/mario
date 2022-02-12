@@ -16,13 +16,14 @@ public:
 
     void render() override;
 
-    void onCollision(GameObject *object) override;
+    void onCollision() override;
 
 private:
     void flip();
 
 private:
     bool faceRight = true;
+    float velX = 2;
     Texture* texture;
 };
 

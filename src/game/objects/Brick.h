@@ -9,7 +9,7 @@
 
 class Brick : public GameObject {
 public:
-    Brick(b2World &world, glm::vec2 spawnPosition);
+    Brick(b2World &world, glm::vec2 spawnPosition, float tiles);
 
     ~Brick();
 
@@ -17,14 +17,13 @@ public:
 
     void render() override;
 
-    void onCollision(GameObject* object) override;
+    void onCollision() override;
 
 private:
-    b2Body* body;
+    //b2Body* body;
     Texture* texture;
 
-    float tile_count = 200;
-    float tile_width = 100;
+    float tile_count;
 };
 
 

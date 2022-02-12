@@ -9,35 +9,19 @@ Mario::Mario(b2World &world, glm::vec2 spawnPosition, GLFWwindow *window, std::v
         : windowId(window) {
     objects = gameObjects;
     this->world = &world;
+
     textureIdle = getTexture("res/textures/mario.png");
     textureJump = getTexture("res/textures/mario-jump.png");
     runTextures[0] = getTexture("res/textures/mario-run0.png");
     runTextures[1] = getTexture("res/textures/mario-run1.png");
     runTextures[2] = getTexture("res/textures/mario-run2.png");
-    position = {spawnPosition.x, spawnPosition.y};
-    texture = textureIdle;
-
-    tag = "mario";
-
+    body = new Body();
     scale = {100, 100};
-
-    b2BodyDef b_def;
-
-    b_def.userData.pointer = reinterpret_cast<uintptr_t>(this);
-    b_def.position.Set(position.x / PIXEL_TO_M, position.y / PIXEL_TO_M);
-    b_def.type = b2_dynamicBody;
-    b_def.fixedRotation = true;
-    b_def.gravityScale = 2.0f;
-    body = world.CreateBody(&b_def);
-
-    b2PolygonShape b_shape;
-    b_shape.SetAsBox(scale.x / 2.f / PIXEL_TO_M, scale.y / 2.f / PIXEL_TO_M);
-
-    b2FixtureDef fixDef;
-    fixDef.shape = &b_shape;
-    fixDef.density = 1;
-    fixDef.friction = 1.0;
-    body->CreateFixture(&fixDef);
+    body->data = this;
+    body->pos = spawnPosition;
+    body->size = scale;
+    body->dynamic = true;
+    body->vel = {0, -70};
 }
 
 Mario::~Mario() {
@@ -45,9 +29,8 @@ Mario::~Mario() {
 }
 
 void Mario::update(float deleteTime) {
+    body->vel.y -= 30;
     movement(deleteTime);
-    position = {body->GetPosition().x * PIXEL_TO_M, body->GetPosition().y * PIXEL_TO_M};
-
     bool both = glfwGetKey(windowId, GLFW_KEY_A) && glfwGetKey(windowId, GLFW_KEY_D);
 
     if (both) {
@@ -70,55 +53,46 @@ void Mario::update(float deleteTime) {
 }
 
 void Mario::render() {
-    Renderer::drawQuad(position, scale, texture);
+    Renderer::drawQuad(body->pos, scale, texture);
+    for (int i = 0; i < 4; i++)
+    {
+        if (body->contact[i]){
+            std::cout << "draw quad at " << body->contact[i]->pos.x << " : " << body->contact[i]->pos.y << std::endl;
+            Renderer::drawQuad(body->contact[i]->pos, body->contact[i]->size);
+        }
+        body->contact[i] = nullptr;
+    }
 }
 
-void Mario::onCollision(GameObject *object) {
+void Mario::onCollision() {
     if (jumping) {
         jumping = false;
     }
-
-
-    if (object->tag == "enemy") {
-        int targetY = object->position.y;
-        int marioY = position.y - scale.y;
-        int normalY = position.y;
-        bool b = targetY > marioY && targetY < normalY;
-        if (b){
-            object->shouldDelete = true;
-            jumping = true;
-            b2Vec2 vel = body->GetLinearVelocity();
-            vel.y = 14;
-            body->SetLinearVelocity(vel);
-        }
-
-    }
-
-
 }
 
 void Mario::movement(float deltaTime) {
-    b2Vec2 vel = body->GetLinearVelocity();
     if (glfwGetKey(windowId, GLFW_KEY_A) && glfwGetKey(windowId, GLFW_KEY_D)) {
 
     } else {
         if (glfwGetKey(windowId, GLFW_KEY_A) == GLFW_PRESS)
-            vel.x = -speed;
+            body->vel.x = -speed;
         else if (glfwGetKey(windowId, GLFW_KEY_D) == GLFW_PRESS)
-            vel.x = speed;
+
+            body->vel.x = speed;
     }
 
 
-    if (glfwGetKey(windowId, GLFW_KEY_SPACE) == GLFW_PRESS)
-        jump(vel);
 
-    body->SetLinearVelocity(vel);
+    if (glfwGetKey(windowId, GLFW_KEY_SPACE) == GLFW_PRESS)
+        jump();
+
+
 }
 
-void Mario::jump(b2Vec2 &vel) {
+void Mario::jump() {
     if (!jumping) {
         jumping = true;
-        vel.y = jumpForce;
+        body->vel.y = jumpForce;
     }
 }
 

@@ -3,16 +3,17 @@
 //
 
 #include <ctime>
+#include <chrono>
 
-#include "objects/Brick.h"
-#include "collisionListener/CollisionListener.h"
 #include "Game.h"
 #include "renderer/font.h"
+#include "physic/World.h"
 
 int width = 1300;
 int height = 1100;
 
 Font* font;
+World* world;
 
 Game::Game() {
 
@@ -30,17 +31,28 @@ Game::Game() {
 
     b2Vec2 gravity(0, -20.0);
     this->physicsWorld = new b2World(gravity);
+    world = new World();
+    for (int i = 0; i < 10; ++i) {
+        {
+            auto brick = new Brick(*physicsWorld, {100 * i, 20}, 10);
+            world->registerBody(brick->body);
+            objects.push_back(brick);
+        }
+    }
 
-    auto brick = new Brick(*physicsWorld, {0, 0});
-    objects.push_back(brick);
+    {
+        auto brick = new Brick(*physicsWorld, {600, 120}, 10);
+        world->registerBody(brick->body);
+        objects.push_back(brick);
+    }
+
 
     auto* enemy = new Enemy(*physicsWorld, {600, 300});
+    world->registerBody(enemy->body);
     objects.push_back(enemy);
-    mario = new Mario(*physicsWorld, {300, 300}, window->WindowId, &objects);
+    mario = new Mario(*physicsWorld, {300, 700}, window->WindowId, &objects);
+    world->registerBody(mario->body);
     objects.push_back(mario);
-
-
-    CollisionListener collisionListener(*physicsWorld);
 
     Renderer::init();
     Renderer::beginScene(*camera);
@@ -58,17 +70,18 @@ void Game::init() {
 }
 
 void Game::update(float delta) {
-    physicsWorld->Step(delta, 8, 3);
+
+    world->step(delta);
 
     for (const auto &item: objects)
         item->update(delta);
 
-    camera->position = {mario->position.x - (width / 2.0f), camera->position.y};
+    camera->position = {mario->body->pos.x - (width / 2.0f), camera->position.y};
     camera->updateView();
 
     for (const auto &item : this->objects)
         if(item->shouldDelete){
-            physicsWorld->DestroyBody(item->body);
+          //  physicsWorld->DestroyBody(item->body);
             this->removeObject(*item);
         }
 }
@@ -78,7 +91,7 @@ void Game::render() {
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     Renderer::beginScene(*camera);
 
-    font->RenderText(
+   font->RenderText(
             "test",
             100, 400, 1, {1.0f, 0.0f, 0.0f}
             );
@@ -89,7 +102,13 @@ void Game::render() {
 void Game::runTick() {
 
     double lastTime = glfwGetTime();
-
+    /*
+    auto m_tp1 = std::chrono::system_clock::now();
+    auto m_tp2 = std::chrono::system_clock::now();
+    float		fFrameTimer = 1.0f;
+    int			nFrameCount = 0;
+    uint32_t	nLastFPS = 0;
+     */
 
     while (!glfwWindowShouldClose(window->WindowId)) {
         glClearColor(0.0, 0.0, 0.0, 1.0);
@@ -97,10 +116,28 @@ void Game::runTick() {
 
         double currentTime = glfwGetTime();
         auto deltaTime = float(currentTime - lastTime);
-
+      //  m_tp2 = std::chrono::system_clock::now();
+       // std::chrono::duration<float> elapsedTime = m_tp2 - m_tp1;
+        //m_tp1 = m_tp2;
+        //float fElapsedTime = elapsedTime.count();
         lastTime = currentTime;
         update(deltaTime);
         render();
+
+        /*
+        fFrameTimer += fElapsedTime;
+        nFrameCount++;
+
+        if (fFrameTimer >= 1.0f)
+        {
+            nLastFPS = nFrameCount;
+            fFrameTimer -= 1.0f;
+            std::string sTitle = "FPS: " + std::to_string(nFrameCount);
+            std::cout << sTitle << std::endl;
+            //glfwSetWindowTitle(window->WindowId, sTitle.c_str());
+            nFrameCount = 0;
+        }
+         */
 
         glfwSwapBuffers(window->WindowId);
         glfwPollEvents();
