@@ -4,42 +4,35 @@
 
 #include "Enemy.h"
 
-Enemy::Enemy(b2World &world, glm::vec2 spawnPosition) {
+Enemy::Enemy(glm::vec2 spawnPosition) {
+    std::vector<Texture*> textures;
+    textures.push_back(getTexture("res/textures/enemy.png"));
+    textures.push_back(getTexture("res/textures/enemy1.png"));
     texture = getTexture("res/textures/enemy.png");
 
-    tag = "enemy";
+    animation = new Animation(textures);
 
-    //position = {spawnPosition.x, spawnPosition.y};
+
+
     scale = {100, 100};
     body = new Body();
+    body->tag = "enemy";
     body->friction = {0.6f, 0.9f};
     body->pos = spawnPosition;
+    body->dynamic = true;
     body->size = scale;
 
-/*
-    b2BodyDef b_def;
-    b_def.userData.pointer = reinterpret_cast<uintptr_t>(this);
-    b_def.position.Set(position.x / PIXEL_TO_M, position.y / PIXEL_TO_M);
-    b_def.type = b2_dynamicBody;
-    b_def.fixedRotation = true;
-    b_def.gravityScale = 2.0f;
-    body = world.CreateBody(&b_def);
-
-    b2PolygonShape b_shape;
-    b_shape.SetAsBox(scale.x / 2.f / PIXEL_TO_M, scale.y / 2.f / PIXEL_TO_M);
-
-    b2FixtureDef fixDef;
-    fixDef.shape = &b_shape;
-    fixDef.density = 1;
-    fixDef.friction = 1.0;
-    body->CreateFixture(&fixDef);
-    */
 }
 
 void Enemy::update(float deltaTime) {
+    body->vel.y -= GRAVITY;
+
+    body->vel.x = velX;
+
+    texture = animation->getNext(deltaTime);
     /*
     b2Vec2 vel = body->GetLinearVelocity();
-    vel.x = velX;
+
     body->SetLinearVelocity(vel);
     position = {body->GetPosition().x * PIXEL_TO_M, body->GetPosition().y * PIXEL_TO_M};
      */
@@ -50,6 +43,18 @@ void Enemy::render() {
 }
 
 void Enemy::onCollision() {
+    if (body->contact[1] != nullptr && !body->contact[1]->dynamic) {
+        if(velX != -130)
+            flip();
+        velX = -130;
+        body->contact[1] = nullptr;
+    }
+    if (body->contact[3] != nullptr && !body->contact[3]->dynamic) {
+        if(velX != 130)
+            flip();
+        velX = 130;
+        body->contact[3] = nullptr;
+    }
 
     /*
     if(object->position.y > position.y - scale.y && object->tag == "brick"){
@@ -60,5 +65,5 @@ void Enemy::onCollision() {
 
 void Enemy::flip() {
     faceRight = !faceRight;
-    scale *= -1;
+    scale.x *= -1;
 }

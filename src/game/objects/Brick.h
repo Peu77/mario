@@ -9,7 +9,7 @@
 
 class Brick : public GameObject {
 public:
-    Brick(b2World &world, glm::vec2 spawnPosition, float tiles);
+    Brick(glm::vec2 spawnPosition, float tiles);
 
     ~Brick();
 

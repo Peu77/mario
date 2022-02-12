@@ -4,7 +4,6 @@ project(mario)
 set(CMAKE_CXX_STANDARD 23)
 find_package(OpenGL REQUIRED)
 find_package(glfw3 3.3 REQUIRED)
-find_package(box2d REQUIRED)
 find_package(Freetype REQUIRED)
 add_executable(mario
         src/main.cpp
@@ -27,13 +26,18 @@ add_executable(mario
         src/game/objects/Brick.h
         src/game/objects/Mario.cpp
         src/game/objects/Mario.h
-        src/game/Box2dInclude.h
         src/game/texture/Texture.h
         src/game/texture/Texture.cpp
         libs/std_image/std_image.h
-        libs/std_image/std_image.cpp src/game/objects/Enemy.cpp src/game/objects/Enemy.h src/game/physic/Body.h src/game/physic/World.cpp src/game/physic/World.h)
+        libs/std_image/std_image.cpp
+        src/game/objects/Enemy.cpp
+        src/game/objects/Enemy.h
+        src/game/physic/World.cpp
+        src/game/physic/World.h
+        src/window/Screen.h
+        src/game/screens/ScreenMain.cpp
+        src/game/screens/ScreenMain.h src/game/Animation.cpp src/game/Animation.h src/game/screens/ScreenEditor.cpp src/game/screens/ScreenEditor.h)
 target_link_libraries(mario glfw dl)
-target_link_libraries(mario box2d dl)
 target_link_libraries(mario OpenGL::GL)
 target_link_libraries(mario ${FREETYPE_LIBRARIES})
 target_include_directories(mario PRIVATE ${FREETYPE_INCLUDE_DIRS})

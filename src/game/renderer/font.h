@@ -30,6 +30,7 @@ class Font {
     unsigned int VAO, VBO;
     glm::mat4 Projection;
     Program *FontShader;
+    int size;
 
 public:
     void Bind() {
@@ -39,11 +40,12 @@ public:
         glBindVertexArray(0);
     }
 
-    void RenderText(std::string text, float x, float y, float scale, glm::vec3 color) {
+    void RenderText(std::string text, float x, float y, float scale, glm::vec4 color) {
+
         // activate corresponding render state
         FontShader->bind();
         FontShader->uploadUniformMat4f("projection", Projection);
-        FontShader->uploadUniform3f("textColor", color.x, color.y, color.z);
+        FontShader->uploadUniform4f("textColor", color.x, color.y, color.z, color.w);
         glActiveTexture(GL_TEXTURE0);
         glBindVertexArray(VAO);
 
@@ -57,6 +59,7 @@ public:
 
             float w = ch.Size.x * scale;
             float h = ch.Size.y * scale;
+
             // update VBO for each character
             float vertices[6][4] = {
                     {xpos,     ypos + h, 0.0f, 0.0f},
@@ -86,6 +89,7 @@ public:
     }
 
     Font(glm::mat4 projection, Program *shader) : Projection(projection), FontShader(shader) {
+        size = 58;
         std::string font_name = "res/fonts/OpenSans-Bold.ttf";
 
         // FreeType
@@ -108,7 +112,7 @@ public:
             std::cout << "ERROR::FREETYPE: Failed to load font" << std::endl;
         } else {
             // set size to load glyphs as
-            FT_Set_Pixel_Sizes(face, 0, 58);
+            FT_Set_Pixel_Sizes(face, 0, size);
 
             // disable byte-alignment restriction
             glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
@@ -159,12 +163,26 @@ public:
         glGenBuffers(1, &VBO);
         glBindVertexArray(VAO);
         glBindBuffer(GL_ARRAY_BUFFER, VBO);
-        glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 6 * 4, NULL, GL_DYNAMIC_DRAW);
+        glBufferData(GL_ARRAY_BUFFER, sizeof(float) * 6 * 4, nullptr, GL_DYNAMIC_DRAW);
         glEnableVertexAttribArray(0);
         glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, 4 * sizeof(float), 0);
         glBindBuffer(GL_ARRAY_BUFFER, 0);
         glBindVertexArray(0);
 
+    }
+
+    int getHeight(){
+        return size;
+    }
+
+    int getWidth(std::string string){
+        int width = 0;
+        std::string::const_iterator c;
+        for (c = string.begin(); c != string.end(); c++) {
+            Character ch = Characters[*c];
+            width += ch.Size.x + ch.Bearing.x * 2;
+        }
+        return width;
     }
 };
 

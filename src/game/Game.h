@@ -14,20 +14,16 @@
 #include "objects/Enemy.h"
 #include "objects/Mario.h"
 
+#include "../window/Screen.h"
+#include "screens/ScreenMain.h"
+
+static Screen *screen;
 
 class Game {
 private:
     Window *window;
     Camera *camera;
-    b2World *physicsWorld;
     Mario *mario;
-    std::vector<GameObject *> objects;
-
-    void removeObject(GameObject &object) {
-        for (int i = 0; i < objects.size(); i++)
-            if (objects.at(i) == &object)
-                objects.erase(objects.begin() + i);
-    }
 
 public:
     Game();
@@ -37,9 +33,17 @@ public:
 private:
     void init();
 
+    void updateWorld(float delta);
+
     void update(float delta);
 
-    void render();
+    void renderWorld();
+
+    static void onMouseClick(GLFWwindow *window, int button, int action, int mods);
+
+    static glm::vec2 getMousePosition(GLFWwindow *window);
+
+    void render(int &mouseX, int &mouseY);
 
     void runTick();
 };

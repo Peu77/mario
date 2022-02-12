@@ -65,18 +65,7 @@ void Renderer::beginScene(const Camera &camera) {
 }
 
 void Renderer::drawQuad(glm::vec2 position, glm::vec2 scale) {
-    glm::mat4 model =
-            glm::translate(glm::mat4(1), {position.x, position.y, 0});
-
-    model = glm::scale(model, {scale.x, scale.y, 0});
-
-
-    renderData->program->bind();
-    renderData->program->uploadUniformMat4f("u_model", model);
-
-    glBindVertexArray(renderData->vertexArray);
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, renderData->indexBuffer);
-    glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+    drawQuad(position, scale, {1.0, 0.0, 0.0, 1.0});
 }
 
 void Renderer::drawQuad(glm::vec2 position, glm::vec2 scale, Texture *texture) {
@@ -91,6 +80,21 @@ void Renderer::drawQuad(glm::vec2 position, glm::vec2 scale, Texture *texture) {
     renderData->programTexture->uploadUniformMat4f("u_model", model);
 
     texture->Bind();
+    glBindVertexArray(renderData->vertexArray);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, renderData->indexBuffer);
+    glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+}
+
+void Renderer::drawQuad(glm::vec2 position, glm::vec2 scale, glm::vec4 color) {
+    glm::mat4 model =
+            glm::translate(glm::mat4(1), {position.x, position.y, 0});
+
+    model = glm::scale(model, {scale.x, scale.y, 0});
+
+    renderData->program->bind();
+    renderData->program->uploadUniformMat4f("u_model", model);
+    renderData->program->uploadUniform4f("color", color.x, color.y, color.z, color.w);
+
     glBindVertexArray(renderData->vertexArray);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, renderData->indexBuffer);
     glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);

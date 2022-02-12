@@ -7,32 +7,40 @@
 
 #include "vector"
 #include "../objects/GameObject.h"
-#include "Body.h"
+#include "../objects/Mario.h"
+#include "../camera/Camera.h"
 
 
 class World {
-private:
-    std::vector<Body *> bodies;
-
 public:
-    void registerBody(Body *body);
+    std::vector<GameObject *> bodies;
+
+    void registerBody(GameObject *body);
 
     void step(float deltaTime);
 
-    static bool PointVsRect(const glm::vec2& p, const Body* r)
-    {
+    void renderObjects(Camera* camera);
+
+    void removeObject(GameObject &object) {
+        for (int i = 0; i < bodies.size(); i++)
+            if (bodies.at(i) == &object)
+                bodies.erase(bodies.begin() + i);
+    }
+
+    static bool PointVsRect(const glm::vec2 &p, const Body *r) {
         return (p.x >= r->pos.x && p.y >= r->pos.y && p.x < r->pos.x + r->size.x && p.y < r->pos.y + r->size.y);
     }
 
-    static bool RectVsRect(const Body* r1, const Body* r2)
-    {
-        return (r1->pos.x < r2->pos.x + r2->size.x && r1->pos.x + r1->size.x > r2->pos.x && r1->pos.y < r2->pos.y + r2->size.y && r1->pos.y + r1->size.y > r2->pos.y);
+    static bool RectVsRect(const Body *r1, const Body *r2) {
+        return (r1->pos.x < r2->pos.x + r2->size.x && r1->pos.x + r1->size.x > r2->pos.x &&
+                r1->pos.y < r2->pos.y + r2->size.y && r1->pos.y + r1->size.y > r2->pos.y);
     }
 
-    static bool RayVsRect(const glm::vec2& ray_origin, const glm::vec2& ray_dir, const Body* target, glm::vec2& contact_point, glm::vec2& contact_normal, float& t_hit_near)
-    {
-        contact_normal = { 0,0 };
-        contact_point = { 0,0 };
+    static bool
+    RayVsRect(const glm::vec2 &ray_origin, const glm::vec2 &ray_dir, const Body *target, glm::vec2 &contact_point,
+              glm::vec2 &contact_normal, float &t_hit_near) {
+        contact_normal = {0, 0};
+        contact_point = {0, 0};
 
         // Cache division
         glm::vec invdir = 1.0f / ray_dir;
@@ -66,14 +74,14 @@ public:
 
         if (t_near.x > t_near.y)
             if (invdir.x < 0)
-                contact_normal = { 1, 0 };
+                contact_normal = {1, 0};
             else
-                contact_normal = { -1, 0 };
+                contact_normal = {-1, 0};
         else if (t_near.x < t_near.y)
             if (invdir.y < 0)
-                contact_normal = { 0, 1 };
+                contact_normal = {0, 1};
             else
-                contact_normal = { 0, -1 };
+                contact_normal = {0, -1};
 
         // Note if t_near == t_far, collision is principly in a diagonal
         // so pointless to resolve. By returning a CN={0,0} even though its
@@ -81,9 +89,8 @@ public:
         return true;
     }
 
-    static bool DynamicRectVsRect(const Body* r_dynamic, const float fTimeStep, const Body& r_static,
-                           glm::vec2& contact_point, glm::vec2& contact_normal, float& contact_time)
-    {
+    static bool DynamicRectVsRect(const Body *r_dynamic, const float fTimeStep, const Body &r_static,
+                                  glm::vec2 &contact_point, glm::vec2 &contact_normal, float &contact_time) {
         // Check if dynamic rectangle is actually moving - we assume rectangles are NOT in collision to start
 
         if (r_dynamic->vel.x == 0 && r_dynamic->vel.y == 0)
@@ -94,28 +101,25 @@ public:
         expanded_target.pos = r_static.pos - r_dynamic->size / 2.0f;
         expanded_target.size = r_static.size + r_dynamic->size;
 
-        if (RayVsRect(r_dynamic->pos + r_dynamic->size / 2.0f, r_dynamic->vel * fTimeStep, &expanded_target, contact_point, contact_normal, contact_time)){
+        if (RayVsRect(r_dynamic->pos + r_dynamic->size / 2.0f, r_dynamic->vel * fTimeStep, &expanded_target,
+                      contact_point, contact_normal, contact_time)) {
             return (contact_time >= 0.0f && contact_time < 1.0f);
-        }
-        else
+        } else
             return false;
     }
 
 
-
-    static bool ResolveDynamicRectVsRect(Body* r_dynamic, const float fTimeStep, Body* r_static)
-    {
+    static bool ResolveDynamicRectVsRect(Body *r_dynamic, const float fTimeStep, Body *r_static) {
         glm::vec2 contact_point, contact_normal;
         float contact_time = 0.0f;
-        if (DynamicRectVsRect(r_dynamic, fTimeStep, *r_static, contact_point, contact_normal, contact_time))
-        {
-            std::cout << "collision" << std::endl;
+        if (DynamicRectVsRect(r_dynamic, fTimeStep, *r_static, contact_point, contact_normal, contact_time)) {
             if (contact_normal.y > 0) r_dynamic->contact[0] = r_static; else nullptr;
             if (contact_normal.x < 0) r_dynamic->contact[1] = r_static; else nullptr;
             if (contact_normal.y < 0) r_dynamic->contact[2] = r_static; else nullptr;
             if (contact_normal.x > 0) r_dynamic->contact[3] = r_static; else nullptr;
 
-            r_dynamic->vel += contact_normal * glm::vec2(std::abs(r_dynamic->vel.x), std::abs(r_dynamic->vel.y)) * (1 - contact_time);
+            r_dynamic->vel += contact_normal * glm::vec2(std::abs(r_dynamic->vel.x), std::abs(r_dynamic->vel.y)) *
+                              (1 - contact_time);
             return true;
         }
 

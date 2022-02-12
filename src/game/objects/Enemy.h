@@ -6,11 +6,11 @@
 #define MARIO_ENEMY_H
 
 #include "GameObject.h"
-
+#include "../Animation.h"
 
 class Enemy : public GameObject {
 public:
-    Enemy(b2World &world, glm::vec2 spawnPosition);
+    Enemy(glm::vec2 spawnPosition);
 
     void update(float deltaTime) override;
 
@@ -23,7 +23,8 @@ private:
 
 private:
     bool faceRight = true;
-    float velX = 2;
+    float velX = 130;
+    Animation* animation;
     Texture* texture;
 };
 

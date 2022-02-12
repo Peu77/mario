@@ -30,6 +30,7 @@ public:
     static void beginScene(const Camera &camera);
 
     static void drawQuad(glm::vec2 position, glm::vec2 scale);
+    static void drawQuad(glm::vec2 position, glm::vec2 scale, glm::vec4 color);
     static void drawQuad(glm::vec2 position, glm::vec2 scale, Texture* texture);
 };
 

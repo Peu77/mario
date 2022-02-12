@@ -6,18 +6,16 @@
 #define MARIO_GAMEOBJECT_H
 
 
-#include "../Box2dInclude.h"
 #include "../renderer/Renderer.h"
 #include "vector"
-#include "../physic/Body.h"
 
-static float PIXEL_TO_M = 150.0f;
 static float GRAVITY = 40.0f;
+
+struct Body;
 
 class GameObject {
 public:
     virtual void update(float deltaTime) {
-        //position = {body->GetPosition().x * PIXEL_TO_M, body->GetPosition().y * PIXEL_TO_M};
     };
 
     virtual void render() = 0;
@@ -29,6 +27,17 @@ public:
     Body *body;
     float rotation;
     glm::vec2 scale;
+};
+
+
+struct Body {
+    glm::vec2 pos;
+    glm::vec2 size;
+    glm::vec2 vel;
+    glm::vec2 friction;
+    Body* contact[4];
+    void* data;
+    bool dynamic = false;
     std::string tag;
 };
 

@@ -9,11 +9,12 @@
 #include "glad/include/glad/glad.h"
 #include "GLFW/glfw3.h"
 #include "Enemy.h"
+#include "../Animation.h"
 
 
 class Mario : public GameObject {
 public:
-    Mario(b2World &world, glm::vec2 spawnPosition, GLFWwindow* window, std::vector<GameObject*> *gameObjects);
+    Mario(glm::vec2 spawnPosition, GLFWwindow* window);
 
     ~Mario();
 
@@ -24,25 +25,20 @@ public:
     void onCollision() override;
 
 private:
+    Animation* animation;
     void movement(float deltaTime);
     void jump();
     void flip();
-    void runAnimation(float deltaTime);
 
 private:
     GLFWwindow* windowId;
-    b2World* world;
     bool faceRight = true;
     bool jumping = false;
     float jumpForce = 1440;
-    int animationState = 0;
-    float animationSpeed = 0.1f;
-    float animationTime = animationSpeed;
     float speed = 500.0f;
     Texture* texture;
     Texture* textureJump;
     Texture* textureIdle;
-    Texture* runTextures[3];
     std::vector<GameObject*> *objects;
 };
 

@@ -12,8 +12,8 @@
 int width = 1300;
 int height = 1100;
 
-Font* font;
-World* world;
+Font *font;
+World *world;
 
 Game::Game() {
 
@@ -29,39 +29,44 @@ Game::Game() {
     Program fontProgram(&vertex, &fragment);
     font = new Font(camera->proj, &fontProgram);
 
-    b2Vec2 gravity(0, -20.0);
-    this->physicsWorld = new b2World(gravity);
+    screen = new ScreenMain(font, []() {
+        screen = nullptr;
+    });
+
+    glfwSetMouseButtonCallback(window->WindowId, onMouseClick);
+    glfwSetKeyCallback(window->WindowId, [](GLFWwindow *id, int key, int scancode, int action, int mods) {
+        if (mods == GLFW_RELEASE && key == GLFW_KEY_ESCAPE)
+            screen = new ScreenMain(font, []() {
+                screen = nullptr;
+            });
+    });
+
     world = new World();
     for (int i = 0; i < 10; ++i) {
         {
-            auto brick = new Brick(*physicsWorld, {100 * i, 20}, 10);
-            world->registerBody(brick->body);
-            objects.push_back(brick);
+            auto brick = new Brick({100 * i, 20}, 10);
+            world->registerBody(brick);
+
         }
     }
 
     for (int i = 0; i < 10; ++i) {
         {
-            auto brick = new Brick(*physicsWorld, {100 * 10, 20 + i * 100}, 10);
-            world->registerBody(brick->body);
-            objects.push_back(brick);
+            auto brick = new Brick({100 * 10, 20 + i * 100}, 10);
+            world->registerBody(brick);
         }
     }
 
     {
-        auto brick = new Brick(*physicsWorld, {600, 120}, 10);
-        world->registerBody(brick->body);
-        objects.push_back(brick);
+        auto brick = new Brick({600, 120}, 10);
+        world->registerBody(brick);
     }
 
 
-    auto* enemy = new Enemy(*physicsWorld, {600, 300});
-    world->registerBody(enemy->body);
-    objects.push_back(enemy);
-    mario = new Mario(*physicsWorld, {300, 700}, window->WindowId, &objects);
-    world->registerBody(mario->body);
-    objects.push_back(mario);
-
+    auto *enemy = new Enemy({600, 300});
+    world->registerBody(enemy);
+    mario = new Mario({300, 700}, window->WindowId);
+    world->registerBody(mario);
     Renderer::init();
     Renderer::beginScene(*camera);
     this->runTick();
@@ -77,79 +82,81 @@ void Game::init() {
         std::cout << "glfw is not init" << std::endl;
 }
 
-void Game::update(float delta) {
+void Game::onMouseClick(GLFWwindow *window, int button, int action, int mods) {
+    if (screen != nullptr && button == 0) {
 
-    world->step(delta);
+        glm::vec2 mousePos = getMousePosition(window);
 
-    for (const auto &item: objects)
-        item->update(delta);
+        int mouseX = (int) mousePos.x;
+        int mouseY = (int) mousePos.y;
 
-    camera->position = {mario->body->pos.x - (width / 2.0f), camera->position.y};
-    camera->updateView();
-
-    for (const auto &item : this->objects)
-        if(item->shouldDelete){
-          //  physicsWorld->DestroyBody(item->body);
-            this->removeObject(*item);
+        switch (action) {
+            case GLFW_PRESS:
+                screen->onClick(mouseX, mouseY);
+                break;
+            case GLFW_RELEASE:
+                screen->onRelease(mouseX, mouseY);
+                break;
         }
+    }
 }
 
-void Game::render() {
+void Game::updateWorld(float delta) {
+    world->step(delta);
+
+}
+
+void Game::update(float delta) {
+    if (screen == nullptr)
+        updateWorld(delta);
+    else
+        screen->update(delta);
+}
+
+void Game::renderWorld() {
+    world->renderObjects(camera);
+}
+
+void Game::render(int &mouseX, int &mouseY) {
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-    Renderer::beginScene(*camera);
-
-   font->RenderText(
-            "test",
-            100, 400, 1, {1.0f, 0.0f, 0.0f}
-            );
-    for (const auto &item: objects)
-        item->render();
+    if (screen == nullptr)
+        renderWorld();
+    else
+        screen->draw(mouseX, mouseY);
 }
 
 void Game::runTick() {
 
     double lastTime = glfwGetTime();
-    /*
-    auto m_tp1 = std::chrono::system_clock::now();
-    auto m_tp2 = std::chrono::system_clock::now();
-    float		fFrameTimer = 1.0f;
-    int			nFrameCount = 0;
-    uint32_t	nLastFPS = 0;
-     */
-
     while (!glfwWindowShouldClose(window->WindowId)) {
         glClearColor(0.0, 0.0, 0.0, 1.0);
         glClear(GL_COLOR_BUFFER_BIT);
 
         double currentTime = glfwGetTime();
         auto deltaTime = float(currentTime - lastTime);
-      //  m_tp2 = std::chrono::system_clock::now();
-       // std::chrono::duration<float> elapsedTime = m_tp2 - m_tp1;
-        //m_tp1 = m_tp2;
-        //float fElapsedTime = elapsedTime.count();
         lastTime = currentTime;
         update(deltaTime);
-        render();
 
-        /*
-        fFrameTimer += fElapsedTime;
-        nFrameCount++;
-
-        if (fFrameTimer >= 1.0f)
-        {
-            nLastFPS = nFrameCount;
-            fFrameTimer -= 1.0f;
-            std::string sTitle = "FPS: " + std::to_string(nFrameCount);
-            std::cout << sTitle << std::endl;
-            //glfwSetWindowTitle(window->WindowId, sTitle.c_str());
-            nFrameCount = 0;
-        }
-         */
+        glm::vec2 mousePos = getMousePosition(window->WindowId);
+        int mouseX = (int) mousePos.x;
+        int mouseY = (int) mousePos.y;
+        render(mouseX, mouseY);
 
         glfwSwapBuffers(window->WindowId);
         glfwPollEvents();
     }
 }
+
+glm::vec2 Game::getMousePosition(GLFWwindow *window) {
+    double mouseX, mouseY;
+    glfwGetCursorPos(window, &mouseX, &mouseY);
+
+    int realMouseY = height - (int) mouseY;
+    //std::cout << "mouseX: " << realMouseY << " mouseY: " << realMouseY << std::endl;
+    return {mouseX, realMouseY};
+}
+
+
 
 
