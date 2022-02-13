@@ -38,6 +38,20 @@ public:
 
     ~World();
 
+    GameObject *genObject(const std::string &tag, int &x, int &y) {
+        GameObject *object = nullptr;
+
+        if (tag == "brick")
+            object = new Brick({x, y});
+        else if (tag == "mario") {
+            mario->body->pos.x = x;
+            mario->body->pos.y = y;
+            std::cout << "set mario to pos: " << x << " : " << y << std::endl;
+        }
+
+        return object;
+    }
+
     void load() {
         Json::Value root;
         Json::Reader reader;
@@ -63,14 +77,11 @@ public:
                 std::string tag = root[index]["tag"].asString();
                 int x = root[index]["x"].asInt();
                 int y = root[index]["y"].asInt();
-                if (tag == "brick") {
-                    auto brick = new Brick({x, y});
-                    bodies.push_back(brick);
-                } else if (tag == "mario") {
-                    mario = new Mario({x, y}, Renderer::getRenderData()->window);
-                    bodies.push_back(mario);
-                } else
+                auto object = genObject(tag, x, y);
+                if (object == nullptr)
                     std::cout << "cannot find tag " << tag << std::endl;
+                else
+                    bodies.push_back(object);
             }
         }
     }

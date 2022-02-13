@@ -14,7 +14,7 @@
 
 class Mario : public GameObject {
 public:
-    Mario(glm::vec2 spawnPosition, GLFWwindow* window);
+    Mario(glm::vec2 spawnPosition);
 
     ~Mario();
 

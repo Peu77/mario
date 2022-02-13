@@ -64,5 +64,7 @@ World::~World() {
 
 World::World(int &in_width, int &in_height) {
     camera = new Camera(in_width, in_height);
+    mario = new Mario({0, 200});
+    bodies.push_back(mario);
 }
 

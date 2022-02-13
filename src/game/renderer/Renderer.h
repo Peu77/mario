@@ -19,6 +19,7 @@ struct RenderData {
     Program *program;
     Program *programTexture;
     Font *font;
+    Font *font2;
     Camera *menuCamera;
     GLFWwindow* window;
 };

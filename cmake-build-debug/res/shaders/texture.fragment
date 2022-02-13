@@ -15,7 +15,7 @@ void main()
     }else{
     	FragColor = colorToRender;
     }
-    */
+*/
     	FragColor = texture(u_Tex, texCoords);
 
 };

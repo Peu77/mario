@@ -9,21 +9,47 @@ ScreenEditor::ScreenEditor(int &in_width, int &in_height) :
     world = new World(in_width, in_height);
     world->load();
 
-    Button button;
-    button.x = 200;
-    button.y = 200;
-    button.width = 200;
-    button.height = 100;
+    std::vector<std::string> tags;
+    tags.push_back("mario");
+    tags.push_back("brick");
 
-    button.buttonFont = Renderer::getRenderData()->font;
-    button.text = "save";
-    button.runnable = [](void *screen) {
-        auto editor = (ScreenEditor *) screen;
+    {
+        Button button;
+        button.x = 200;
+        button.y = 200;
+        button.width = 200;
+        button.height = 100;
 
-        editor->world->save();
-    };
+        button.buttonFont = Renderer::getRenderData()->font;
+        button.text = "save";
+        button.runnable = [](void *screen) {
+            auto editor = (ScreenEditor *) screen;
 
-    buttons.push_back(button);
+            editor->world->save();
+        };
+    }
+
+
+    for (int i = 0; i < tags.size(); ++i) {
+        auto tag = tags[i];
+        Button button;
+        button.x = 0 + i * 100;
+        button.y = 50;
+        button.width = 100;
+        button.height = 50;
+
+        button.buttonFont = Renderer::getRenderData()->font2;
+        button.text = tag;
+        button.data = new ButtonData{this, tag};
+
+        button.runnable = [](void *data) {
+            auto buttonData = (ButtonData *) data;
+            buttonData->screenEditor->currrentTag = buttonData->tag;
+        };
+
+        buttons.push_back(button);
+    }
+
 }
 
 ScreenEditor::~ScreenEditor() {
@@ -36,7 +62,7 @@ void ScreenEditor::draw(int &mouseX, int &mouseY) {
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     world->renderObjects();
     auto position = getPosition(mouseX, mouseY);
-    Renderer::drawQuad(position, {100, 100}, {0.4, 0.0, 0.0, 1.0});
+    Renderer::drawQuad(position, {100, 100}, {0.4, 0.0, 0.0, 0.4});
 
     renderButtons(mouseX, mouseY);
 }
@@ -58,9 +84,19 @@ void ScreenEditor::onRelease(int &mouseX, int &mouseY, int &button) {
         moving = false;
     } else if (!moving && !b) {
         auto position = getPosition(mouseX, mouseY);
+        auto objectOnCords = getGameObject(position.x, position.y);
 
-        auto brick = new Brick(position);
-        world->registerBody(brick);
+        if (button == 0 && objectOnCords == nullptr) {
+            int x = (int) position.x;
+            int y = (int) position.y;
+            auto object = world->genObject(currrentTag, x, y);
+            if (object != nullptr)
+                world->registerBody(object);
+        }
+        if (button == 1 && objectOnCords != nullptr) {
+            world->removeObject(*objectOnCords);
+        }
+
     }
 }
 
@@ -82,8 +118,10 @@ glm::vec2 ScreenEditor::getPosition(int &mouseX, int &mouseY) const {
     return {x + 50, y + 50};
 }
 
-GameObject *ScreenEditor::getGameObject(int &mouseX, int &mouseY) {
-    
+GameObject *ScreenEditor::getGameObject(float &mouseX, float &mouseY) {
+    for (const auto &item: world->bodies)
+        if (item->body->pos.x == mouseX && item->body->pos.y == mouseY)
+            return item;
 
     return nullptr;
 }

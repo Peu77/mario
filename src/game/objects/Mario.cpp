@@ -6,9 +6,10 @@
 #include "Mario.h"
 
 
-Mario::Mario(glm::vec2 spawnPosition, GLFWwindow *window)
-        : windowId(window) {
+Mario::Mario(glm::vec2 spawnPosition) {
+    windowId = Renderer::getRenderData()->window;
     textureIdle = getTexture("res/textures/mario.png");
+    texture = textureIdle;
     textureJump = getTexture("res/textures/mario-jump.png");
     std::vector<Texture *> textures;
     textures.push_back(getTexture("res/textures/mario-run0.png"));
@@ -54,6 +55,7 @@ void Mario::update(float deleteTime) {
 }
 
 void Mario::render() {
+    std::cout << "render mario" << std::endl;
     Renderer::drawQuad(body->pos, scale, texture);
     for (int i = 0; i < 4; i++) {
         /*

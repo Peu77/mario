@@ -16,7 +16,9 @@ void Renderer::init(int &in_width, int &in_height, GLFWwindow *window) {
         renderData->program = Program::loadProgram("main");
     }
     renderData->menuCamera = new Camera(in_width, in_height);
-    renderData->font = new Font(&renderData->menuCamera->proj, Program::loadProgram("font"));
+    auto fontShader =  Program::loadProgram("font");
+    renderData->font = new Font(&renderData->menuCamera->proj, fontShader, 58);
+    renderData->font2 = new Font(&renderData->menuCamera->proj, fontShader, 30);
 
     float positions[] = {
             -0.5f, -0.5f, 0.f, 0.f,

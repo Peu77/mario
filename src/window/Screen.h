@@ -14,6 +14,7 @@ struct Button {
     Font *buttonFont;
     std::string text;
     int x, y, width, height;
+    void *data = nullptr;
 
     void (*runnable)(void *);
 };
@@ -33,7 +34,10 @@ public:
     bool checkButtons(int &mouseX, int &mouseY) {
         for (const Button &item: buttons) {
             if (isHoverButton(item, mouseX, mouseY)) {
-                item.runnable(this);
+                if (item.data != nullptr)
+                    item.runnable(item.data);
+                else
+                    item.runnable(this);
                 return true;
             }
         }

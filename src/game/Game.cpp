@@ -57,11 +57,6 @@ Game::Game() {
         world->registerBody(brick);
     }
 
-
-    auto *enemy = new Enemy({600, 300});
-    world->registerBody(enemy);
-    auto mario = new Mario({300, 700}, window->WindowId);
-    world->registerBody(mario);
     this->runTick();
 }
 

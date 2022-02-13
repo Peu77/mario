@@ -28,7 +28,7 @@ struct Character {
 class Font {
     std::map<GLchar, Character> Characters;
     unsigned int VAO, VBO;
-    glm::mat4* Projection;
+    glm::mat4 *Projection;
     Program *FontShader;
     int size;
 
@@ -88,8 +88,8 @@ public:
         glBindTexture(GL_TEXTURE_2D, 0);
     }
 
-    Font(glm::mat4* projection, Program *shader) : Projection(projection), FontShader(shader) {
-        size = 58;
+    Font(glm::mat4 *projection, Program *shader, int font_size) : Projection(projection), FontShader(shader) {
+        size = font_size;
         std::string font_name = "res/fonts/OpenSans-Bold.ttf";
 
         // FreeType
@@ -171,11 +171,11 @@ public:
 
     }
 
-    int getHeight(){
+    int getHeight() {
         return size;
     }
 
-    int getWidth(std::string string){
+    int getWidth(std::string string) {
         int width = 0;
         std::string::const_iterator c;
         for (c = string.begin(); c != string.end(); c++) {
