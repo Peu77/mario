@@ -36,8 +36,8 @@ Game::Game() {
     glfwSetMouseButtonCallback(window->WindowId, onMouseClick);
     glfwSetKeyCallback(window->WindowId, [](GLFWwindow *id, int key, int scancode, int action, int mods) {
         if (mods == GLFW_RELEASE && key == GLFW_KEY_ESCAPE)
-            screen = new ScreenMain(font, [](Screen *) {
-                screen = nullptr;
+            screen = new ScreenMain(font, [](Screen *in_screen) {
+                screen = in_screen;
             }, width, height);
     });
 
@@ -105,7 +105,7 @@ void Game::updateWorld(float delta) {
 
 }
 
-void Game::update(int& mouseX, int& mouseY, float delta) {
+void Game::update(int &mouseX, int &mouseY, float delta) {
     if (screen == nullptr)
         updateWorld(delta);
     else

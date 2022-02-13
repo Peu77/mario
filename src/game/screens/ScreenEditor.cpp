@@ -8,6 +8,7 @@ ScreenEditor::ScreenEditor(Font *in_font, int &in_width, int &in_height) :
         width(in_width), height(in_height) {
     world = new World();
     camera = new Camera(in_width, in_height);
+    world->load();
 
     Button button;
     button.x = 200;
