@@ -25,7 +25,7 @@ public:
 
     void onCollision() override;
 
-    float getVelocity(float& velocity, float x, float delta) override;
+    float getVelocityX(float& velocity, float x, float delta) override;
 
 private:
     Animation *animation;

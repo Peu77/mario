@@ -35,12 +35,8 @@ void Mario::update(float deleteTime) {
     movement(deleteTime);
 
     if (body->contact[0] != nullptr && body->contact[2] == nullptr) {
-        if (jumping) {
-            jumping = false;
-        }
         if (body->contact[0]->tag == "enemy") {
             body->vel.y = jumpForce / 2;
-            //world->removeObject(body->contact[0]);
         }
     }
 
@@ -69,9 +65,11 @@ void Mario::render() {
     Renderer::drawQuad(body->pos, scale, texture);
     for (int i = 0; i < 4; i++) {
 
+        /*
         if (body->contact[i]) {
             Renderer::drawQuad(body->contact[i]->pos, body->contact[i]->size);
         }
+         */
 
         body->contact[i] = nullptr;
     }
@@ -80,11 +78,9 @@ void Mario::render() {
 void Mario::onCollision() {
 }
 
-float Mario::getVelocity(float &velocity, float x, float delta) {
+float Mario::getVelocityX(float &velocity, float x, float delta) {
     if (body->contact[0] != nullptr && body->contact[0]->tag == "platform") {
         auto offset = (bool *) body->contact[0]->data;
-
-        std::cout << *offset << std::endl;
 
         if (*offset)
             return (90 + body->vel.x) * delta + x;
@@ -92,7 +88,7 @@ float Mario::getVelocity(float &velocity, float x, float delta) {
             return (-90 + body->vel.x) * delta + x;
 
     }
-    return GameObject::getVelocity(velocity, x, delta);
+    return GameObject::getVelocityX(velocity, x, delta);
 }
 
 void Mario::movement(float deltaTime) {

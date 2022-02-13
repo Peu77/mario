@@ -22,7 +22,7 @@ public:
 
     virtual void onCollision() = 0;
 
-    virtual float getVelocity(float &velocity, float x, float delta) {
+    virtual float getVelocityX(float &velocity, float x, float delta) {
         return velocity * delta + x;
     };
 

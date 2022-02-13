@@ -17,6 +17,10 @@ void World::renderObjects() {
 }
 
 void World::step(float deltaTime) {
+
+    camera->position.x = mario->body->pos.x - 500;
+    camera->updateView();
+
     for (const auto &item: bodies) {
         if (item->body->dynamic) {
             glm::vec2 cp, cn;
@@ -46,9 +50,8 @@ void World::step(float deltaTime) {
 
             //item->body->pos += item->body->vel * deltaTime;
             float x = item->body->vel.x;
-            item->body->pos.x = item->getVelocity(x, item->body->pos.x, deltaTime);
-            float y = item->body->vel.y * deltaTime;
-            item->body->pos.y += y;
+            item->body->pos.x = item->getVelocityX(x, item->body->pos.x, deltaTime);
+            item->body->pos.y += item->body->vel.y * deltaTime;
         }
 
         item->update(deltaTime);
