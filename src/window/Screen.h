@@ -46,6 +46,7 @@ public:
     }
 
     void renderButtons(int &mouseX, int mouseY) {
+        Renderer::beginScene(*Renderer::getRenderData()->menuCamera);
         for (const auto &item: buttons) {
             float alpha = 1.0;
             if (isHoverButton(item, mouseX, mouseY))

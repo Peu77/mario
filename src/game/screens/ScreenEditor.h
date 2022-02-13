@@ -25,6 +25,10 @@ public:
 
     ~ScreenEditor();
 
+    glm::vec2 getPosition(int& mouseX, int& mouseY) const;
+
+    GameObject* getGameObject(int& mouseX, int& mouseY);
+
     void draw(int &mouseX, int &mouseY) override;
 
     void onClick(int &mouseX, int &mouseY, int& button) override;

@@ -21,7 +21,7 @@ Game::Game() {
 
     glViewport(0, 0, width, height);
 
-    Renderer::init(width, height);
+    Renderer::init(width, height, window->WindowId);
 
     screen = new ScreenMain([](Screen *in_screen) {
         screen = in_screen;
@@ -60,7 +60,7 @@ Game::Game() {
 
     auto *enemy = new Enemy({600, 300});
     world->registerBody(enemy);
-    mario = new Mario({300, 700}, window->WindowId);
+    auto mario = new Mario({300, 700}, window->WindowId);
     world->registerBody(mario);
     this->runTick();
 }

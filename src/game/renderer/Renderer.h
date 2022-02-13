@@ -20,6 +20,7 @@ struct RenderData {
     Program *programTexture;
     Font *font;
     Camera *menuCamera;
+    GLFWwindow* window;
 };
 
 static RenderData *renderData;
@@ -27,7 +28,7 @@ static RenderData *renderData;
 
 class Renderer {
 public:
-    static void init(int &in_width, int &in_height);
+    static void init(int &in_width, int &in_height, GLFWwindow* window);
 
     static RenderData* getRenderData();
 

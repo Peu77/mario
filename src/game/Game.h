@@ -22,7 +22,6 @@ static Screen *screen;
 class Game {
 private:
     Window *window;
-    Mario *mario;
 
 public:
     Game();

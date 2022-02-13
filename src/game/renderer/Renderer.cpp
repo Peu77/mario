@@ -4,15 +4,15 @@
 
 #include "Renderer.h"
 
-void Renderer::init(int &in_width, int &in_height) {
+void Renderer::init(int &in_width, int &in_height, GLFWwindow *window) {
     renderData = new RenderData();
+    renderData->window = window;
     {
         Shader vertex("res/shaders/texture.vertex", GL_VERTEX_SHADER);
         Shader fragment("res/shaders/texture.fragment", GL_FRAGMENT_SHADER);
         renderData->programTexture = new Program(&vertex, &fragment);
     }
     {
-
         renderData->program = Program::loadProgram("main");
     }
     renderData->menuCamera = new Camera(in_width, in_height);
