@@ -8,6 +8,22 @@ ScreenEditor::ScreenEditor(Font *in_font, int &in_width, int &in_height) :
         width(in_width), height(in_height) {
     world = new World();
     camera = new Camera(in_width, in_height);
+
+    Button button;
+    button.x = 200;
+    button.y = 200;
+    button.width = 200;
+    button.height = 100;
+
+    button.buttonFont = in_font;
+    button.text = "save";
+    button.runnable = [](void *screen) {
+        auto editor = (ScreenEditor *) screen;
+
+        editor->world->save();
+    };
+
+    buttons.push_back(button);
 }
 
 ScreenEditor::~ScreenEditor() {
@@ -19,15 +35,17 @@ void ScreenEditor::draw(int &mouseX, int &mouseY) {
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     world->renderObjects(camera);
+
+    renderButtons(mouseX, mouseY);
 }
 
 void ScreenEditor::onClick(int &mouseX, int &mouseY, int &button) {
-    std::cout << "button: " << button << std::endl;
-    if (button == 2) {
-        offset = {mouseX, mouseY};
-        moving = true;
+    if (!checkButtons(mouseX, mouseY)) {
+        if (button == 2) {
+            offset = {mouseX, mouseY};
+            moving = true;
+        }
     }
-
 }
 
 void ScreenEditor::onRelease(int &mouseX, int &mouseY, int &button) {
@@ -36,7 +54,7 @@ void ScreenEditor::onRelease(int &mouseX, int &mouseY, int &button) {
         last.y = std::max(offset.y - mouseY + last.y, 0.0f);
 
         moving = false;
-    } else if(!moving){
+    } else if (!moving) {
         double dX = (mouseX + last.x) / 100.0;
         double dY = (mouseY + last.y) / 100.0;
         double x = ((int) dX) * 100;

@@ -9,6 +9,10 @@
 #include "../objects/GameObject.h"
 #include "../objects/Mario.h"
 #include "../camera/Camera.h"
+#include "../objects/Brick.h"
+#include "iostream"
+#include "fstream"
+#include "json/json.h"
 
 
 class World {
@@ -19,12 +23,64 @@ public:
 
     void step(float deltaTime);
 
-    void renderObjects(Camera* camera);
+    void renderObjects(Camera *camera);
 
     void removeObject(GameObject &object) {
         for (int i = 0; i < bodies.size(); i++)
             if (bodies.at(i) == &object)
                 bodies.erase(bodies.begin() + i);
+    }
+
+    void load() {
+        Json::Value root;
+        Json::Reader reader;
+        std::ifstream stream("map.json");
+        std::string line;
+        std::string json;
+        while (getline(stream, line)) {
+            json += line + "\n";
+        }
+        stream.close();
+
+        bool success = reader.parse(json, root, false);
+
+        if (success) {
+            int amount = root["amount"].asInt();
+            for (int i = 0; i < amount; ++i) {
+                std::string index = std::to_string(i);
+                std::string tag = root[index]["tag"].asString();
+                int x = root[index]["x"].asInt();
+                int y = root[index]["y"].asInt();
+                switch (tag) {
+                    case "brick":
+                        auto brick = new Brick({x, y});
+                        break;
+                    default:
+                        std::cout << "cannot find tag " << tag << std::endl;
+                        break;
+                }
+            }
+        }
+    }
+
+    void save() {
+        Json::Value root;
+        root["amount"] = bodies.size();
+        for (int i = 0; i < bodies.size(); ++i) {
+            auto body = bodies.at(i);
+            root[std::to_string(i)]["tag"] = body->body->tag;
+            root[std::to_string(i)]["x"] = body->body->size.x;
+            root[std::to_string(i)]["y"] = body->body->size.y;
+        }
+
+        Json::StyledWriter styledWriter;
+
+        std::string json = styledWriter.write(root);
+        std::cout << "write: " << json << std::endl;
+        std::ofstream file;
+        file.open("map.json");
+        file << json;
+        file.close();
     }
 
     static bool PointVsRect(const glm::vec2 &p, const Body *r) {

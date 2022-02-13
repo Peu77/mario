@@ -11,6 +11,7 @@
 #include "../camera/Camera.h"
 #include "../objects/Brick.h"
 
+
 class ScreenEditor : public Screen {
 private:
     World *world;

@@ -251,6 +251,12 @@ box2d_DIR:PATH=/usr/local/lib/cmake/box2d
 //The directory containing a CMake configuration file for glfw3.
 glfw3_DIR:PATH=/usr/lib64/cmake/glfw3
 
+//The directory containing a CMake configuration file for json.
+json_DIR:PATH=json_DIR-NOTFOUND
+
+//The directory containing a CMake configuration file for jsoncpp.
+jsoncpp_DIR:PATH=jsoncpp_DIR-NOTFOUND
+
 //Value Computed by CMake
 mario_BINARY_DIR:STATIC=/home/peu77/Coding/private/mario/cmake-build-debug
 

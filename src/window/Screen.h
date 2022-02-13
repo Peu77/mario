@@ -26,15 +26,18 @@ public:
 
     virtual void update(int &mouseX, int &mouseY, float deltaTime) = 0;
 
-    virtual void onClick(int &mouseX, int &mouseY, int& button) = 0;
+    virtual void onClick(int &mouseX, int &mouseY, int &button) = 0;
 
-    virtual void onRelease(int &mouseX, int &mouseY, int& button) = 0;
+    virtual void onRelease(int &mouseX, int &mouseY, int &button) = 0;
 
-    void checkButtons(int &mouseX, int &mouseY) {
+    bool checkButtons(int &mouseX, int &mouseY) {
         for (const Button &item: buttons) {
-            if (isHoverButton(item, mouseX, mouseY))
+            if (isHoverButton(item, mouseX, mouseY)) {
                 item.runnable(this);
+                return true;
+            }
         }
+        return false;
     }
 
     static bool isHoverButton(const Button &button, int &mouseX, int &mouseY) {
