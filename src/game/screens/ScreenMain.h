@@ -24,11 +24,11 @@ public:
 
     void draw(int& mouseX, int& mouseY) override;
 
-    void onClick(int& mouseX, int& mouseY) override;
+    void onClick(int& mouseX, int& mouseY, int& button) override;
 
-    void onRelease(int& mouseX, int& mouseY) override;
+    void onRelease(int& mouseX, int& mouseY, int& button) override;
 
-    void update(float deltaTime) override;
+    void update(int &mouseX, int &mouseY, float deltaTime) override;
 };
 
 

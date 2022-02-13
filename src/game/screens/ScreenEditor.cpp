@@ -21,22 +21,40 @@ void ScreenEditor::draw(int &mouseX, int &mouseY) {
     world->renderObjects(camera);
 }
 
-void ScreenEditor::onClick(int &mouseX, int &mouseY) {
+void ScreenEditor::onClick(int &mouseX, int &mouseY, int &button) {
+    std::cout << "button: " << button << std::endl;
+    if (button == 2) {
+        offset = {mouseX, mouseY};
+        moving = true;
+    }
 
 }
 
-void ScreenEditor::onRelease(int &mouseX, int &mouseY) {
-    double dX = mouseX / 100.0;
-    double dY = mouseY / 100.0;
-    double x = ((int) dX) * 100;
-    double y = ((int) dY) * 100;
+void ScreenEditor::onRelease(int &mouseX, int &mouseY, int &button) {
+    if (button == 2) {
+        last.x = std::max(offset.x - mouseX + last.x, 0.0f);
+        last.y = std::max(offset.y - mouseY + last.y, 0.0f);
+
+        moving = false;
+    } else if(!moving){
+        double dX = (mouseX + last.x) / 100.0;
+        double dY = (mouseY + last.y) / 100.0;
+        double x = ((int) dX) * 100;
+        double y = ((int) dY) * 100;
 
 
-    auto brick = new Brick({x + 50, y + 50});
-    world->registerBody(brick);
+        auto brick = new Brick({x + 50, y + 50});
+        world->registerBody(brick);
+    }
 }
 
-void ScreenEditor::update(float deltaTime) {
+void ScreenEditor::update(int &mouseX, int &mouseY, float deltaTime) {
+    if (moving) {
+        camera->position.x = std::max(offset.x - mouseX + last.x, 0.0f);
+        camera->position.y = std::max(offset.y - mouseY + last.y, 0.0f);
+
+        camera->updateView();
+    }
 
 }
 

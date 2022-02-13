@@ -35,7 +35,7 @@ private:
 
     void updateWorld(float delta);
 
-    void update(float delta);
+    void update(int &mouseX, int &mouseY, float delta);
 
     void renderWorld();
 

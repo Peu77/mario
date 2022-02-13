@@ -57,13 +57,13 @@ void ScreenMain::draw(int &mouseX, int &mouseY) {
     renderButtons(mouseX, mouseY);
 }
 
-void ScreenMain::update(float deltaTime) {
+void ScreenMain::update(int &mouseX, int &mouseY, float deltaTime) {
 
 }
 
-void ScreenMain::onClick(int &mouseX, int &mouseY) {
+void ScreenMain::onClick(int &mouseX, int &mouseY, int& button) {
 }
 
-void ScreenMain::onRelease(int &mouseX, int &mouseY) {
+void ScreenMain::onRelease(int &mouseX, int &mouseY, int& button) {
     checkButtons(mouseX, mouseY);
 }

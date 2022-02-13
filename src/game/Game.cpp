@@ -36,7 +36,7 @@ Game::Game() {
     glfwSetMouseButtonCallback(window->WindowId, onMouseClick);
     glfwSetKeyCallback(window->WindowId, [](GLFWwindow *id, int key, int scancode, int action, int mods) {
         if (mods == GLFW_RELEASE && key == GLFW_KEY_ESCAPE)
-            screen = new ScreenMain(font, [](Screen*) {
+            screen = new ScreenMain(font, [](Screen *) {
                 screen = nullptr;
             }, width, height);
     });
@@ -46,7 +46,6 @@ Game::Game() {
         {
             auto brick = new Brick({100 * i, 20});
             world->registerBody(brick);
-
         }
     }
 
@@ -83,7 +82,7 @@ void Game::init() {
 }
 
 void Game::onMouseClick(GLFWwindow *window, int button, int action, int mods) {
-    if (screen != nullptr && button == 0) {
+    if (screen != nullptr) {
 
         glm::vec2 mousePos = getMousePosition(window);
 
@@ -92,10 +91,10 @@ void Game::onMouseClick(GLFWwindow *window, int button, int action, int mods) {
 
         switch (action) {
             case GLFW_PRESS:
-                screen->onClick(mouseX, mouseY);
+                screen->onClick(mouseX, mouseY, button);
                 break;
             case GLFW_RELEASE:
-                screen->onRelease(mouseX, mouseY);
+                screen->onRelease(mouseX, mouseY, button);
                 break;
         }
     }
@@ -106,11 +105,11 @@ void Game::updateWorld(float delta) {
 
 }
 
-void Game::update(float delta) {
+void Game::update(int& mouseX, int& mouseY, float delta) {
     if (screen == nullptr)
         updateWorld(delta);
     else
-        screen->update(delta);
+        screen->update(mouseX, mouseY, delta);
 }
 
 void Game::renderWorld() {
@@ -136,11 +135,12 @@ void Game::runTick() {
         double currentTime = glfwGetTime();
         auto deltaTime = float(currentTime - lastTime);
         lastTime = currentTime;
-        update(deltaTime);
+
 
         glm::vec2 mousePos = getMousePosition(window->WindowId);
         int mouseX = (int) mousePos.x;
         int mouseY = (int) mousePos.y;
+        update(mouseX, mouseY, deltaTime);
         render(mouseX, mouseY);
 
         glfwSwapBuffers(window->WindowId);
