@@ -8,10 +8,10 @@ void test() {
 
 }
 
-ScreenMain::ScreenMain(Font *in_font, void (*runnable)(Screen *), int &in_width, int &in_height) : font(in_font),
-                                                                                                   Runnable(runnable),
-                                                                                                   width(in_width),
-                                                                                                   height(in_height) {
+ScreenMain::ScreenMain(void (*runnable)(Screen *), int &in_width, int &in_height) :
+        Runnable(runnable),
+        width(in_width),
+        height(in_height) {
     {
         Button button;
         button.x = 500;
@@ -25,7 +25,7 @@ ScreenMain::ScreenMain(Font *in_font, void (*runnable)(Screen *), int &in_width,
             main->Runnable(nullptr);
         };
 
-        button.buttonFont = in_font;
+        button.buttonFont = Renderer::getRenderData()->font;
 
         buttons.push_back(button);
     }
@@ -39,11 +39,11 @@ ScreenMain::ScreenMain(Font *in_font, void (*runnable)(Screen *), int &in_width,
 
         button.runnable = [](void *data) {
             auto main = (ScreenMain *) data;
-            auto screenEditor = new ScreenEditor(main->font, main->width, main->height);
+            auto screenEditor = new ScreenEditor(main->width, main->height);
             main->Runnable(screenEditor);
         };
 
-        button.buttonFont = in_font;
+        button.buttonFont =  Renderer::getRenderData()->font;
 
         buttons.push_back(button);
     }
@@ -61,9 +61,9 @@ void ScreenMain::update(int &mouseX, int &mouseY, float deltaTime) {
 
 }
 
-void ScreenMain::onClick(int &mouseX, int &mouseY, int& button) {
+void ScreenMain::onClick(int &mouseX, int &mouseY, int &button) {
 }
 
-void ScreenMain::onRelease(int &mouseX, int &mouseY, int& button) {
+void ScreenMain::onRelease(int &mouseX, int &mouseY, int &button) {
     checkButtons(mouseX, mouseY);
 }

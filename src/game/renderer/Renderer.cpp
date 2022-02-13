@@ -4,7 +4,7 @@
 
 #include "Renderer.h"
 
-void Renderer::init() {
+void Renderer::init(int &in_width, int &in_height) {
     renderData = new RenderData();
     {
         Shader vertex("res/shaders/texture.vertex", GL_VERTEX_SHADER);
@@ -12,10 +12,11 @@ void Renderer::init() {
         renderData->programTexture = new Program(&vertex, &fragment);
     }
     {
-        Shader vertex("res/shaders/main.vertex", GL_VERTEX_SHADER);
-        Shader fragment("res/shaders/main.fragment", GL_FRAGMENT_SHADER);
-        renderData->program = new Program(&vertex, &fragment);
+
+        renderData->program = Program::loadProgram("main");
     }
+    renderData->menuCamera = new Camera(in_width, in_height);
+    renderData->font = new Font(&renderData->menuCamera->proj, Program::loadProgram("font"));
 
     float positions[] = {
             -0.5f, -0.5f, 0.f, 0.f,
@@ -42,8 +43,12 @@ void Renderer::init() {
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, renderData->indexBuffer);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 
-     renderData->programTexture->bind();
-     renderData->programTexture->uploadUniform1i("u_Tex", 0);
+    renderData->programTexture->bind();
+    renderData->programTexture->uploadUniform1i("u_Tex", 0);
+}
+
+RenderData *Renderer::getRenderData() {
+    return renderData;
 }
 
 void Renderer::shutdown() {

@@ -72,13 +72,6 @@ build edit_cache: phony CMakeFiles/edit_cache.util
 
 build cmake_object_order_depends_target_mario: phony || CMakeFiles/mario.dir
 
-build CMakeFiles/mario.dir/src/main.cpp.o: CXX_COMPILER__mario_Debug /home/peu77/Coding/private/mario/src/main.cpp || cmake_object_order_depends_target_mario
-  DEP_FILE = CMakeFiles/mario.dir/src/main.cpp.o.d
-  FLAGS = -g -std=gnu++23
-  INCLUDES = -I/home/peu77/vcpkg/packages/jsoncpp_x64-osx/include -I/usr/include/freetype2 -I/home/peu77/Coding/private/mario/./libs
-  OBJECT_DIR = CMakeFiles/mario.dir
-  OBJECT_FILE_DIR = CMakeFiles/mario.dir/src
-
 build CMakeFiles/mario.dir/libs/glad/src/glad.c.o: C_COMPILER__mario_Debug /home/peu77/Coding/private/mario/libs/glad/src/glad.c || cmake_object_order_depends_target_mario
   DEP_FILE = CMakeFiles/mario.dir/libs/glad/src/glad.c.o.d
   FLAGS = -g
@@ -86,12 +79,12 @@ build CMakeFiles/mario.dir/libs/glad/src/glad.c.o: C_COMPILER__mario_Debug /home
   OBJECT_DIR = CMakeFiles/mario.dir
   OBJECT_FILE_DIR = CMakeFiles/mario.dir/libs/glad/src
 
-build CMakeFiles/mario.dir/src/window/Window.cpp.o: CXX_COMPILER__mario_Debug /home/peu77/Coding/private/mario/src/window/Window.cpp || cmake_object_order_depends_target_mario
-  DEP_FILE = CMakeFiles/mario.dir/src/window/Window.cpp.o.d
+build CMakeFiles/mario.dir/src/game/Animation.cpp.o: CXX_COMPILER__mario_Debug /home/peu77/Coding/private/mario/src/game/Animation.cpp || cmake_object_order_depends_target_mario
+  DEP_FILE = CMakeFiles/mario.dir/src/game/Animation.cpp.o.d
   FLAGS = -g -std=gnu++23
   INCLUDES = -I/home/peu77/vcpkg/packages/jsoncpp_x64-osx/include -I/usr/include/freetype2 -I/home/peu77/Coding/private/mario/./libs
   OBJECT_DIR = CMakeFiles/mario.dir
-  OBJECT_FILE_DIR = CMakeFiles/mario.dir/src/window
+  OBJECT_FILE_DIR = CMakeFiles/mario.dir/src/game
 
 build CMakeFiles/mario.dir/src/game/Game.cpp.o: CXX_COMPILER__mario_Debug /home/peu77/Coding/private/mario/src/game/Game.cpp || cmake_object_order_depends_target_mario
   DEP_FILE = CMakeFiles/mario.dir/src/game/Game.cpp.o.d
@@ -99,27 +92,6 @@ build CMakeFiles/mario.dir/src/game/Game.cpp.o: CXX_COMPILER__mario_Debug /home/
   INCLUDES = -I/home/peu77/vcpkg/packages/jsoncpp_x64-osx/include -I/usr/include/freetype2 -I/home/peu77/Coding/private/mario/./libs
   OBJECT_DIR = CMakeFiles/mario.dir
   OBJECT_FILE_DIR = CMakeFiles/mario.dir/src/game
-
-build CMakeFiles/mario.dir/src/game/shader/Shader.cpp.o: CXX_COMPILER__mario_Debug /home/peu77/Coding/private/mario/src/game/shader/Shader.cpp || cmake_object_order_depends_target_mario
-  DEP_FILE = CMakeFiles/mario.dir/src/game/shader/Shader.cpp.o.d
-  FLAGS = -g -std=gnu++23
-  INCLUDES = -I/home/peu77/vcpkg/packages/jsoncpp_x64-osx/include -I/usr/include/freetype2 -I/home/peu77/Coding/private/mario/./libs
-  OBJECT_DIR = CMakeFiles/mario.dir
-  OBJECT_FILE_DIR = CMakeFiles/mario.dir/src/game/shader
-
-build CMakeFiles/mario.dir/src/game/shader/Program.cpp.o: CXX_COMPILER__mario_Debug /home/peu77/Coding/private/mario/src/game/shader/Program.cpp || cmake_object_order_depends_target_mario
-  DEP_FILE = CMakeFiles/mario.dir/src/game/shader/Program.cpp.o.d
-  FLAGS = -g -std=gnu++23
-  INCLUDES = -I/home/peu77/vcpkg/packages/jsoncpp_x64-osx/include -I/usr/include/freetype2 -I/home/peu77/Coding/private/mario/./libs
-  OBJECT_DIR = CMakeFiles/mario.dir
-  OBJECT_FILE_DIR = CMakeFiles/mario.dir/src/game/shader
-
-build CMakeFiles/mario.dir/src/game/renderer/Renderer.cpp.o: CXX_COMPILER__mario_Debug /home/peu77/Coding/private/mario/src/game/renderer/Renderer.cpp || cmake_object_order_depends_target_mario
-  DEP_FILE = CMakeFiles/mario.dir/src/game/renderer/Renderer.cpp.o.d
-  FLAGS = -g -std=gnu++23
-  INCLUDES = -I/home/peu77/vcpkg/packages/jsoncpp_x64-osx/include -I/usr/include/freetype2 -I/home/peu77/Coding/private/mario/./libs
-  OBJECT_DIR = CMakeFiles/mario.dir
-  OBJECT_FILE_DIR = CMakeFiles/mario.dir/src/game/renderer
 
 build CMakeFiles/mario.dir/src/game/camera/Camera.cpp.o: CXX_COMPILER__mario_Debug /home/peu77/Coding/private/mario/src/game/camera/Camera.cpp || cmake_object_order_depends_target_mario
   DEP_FILE = CMakeFiles/mario.dir/src/game/camera/Camera.cpp.o.d
@@ -135,29 +107,15 @@ build CMakeFiles/mario.dir/src/game/objects/Brick.cpp.o: CXX_COMPILER__mario_Deb
   OBJECT_DIR = CMakeFiles/mario.dir
   OBJECT_FILE_DIR = CMakeFiles/mario.dir/src/game/objects
 
-build CMakeFiles/mario.dir/src/game/objects/Mario.cpp.o: CXX_COMPILER__mario_Debug /home/peu77/Coding/private/mario/src/game/objects/Mario.cpp || cmake_object_order_depends_target_mario
-  DEP_FILE = CMakeFiles/mario.dir/src/game/objects/Mario.cpp.o.d
+build CMakeFiles/mario.dir/src/game/objects/Enemy.cpp.o: CXX_COMPILER__mario_Debug /home/peu77/Coding/private/mario/src/game/objects/Enemy.cpp || cmake_object_order_depends_target_mario
+  DEP_FILE = CMakeFiles/mario.dir/src/game/objects/Enemy.cpp.o.d
   FLAGS = -g -std=gnu++23
   INCLUDES = -I/home/peu77/vcpkg/packages/jsoncpp_x64-osx/include -I/usr/include/freetype2 -I/home/peu77/Coding/private/mario/./libs
   OBJECT_DIR = CMakeFiles/mario.dir
   OBJECT_FILE_DIR = CMakeFiles/mario.dir/src/game/objects
 
-build CMakeFiles/mario.dir/src/game/texture/Texture.cpp.o: CXX_COMPILER__mario_Debug /home/peu77/Coding/private/mario/src/game/texture/Texture.cpp || cmake_object_order_depends_target_mario
-  DEP_FILE = CMakeFiles/mario.dir/src/game/texture/Texture.cpp.o.d
-  FLAGS = -g -std=gnu++23
-  INCLUDES = -I/home/peu77/vcpkg/packages/jsoncpp_x64-osx/include -I/usr/include/freetype2 -I/home/peu77/Coding/private/mario/./libs
-  OBJECT_DIR = CMakeFiles/mario.dir
-  OBJECT_FILE_DIR = CMakeFiles/mario.dir/src/game/texture
-
-build CMakeFiles/mario.dir/libs/std_image/std_image.cpp.o: CXX_COMPILER__mario_Debug /home/peu77/Coding/private/mario/libs/std_image/std_image.cpp || cmake_object_order_depends_target_mario
-  DEP_FILE = CMakeFiles/mario.dir/libs/std_image/std_image.cpp.o.d
-  FLAGS = -g -std=gnu++23
-  INCLUDES = -I/home/peu77/vcpkg/packages/jsoncpp_x64-osx/include -I/usr/include/freetype2 -I/home/peu77/Coding/private/mario/./libs
-  OBJECT_DIR = CMakeFiles/mario.dir
-  OBJECT_FILE_DIR = CMakeFiles/mario.dir/libs/std_image
-
-build CMakeFiles/mario.dir/src/game/objects/Enemy.cpp.o: CXX_COMPILER__mario_Debug /home/peu77/Coding/private/mario/src/game/objects/Enemy.cpp || cmake_object_order_depends_target_mario
-  DEP_FILE = CMakeFiles/mario.dir/src/game/objects/Enemy.cpp.o.d
+build CMakeFiles/mario.dir/src/game/objects/Mario.cpp.o: CXX_COMPILER__mario_Debug /home/peu77/Coding/private/mario/src/game/objects/Mario.cpp || cmake_object_order_depends_target_mario
+  DEP_FILE = CMakeFiles/mario.dir/src/game/objects/Mario.cpp.o.d
   FLAGS = -g -std=gnu++23
   INCLUDES = -I/home/peu77/vcpkg/packages/jsoncpp_x64-osx/include -I/usr/include/freetype2 -I/home/peu77/Coding/private/mario/./libs
   OBJECT_DIR = CMakeFiles/mario.dir
@@ -170,19 +128,12 @@ build CMakeFiles/mario.dir/src/game/physic/World.cpp.o: CXX_COMPILER__mario_Debu
   OBJECT_DIR = CMakeFiles/mario.dir
   OBJECT_FILE_DIR = CMakeFiles/mario.dir/src/game/physic
 
-build CMakeFiles/mario.dir/src/game/screens/ScreenMain.cpp.o: CXX_COMPILER__mario_Debug /home/peu77/Coding/private/mario/src/game/screens/ScreenMain.cpp || cmake_object_order_depends_target_mario
-  DEP_FILE = CMakeFiles/mario.dir/src/game/screens/ScreenMain.cpp.o.d
+build CMakeFiles/mario.dir/src/game/renderer/Renderer.cpp.o: CXX_COMPILER__mario_Debug /home/peu77/Coding/private/mario/src/game/renderer/Renderer.cpp || cmake_object_order_depends_target_mario
+  DEP_FILE = CMakeFiles/mario.dir/src/game/renderer/Renderer.cpp.o.d
   FLAGS = -g -std=gnu++23
   INCLUDES = -I/home/peu77/vcpkg/packages/jsoncpp_x64-osx/include -I/usr/include/freetype2 -I/home/peu77/Coding/private/mario/./libs
   OBJECT_DIR = CMakeFiles/mario.dir
-  OBJECT_FILE_DIR = CMakeFiles/mario.dir/src/game/screens
-
-build CMakeFiles/mario.dir/src/game/Animation.cpp.o: CXX_COMPILER__mario_Debug /home/peu77/Coding/private/mario/src/game/Animation.cpp || cmake_object_order_depends_target_mario
-  DEP_FILE = CMakeFiles/mario.dir/src/game/Animation.cpp.o.d
-  FLAGS = -g -std=gnu++23
-  INCLUDES = -I/home/peu77/vcpkg/packages/jsoncpp_x64-osx/include -I/usr/include/freetype2 -I/home/peu77/Coding/private/mario/./libs
-  OBJECT_DIR = CMakeFiles/mario.dir
-  OBJECT_FILE_DIR = CMakeFiles/mario.dir/src/game
+  OBJECT_FILE_DIR = CMakeFiles/mario.dir/src/game/renderer
 
 build CMakeFiles/mario.dir/src/game/screens/ScreenEditor.cpp.o: CXX_COMPILER__mario_Debug /home/peu77/Coding/private/mario/src/game/screens/ScreenEditor.cpp || cmake_object_order_depends_target_mario
   DEP_FILE = CMakeFiles/mario.dir/src/game/screens/ScreenEditor.cpp.o.d
@@ -190,6 +141,55 @@ build CMakeFiles/mario.dir/src/game/screens/ScreenEditor.cpp.o: CXX_COMPILER__ma
   INCLUDES = -I/home/peu77/vcpkg/packages/jsoncpp_x64-osx/include -I/usr/include/freetype2 -I/home/peu77/Coding/private/mario/./libs
   OBJECT_DIR = CMakeFiles/mario.dir
   OBJECT_FILE_DIR = CMakeFiles/mario.dir/src/game/screens
+
+build CMakeFiles/mario.dir/src/game/screens/ScreenMain.cpp.o: CXX_COMPILER__mario_Debug /home/peu77/Coding/private/mario/src/game/screens/ScreenMain.cpp || cmake_object_order_depends_target_mario
+  DEP_FILE = CMakeFiles/mario.dir/src/game/screens/ScreenMain.cpp.o.d
+  FLAGS = -g -std=gnu++23
+  INCLUDES = -I/home/peu77/vcpkg/packages/jsoncpp_x64-osx/include -I/usr/include/freetype2 -I/home/peu77/Coding/private/mario/./libs
+  OBJECT_DIR = CMakeFiles/mario.dir
+  OBJECT_FILE_DIR = CMakeFiles/mario.dir/src/game/screens
+
+build CMakeFiles/mario.dir/src/game/shader/Program.cpp.o: CXX_COMPILER__mario_Debug /home/peu77/Coding/private/mario/src/game/shader/Program.cpp || cmake_object_order_depends_target_mario
+  DEP_FILE = CMakeFiles/mario.dir/src/game/shader/Program.cpp.o.d
+  FLAGS = -g -std=gnu++23
+  INCLUDES = -I/home/peu77/vcpkg/packages/jsoncpp_x64-osx/include -I/usr/include/freetype2 -I/home/peu77/Coding/private/mario/./libs
+  OBJECT_DIR = CMakeFiles/mario.dir
+  OBJECT_FILE_DIR = CMakeFiles/mario.dir/src/game/shader
+
+build CMakeFiles/mario.dir/src/game/shader/Shader.cpp.o: CXX_COMPILER__mario_Debug /home/peu77/Coding/private/mario/src/game/shader/Shader.cpp || cmake_object_order_depends_target_mario
+  DEP_FILE = CMakeFiles/mario.dir/src/game/shader/Shader.cpp.o.d
+  FLAGS = -g -std=gnu++23
+  INCLUDES = -I/home/peu77/vcpkg/packages/jsoncpp_x64-osx/include -I/usr/include/freetype2 -I/home/peu77/Coding/private/mario/./libs
+  OBJECT_DIR = CMakeFiles/mario.dir
+  OBJECT_FILE_DIR = CMakeFiles/mario.dir/src/game/shader
+
+build CMakeFiles/mario.dir/src/game/texture/Texture.cpp.o: CXX_COMPILER__mario_Debug /home/peu77/Coding/private/mario/src/game/texture/Texture.cpp || cmake_object_order_depends_target_mario
+  DEP_FILE = CMakeFiles/mario.dir/src/game/texture/Texture.cpp.o.d
+  FLAGS = -g -std=gnu++23
+  INCLUDES = -I/home/peu77/vcpkg/packages/jsoncpp_x64-osx/include -I/usr/include/freetype2 -I/home/peu77/Coding/private/mario/./libs
+  OBJECT_DIR = CMakeFiles/mario.dir
+  OBJECT_FILE_DIR = CMakeFiles/mario.dir/src/game/texture
+
+build CMakeFiles/mario.dir/src/main.cpp.o: CXX_COMPILER__mario_Debug /home/peu77/Coding/private/mario/src/main.cpp || cmake_object_order_depends_target_mario
+  DEP_FILE = CMakeFiles/mario.dir/src/main.cpp.o.d
+  FLAGS = -g -std=gnu++23
+  INCLUDES = -I/home/peu77/vcpkg/packages/jsoncpp_x64-osx/include -I/usr/include/freetype2 -I/home/peu77/Coding/private/mario/./libs
+  OBJECT_DIR = CMakeFiles/mario.dir
+  OBJECT_FILE_DIR = CMakeFiles/mario.dir/src
+
+build CMakeFiles/mario.dir/src/window/Window.cpp.o: CXX_COMPILER__mario_Debug /home/peu77/Coding/private/mario/src/window/Window.cpp || cmake_object_order_depends_target_mario
+  DEP_FILE = CMakeFiles/mario.dir/src/window/Window.cpp.o.d
+  FLAGS = -g -std=gnu++23
+  INCLUDES = -I/home/peu77/vcpkg/packages/jsoncpp_x64-osx/include -I/usr/include/freetype2 -I/home/peu77/Coding/private/mario/./libs
+  OBJECT_DIR = CMakeFiles/mario.dir
+  OBJECT_FILE_DIR = CMakeFiles/mario.dir/src/window
+
+build CMakeFiles/mario.dir/libs/std_image/std_image.cpp.o: CXX_COMPILER__mario_Debug /home/peu77/Coding/private/mario/libs/std_image/std_image.cpp || cmake_object_order_depends_target_mario
+  DEP_FILE = CMakeFiles/mario.dir/libs/std_image/std_image.cpp.o.d
+  FLAGS = -g -std=gnu++23
+  INCLUDES = -I/home/peu77/vcpkg/packages/jsoncpp_x64-osx/include -I/usr/include/freetype2 -I/home/peu77/Coding/private/mario/./libs
+  OBJECT_DIR = CMakeFiles/mario.dir
+  OBJECT_FILE_DIR = CMakeFiles/mario.dir/libs/std_image
 
 
 # =============================================================================
@@ -199,7 +199,7 @@ build CMakeFiles/mario.dir/src/game/screens/ScreenEditor.cpp.o: CXX_COMPILER__ma
 #############################################
 # Link the executable mario
 
-build mario: CXX_EXECUTABLE_LINKER__mario_Debug CMakeFiles/mario.dir/src/main.cpp.o CMakeFiles/mario.dir/libs/glad/src/glad.c.o CMakeFiles/mario.dir/src/window/Window.cpp.o CMakeFiles/mario.dir/src/game/Game.cpp.o CMakeFiles/mario.dir/src/game/shader/Shader.cpp.o CMakeFiles/mario.dir/src/game/shader/Program.cpp.o CMakeFiles/mario.dir/src/game/renderer/Renderer.cpp.o CMakeFiles/mario.dir/src/game/camera/Camera.cpp.o CMakeFiles/mario.dir/src/game/objects/Brick.cpp.o CMakeFiles/mario.dir/src/game/objects/Mario.cpp.o CMakeFiles/mario.dir/src/game/texture/Texture.cpp.o CMakeFiles/mario.dir/libs/std_image/std_image.cpp.o CMakeFiles/mario.dir/src/game/objects/Enemy.cpp.o CMakeFiles/mario.dir/src/game/physic/World.cpp.o CMakeFiles/mario.dir/src/game/screens/ScreenMain.cpp.o CMakeFiles/mario.dir/src/game/Animation.cpp.o CMakeFiles/mario.dir/src/game/screens/ScreenEditor.cpp.o | /usr/lib/libglfw.so.3.3 /usr/lib/libfreetype.so /usr/lib/libGLX.so /usr/lib/libOpenGL.so
+build mario: CXX_EXECUTABLE_LINKER__mario_Debug CMakeFiles/mario.dir/libs/glad/src/glad.c.o CMakeFiles/mario.dir/src/game/Animation.cpp.o CMakeFiles/mario.dir/src/game/Game.cpp.o CMakeFiles/mario.dir/src/game/camera/Camera.cpp.o CMakeFiles/mario.dir/src/game/objects/Brick.cpp.o CMakeFiles/mario.dir/src/game/objects/Enemy.cpp.o CMakeFiles/mario.dir/src/game/objects/Mario.cpp.o CMakeFiles/mario.dir/src/game/physic/World.cpp.o CMakeFiles/mario.dir/src/game/renderer/Renderer.cpp.o CMakeFiles/mario.dir/src/game/screens/ScreenEditor.cpp.o CMakeFiles/mario.dir/src/game/screens/ScreenMain.cpp.o CMakeFiles/mario.dir/src/game/shader/Program.cpp.o CMakeFiles/mario.dir/src/game/shader/Shader.cpp.o CMakeFiles/mario.dir/src/game/texture/Texture.cpp.o CMakeFiles/mario.dir/src/main.cpp.o CMakeFiles/mario.dir/src/window/Window.cpp.o CMakeFiles/mario.dir/libs/std_image/std_image.cpp.o | /usr/lib/libglfw.so.3.3 /usr/lib/libfreetype.so /usr/lib/libGLX.so /usr/lib/libOpenGL.so
   FLAGS = -g
   LINK_LIBRARIES = -Wl,-rpath,/home/peu77/vcpkg/packages/jsoncpp_x64-osx/include  /usr/lib/libglfw.so.3.3  -ldl  /usr/lib/libfreetype.so  -ljsoncpp  /usr/lib/libGLX.so  /usr/lib/libOpenGL.so
   LINK_PATH = -L/home/peu77/vcpkg/packages/jsoncpp_x64-osx/include

@@ -15,14 +15,13 @@
 class ScreenEditor : public Screen {
 private:
     World *world;
-    Camera* camera;
     int width, height;
     bool moving = false;
     glm::vec2 offset = {0.0, 0.0};
     glm::vec2 last = {0.0, 0.0};
 
 public:
-    ScreenEditor(Font *in_font, int& in_width, int& in_height);
+    ScreenEditor(int& in_width, int& in_height);
 
     ~ScreenEditor();
 

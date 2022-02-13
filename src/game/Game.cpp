@@ -6,13 +6,11 @@
 #include <chrono>
 
 #include "Game.h"
-#include "renderer/font.h"
 #include "physic/World.h"
 
 static int width = 1300;
 static int height = 1100;
 
-Font *font;
 World *world;
 
 Game::Game() {
@@ -22,26 +20,24 @@ Game::Game() {
 
 
     glViewport(0, 0, width, height);
-    camera = new Camera(width, height);
 
-    Shader vertex("res/shaders/font.vertex", GL_VERTEX_SHADER);
-    Shader fragment("res/shaders/font.fragment", GL_FRAGMENT_SHADER);
-    Program fontProgram(&vertex, &fragment);
-    font = new Font(camera->proj, &fontProgram);
+    Renderer::init(width, height);
 
-    screen = new ScreenMain(font, [](Screen *in_screen) {
+    screen = new ScreenMain([](Screen *in_screen) {
         screen = in_screen;
     }, width, height);
 
     glfwSetMouseButtonCallback(window->WindowId, onMouseClick);
     glfwSetKeyCallback(window->WindowId, [](GLFWwindow *id, int key, int scancode, int action, int mods) {
-        if (mods == GLFW_RELEASE && key == GLFW_KEY_ESCAPE)
-            screen = new ScreenMain(font, [](Screen *in_screen) {
+        if (mods == GLFW_RELEASE && key == GLFW_KEY_ESCAPE) {
+            screen = new ScreenMain([](Screen *in_screen) {
                 screen = in_screen;
             }, width, height);
+        }
+
     });
 
-    world = new World();
+    world = new World(width, height);
     for (int i = 0; i < 10; ++i) {
         {
             auto brick = new Brick({100 * i, 20});
@@ -66,8 +62,6 @@ Game::Game() {
     world->registerBody(enemy);
     mario = new Mario({300, 700}, window->WindowId);
     world->registerBody(mario);
-    Renderer::init();
-    Renderer::beginScene(*camera);
     this->runTick();
 }
 
@@ -113,7 +107,7 @@ void Game::update(int &mouseX, int &mouseY, float delta) {
 }
 
 void Game::renderWorld() {
-    world->renderObjects(camera);
+    world->renderObjects();
 }
 
 void Game::render(int &mouseX, int &mouseY) {
@@ -121,8 +115,10 @@ void Game::render(int &mouseX, int &mouseY) {
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     if (screen == nullptr)
         renderWorld();
-    else
+    else {
+        Renderer::beginScene(*Renderer::getRenderData()->menuCamera);
         screen->draw(mouseX, mouseY);
+    }
 }
 
 void Game::runTick() {

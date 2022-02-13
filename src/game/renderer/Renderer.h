@@ -10,28 +10,36 @@
 #include "glad/include/glad/glad.h"
 #include "GLFW/glfw3.h"
 #include "../texture/Texture.h"
+#include "font.h"
 
 struct RenderData {
     unsigned int vertexArray;
     unsigned int arrayBuffer;
     unsigned int indexBuffer;
-    Program* program;
-    Program* programTexture;
+    Program *program;
+    Program *programTexture;
+    Font *font;
+    Camera *menuCamera;
 };
 
-static RenderData* renderData;
+static RenderData *renderData;
+
 
 class Renderer {
 public:
-    static void init();
+    static void init(int &in_width, int &in_height);
+
+    static RenderData* getRenderData();
 
     static void shutdown();
 
     static void beginScene(const Camera &camera);
 
     static void drawQuad(glm::vec2 position, glm::vec2 scale);
+
     static void drawQuad(glm::vec2 position, glm::vec2 scale, glm::vec4 color);
-    static void drawQuad(glm::vec2 position, glm::vec2 scale, Texture* texture);
+
+    static void drawQuad(glm::vec2 position, glm::vec2 scale, Texture *texture);
 };
 
 

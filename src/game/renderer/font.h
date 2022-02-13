@@ -28,7 +28,7 @@ struct Character {
 class Font {
     std::map<GLchar, Character> Characters;
     unsigned int VAO, VBO;
-    glm::mat4 Projection;
+    glm::mat4* Projection;
     Program *FontShader;
     int size;
 
@@ -44,7 +44,7 @@ public:
 
         // activate corresponding render state
         FontShader->bind();
-        FontShader->uploadUniformMat4f("projection", Projection);
+        FontShader->uploadUniformMat4f("projection", *Projection);
         FontShader->uploadUniform4f("textColor", color.x, color.y, color.z, color.w);
         glActiveTexture(GL_TEXTURE0);
         glBindVertexArray(VAO);
@@ -88,7 +88,7 @@ public:
         glBindTexture(GL_TEXTURE_2D, 0);
     }
 
-    Font(glm::mat4 projection, Program *shader) : Projection(projection), FontShader(shader) {
+    Font(glm::mat4* projection, Program *shader) : Projection(projection), FontShader(shader) {
         size = 58;
         std::string font_name = "res/fonts/OpenSans-Bold.ttf";
 

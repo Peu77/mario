@@ -4,10 +4,9 @@
 
 #include "ScreenEditor.h"
 
-ScreenEditor::ScreenEditor(Font *in_font, int &in_width, int &in_height) :
+ScreenEditor::ScreenEditor(int &in_width, int &in_height) :
         width(in_width), height(in_height) {
-    world = new World();
-    camera = new Camera(in_width, in_height);
+    world = new World(in_width, in_height);
     world->load();
 
     Button button;
@@ -16,7 +15,7 @@ ScreenEditor::ScreenEditor(Font *in_font, int &in_width, int &in_height) :
     button.width = 200;
     button.height = 100;
 
-    button.buttonFont = in_font;
+    button.buttonFont =  Renderer::getRenderData()->font;
     button.text = "save";
     button.runnable = [](void *screen) {
         auto editor = (ScreenEditor *) screen;
@@ -29,13 +28,12 @@ ScreenEditor::ScreenEditor(Font *in_font, int &in_width, int &in_height) :
 
 ScreenEditor::~ScreenEditor() {
     delete world;
-    delete camera;
 }
 
 void ScreenEditor::draw(int &mouseX, int &mouseY) {
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-    world->renderObjects(camera);
+    world->renderObjects();
 
     renderButtons(mouseX, mouseY);
 }
@@ -69,10 +67,10 @@ void ScreenEditor::onRelease(int &mouseX, int &mouseY, int &button) {
 
 void ScreenEditor::update(int &mouseX, int &mouseY, float deltaTime) {
     if (moving) {
-        camera->position.x = std::max(offset.x - mouseX + last.x, 0.0f);
-        camera->position.y = std::max(offset.y - mouseY + last.y, 0.0f);
+        world->camera->position.x = std::max(offset.x - mouseX + last.x, 0.0f);
+        world->camera->position.y = std::max(offset.y - mouseY + last.y, 0.0f);
 
-        camera->updateView();
+        world->camera->updateView();
     }
 
 }

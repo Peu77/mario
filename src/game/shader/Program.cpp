@@ -63,6 +63,13 @@ void Program::uploadUniform3f(const std::string &name, float v0, float v1, float
     glUniform3f(getUniformLocation(name), v0, v1, v2);
 }
 
-void Program::uploadUniform4f(const std::string &name, float v0, float v1, float v2,float v3) {
+void Program::uploadUniform4f(const std::string &name, float v0, float v1, float v2, float v3) {
     glUniform4f(getUniformLocation(name), v0, v1, v2, v3);
+}
+
+Program* Program::loadProgram(const std::string &name) {
+    Shader vertex("res/shaders/" + name + ".vertex", GL_VERTEX_SHADER);
+    Shader fragment("res/shaders/" + name + ".fragment", GL_FRAGMENT_SHADER);
+    auto fontProgram = new Program(&vertex, &fragment);
+    return fontProgram;
 }

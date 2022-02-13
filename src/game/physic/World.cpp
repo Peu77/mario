@@ -9,7 +9,7 @@ void World::registerBody(GameObject *body) {
 }
 
 
-void World::renderObjects(Camera *camera) {
+void World::renderObjects() {
     Renderer::beginScene(*camera);
 
     for (const auto &item: bodies)
@@ -24,7 +24,7 @@ void World::step(float deltaTime) {
             std::vector<std::pair<int, float>> z;
             for (size_t i = 0; i < bodies.size(); i++) {
                 auto target = bodies[i];
-                if (target != item ) // && !target->body->dynamic
+                if (target != item) // && !target->body->dynamic
                     if (DynamicRectVsRect(item->body, deltaTime, *target->body, cp, cn, t)) {
                         z.push_back({i, t});
                     }
@@ -55,5 +55,14 @@ void World::step(float deltaTime) {
 
 
 
+}
+
+World::~World() {
+    std::cout << "delete world" << std::endl;
+    bodies.clear();
+}
+
+World::World(int &in_width, int &in_height) {
+    camera = new Camera(in_width, in_height);
 }
 

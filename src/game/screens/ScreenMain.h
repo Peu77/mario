@@ -6,21 +6,20 @@
 #define MARIO_SCREENMAIN_H
 
 #include "../../window/Screen.h"
-#include "../renderer/font.h"
 #include "../Game.h"
 #include "../screens/ScreenEditor.h"
+#include "../renderer/Renderer.h"
 
 class ScreenMain : public Screen {
 
 private:
-    Font* font;
     void (*Runnable)(Screen*);
     int width, height;
 
 public:
     void onButtonClick();
 
-    ScreenMain(Font* in_font, void (*runnable)(Screen*), int& in_width, int& in_height );
+    ScreenMain(void (*runnable)(Screen*), int& in_width, int& in_height );
 
     void draw(int& mouseX, int& mouseY) override;
 

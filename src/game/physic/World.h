@@ -17,19 +17,25 @@
 
 class World {
 public:
+    Camera* camera;
+
     std::vector<GameObject *> bodies;
 
     void registerBody(GameObject *body);
 
     void step(float deltaTime);
 
-    void renderObjects(Camera *camera);
+    void renderObjects();
 
     void removeObject(GameObject &object) {
         for (int i = 0; i < bodies.size(); i++)
             if (bodies.at(i) == &object)
                 bodies.erase(bodies.begin() + i);
     }
+
+    World(int& in_width, int& in_height);
+
+    ~World();
 
     void load() {
         Json::Value root;
@@ -60,9 +66,7 @@ public:
                     auto brick = new Brick({x, y});
                     bodies.push_back(brick);
                 } else
-
                     std::cout << "cannot find tag " << tag << std::endl;
-
             }
         }
     }
