@@ -38,24 +38,7 @@ Game::Game() {
     });
 
     world = new World(width, height);
-    for (int i = 0; i < 10; ++i) {
-        {
-            auto brick = new Brick({100 * i, 20});
-            world->registerBody(brick);
-        }
-    }
-
-    for (int i = 0; i < 10; ++i) {
-        {
-            auto brick = new Brick({100 * 10, 20 + i * 100});
-            world->registerBody(brick);
-        }
-    }
-
-    {
-        auto brick = new Brick({600, 120});
-        world->registerBody(brick);
-    }
+    world->load();
 
     this->runTick();
 }

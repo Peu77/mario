@@ -21,7 +21,7 @@ add_executable(mario
         ${SOURCES}
         libs/std_image/std_image.h
         libs/std_image/std_image.cpp
-        )
+        src/game/objects/Platform.cpp src/game/objects/Platform.h)
 target_link_libraries(mario glfw dl)
 target_link_libraries(mario OpenGL::GL)
 target_link_libraries(mario ${FREETYPE_LIBRARIES})

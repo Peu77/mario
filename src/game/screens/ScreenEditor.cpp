@@ -13,6 +13,7 @@ ScreenEditor::ScreenEditor(int &in_width, int &in_height) :
     tags.push_back("mario");
     tags.push_back("brick");
     tags.push_back("enemy");
+    tags.push_back("platform");
 
     {
         Button button;

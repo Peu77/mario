@@ -22,6 +22,10 @@ public:
 
     virtual void onCollision() = 0;
 
+    virtual float getVelocity(float &velocity, float x, float delta) {
+        return velocity * delta + x;
+    };
+
 public:
     bool shouldDelete = false;
     Body *body;
@@ -35,8 +39,8 @@ struct Body {
     glm::vec2 size;
     glm::vec2 vel;
     glm::vec2 friction;
-    Body* contact[4];
-    void* data;
+    Body *contact[4];
+    void *data;
     bool dynamic = false;
     std::string tag;
 };

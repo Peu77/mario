@@ -10,6 +10,7 @@
 #include "GLFW/glfw3.h"
 #include "Enemy.h"
 #include "../Animation.h"
+#include "Platform.h"
 
 
 class Mario : public GameObject {
@@ -24,22 +25,27 @@ public:
 
     void onCollision() override;
 
+    float getVelocity(float& velocity, float x, float delta) override;
+
 private:
-    Animation* animation;
+    Animation *animation;
+
     void movement(float deltaTime);
+
     void jump();
+
     void flip();
 
 private:
-    GLFWwindow* windowId;
+    GLFWwindow *windowId;
     bool faceRight = true;
     bool jumping = false;
     float jumpForce = 1440;
     float speed = 500.0f;
-    Texture* texture;
-    Texture* textureJump;
-    Texture* textureIdle;
-    std::vector<GameObject*> *objects;
+    Texture *texture;
+    Texture *textureJump;
+    Texture *textureIdle;
+    std::vector<GameObject *> *objects;
 };
 
 

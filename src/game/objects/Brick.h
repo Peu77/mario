@@ -20,8 +20,7 @@ public:
     void onCollision() override;
 
 private:
-    //b2Body* body;
-    Texture* texture;
+    Texture *texture;
 };
 
 

@@ -10,6 +10,7 @@
 #include "../objects/Mario.h"
 #include "../camera/Camera.h"
 #include "../objects/Brick.h"
+#include "../objects/Platform.h"
 #include "iostream"
 #include "fstream"
 #include "json/json.h"
@@ -34,6 +35,12 @@ public:
                 bodies.erase(bodies.begin() + i);
     }
 
+    void removeObject(Body &object) {
+        for (int i = 0; i < bodies.size(); i++)
+            if (bodies.at(i)->body == &object)
+                bodies.erase(bodies.begin() + i);
+    }
+
     World(int &in_width, int &in_height);
 
     ~World();
@@ -48,6 +55,8 @@ public:
             mario->body->pos.y = y;
         } else if (tag == "enemy") {
             object = new Enemy({x, y});
+        } else if (tag == "platform") {
+            object = new Platform({x, y});
         }
 
         return object;
