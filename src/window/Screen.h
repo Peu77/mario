@@ -49,6 +49,14 @@ public:
                 mouseY < button.y && mouseY > button.y - button.height);
     }
 
+    bool hoverOverAnyButton(int &mouseX, int &mouseY) {
+        for (const auto &item: buttons)
+            if (isHoverButton(item, mouseX, mouseY))
+                return true;
+
+        return false;
+    }
+
     void renderButtons(int &mouseX, int mouseY) {
         Renderer::beginScene(*Renderer::getRenderData()->menuCamera);
         for (const auto &item: buttons) {

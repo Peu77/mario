@@ -55,7 +55,6 @@ void Mario::update(float deleteTime) {
 }
 
 void Mario::render() {
-    std::cout << "render mario" << std::endl;
     Renderer::drawQuad(body->pos, scale, texture);
     for (int i = 0; i < 4; i++) {
         /*

@@ -12,21 +12,23 @@ ScreenEditor::ScreenEditor(int &in_width, int &in_height) :
     std::vector<std::string> tags;
     tags.push_back("mario");
     tags.push_back("brick");
+    tags.push_back("enemy");
 
     {
         Button button;
-        button.x = 200;
-        button.y = 200;
-        button.width = 200;
-        button.height = 100;
+        button.x = tags.size() * 100 + 30;
+        button.y = 50;
+        button.width = 100;
+        button.height = 50;
 
-        button.buttonFont = Renderer::getRenderData()->font;
+        button.buttonFont = Renderer::getRenderData()->font2;
         button.text = "save";
         button.runnable = [](void *screen) {
             auto editor = (ScreenEditor *) screen;
 
             editor->world->save();
         };
+        buttons.push_back(button);
     }
 
 
@@ -62,7 +64,8 @@ void ScreenEditor::draw(int &mouseX, int &mouseY) {
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     world->renderObjects();
     auto position = getPosition(mouseX, mouseY);
-    Renderer::drawQuad(position, {100, 100}, {0.4, 0.0, 0.0, 0.4});
+    if (!hoverOverAnyButton(mouseX, mouseY))
+        Renderer::drawQuad(position, {100, 100}, {0.4, 0.0, 0.0, 0.4});
 
     renderButtons(mouseX, mouseY);
 }

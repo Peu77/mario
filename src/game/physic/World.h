@@ -46,7 +46,8 @@ public:
         else if (tag == "mario") {
             mario->body->pos.x = x;
             mario->body->pos.y = y;
-            std::cout << "set mario to pos: " << x << " : " << y << std::endl;
+        } else if (tag == "enemy") {
+            object = new Enemy({x, y});
         }
 
         return object;
