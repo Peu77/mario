@@ -5,7 +5,7 @@
 #include "Brick.h"
 
 
-Brick::Brick(glm::vec2 spawnPosition, float tiles) : tile_count(tiles) {
+Brick::Brick(glm::vec2 spawnPosition) {
     texture = getTexture("res/textures/brick.png");
     scale = {100, 100};
     body = new Body();

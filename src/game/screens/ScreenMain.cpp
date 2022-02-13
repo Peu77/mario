@@ -8,30 +8,52 @@ void test() {
 
 }
 
-ScreenMain::ScreenMain(Font *in_font, void (*runnable)()) : font(in_font), Runnable(runnable) {
-    Button button;
-    button.x = 500;
-    button.y = 500;
-    button.width = 200;
-    button.height = 100;
-    button.text = "game";
+ScreenMain::ScreenMain(Font *in_font, void (*runnable)(Screen *), int &in_width, int &in_height) : font(in_font),
+                                                                                                   Runnable(runnable),
+                                                                                                   width(in_width),
+                                                                                                   height(in_height) {
+    {
+        Button button;
+        button.x = 500;
+        button.y = 500;
+        button.width = 200;
+        button.height = 100;
+        button.text = "game";
 
-    button.runnable = [](void *data) {
-        auto main = (ScreenMain *) data;
-        main->Runnable();
-        screen = nullptr;
-    };
+        button.runnable = [](void *data) {
+            auto main = (ScreenMain *) data;
+            main->Runnable(nullptr);
+        };
 
-    button.buttonFont = in_font;
+        button.buttonFont = in_font;
 
-    buttons.push_back(button);
+        buttons.push_back(button);
+    }
+    {
+        Button button;
+        button.x = 500;
+        button.y = 650;
+        button.width = 200;
+        button.height = 100;
+        button.text = "editor";
+
+        button.runnable = [](void *data) {
+            auto main = (ScreenMain *) data;
+            auto screenEditor = new ScreenEditor(main->font, main->width, main->height);
+            main->Runnable(screenEditor);
+        };
+
+        button.buttonFont = in_font;
+
+        buttons.push_back(button);
+    }
 }
 
 void ScreenMain::onButtonClick() {
 
 }
 
-void ScreenMain::draw(int& mouseX, int& mouseY) {
+void ScreenMain::draw(int &mouseX, int &mouseY) {
     renderButtons(mouseX, mouseY);
 }
 
@@ -39,9 +61,9 @@ void ScreenMain::update(float deltaTime) {
 
 }
 
-void ScreenMain::onClick(int& mouseX, int& mouseY) {
+void ScreenMain::onClick(int &mouseX, int &mouseY) {
 }
 
-void ScreenMain::onRelease(int& mouseX, int& mouseY) {
+void ScreenMain::onRelease(int &mouseX, int &mouseY) {
     checkButtons(mouseX, mouseY);
 }

@@ -9,8 +9,8 @@
 #include "renderer/font.h"
 #include "physic/World.h"
 
-int width = 1300;
-int height = 1100;
+static int width = 1300;
+static int height = 1100;
 
 Font *font;
 World *world;
@@ -29,22 +29,22 @@ Game::Game() {
     Program fontProgram(&vertex, &fragment);
     font = new Font(camera->proj, &fontProgram);
 
-    screen = new ScreenMain(font, []() {
-        screen = nullptr;
-    });
+    screen = new ScreenMain(font, [](Screen *in_screen) {
+        screen = in_screen;
+    }, width, height);
 
     glfwSetMouseButtonCallback(window->WindowId, onMouseClick);
     glfwSetKeyCallback(window->WindowId, [](GLFWwindow *id, int key, int scancode, int action, int mods) {
         if (mods == GLFW_RELEASE && key == GLFW_KEY_ESCAPE)
-            screen = new ScreenMain(font, []() {
+            screen = new ScreenMain(font, [](Screen*) {
                 screen = nullptr;
-            });
+            }, width, height);
     });
 
     world = new World();
     for (int i = 0; i < 10; ++i) {
         {
-            auto brick = new Brick({100 * i, 20}, 10);
+            auto brick = new Brick({100 * i, 20});
             world->registerBody(brick);
 
         }
@@ -52,13 +52,13 @@ Game::Game() {
 
     for (int i = 0; i < 10; ++i) {
         {
-            auto brick = new Brick({100 * 10, 20 + i * 100}, 10);
+            auto brick = new Brick({100 * 10, 20 + i * 100});
             world->registerBody(brick);
         }
     }
 
     {
-        auto brick = new Brick({600, 120}, 10);
+        auto brick = new Brick({600, 120});
         world->registerBody(brick);
     }
 

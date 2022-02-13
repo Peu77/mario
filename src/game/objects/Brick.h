@@ -9,7 +9,7 @@
 
 class Brick : public GameObject {
 public:
-    Brick(glm::vec2 spawnPosition, float tiles);
+    Brick(glm::vec2 spawnPosition);
 
     ~Brick();
 
@@ -22,8 +22,6 @@ public:
 private:
     //b2Body* body;
     Texture* texture;
-
-    float tile_count;
 };
 
 

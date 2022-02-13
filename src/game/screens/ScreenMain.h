@@ -8,17 +8,19 @@
 #include "../../window/Screen.h"
 #include "../renderer/font.h"
 #include "../Game.h"
+#include "../screens/ScreenEditor.h"
 
 class ScreenMain : public Screen {
 
 private:
     Font* font;
-    void (*Runnable)();
+    void (*Runnable)(Screen*);
+    int width, height;
 
 public:
     void onButtonClick();
 
-    ScreenMain(Font* in_font, void (*runnable)());
+    ScreenMain(Font* in_font, void (*runnable)(Screen*), int& in_width, int& in_height );
 
     void draw(int& mouseX, int& mouseY) override;
 
