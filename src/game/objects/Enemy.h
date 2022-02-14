@@ -18,7 +18,6 @@ public:
     void render() override;
 
     void onCollision() override;
-
 private:
     void flip();
 

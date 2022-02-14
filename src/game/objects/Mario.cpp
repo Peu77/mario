@@ -56,8 +56,7 @@ void Mario::update(float deleteTime) {
         }
     }
 
-    bool both = glfwGetKey(windowId, GLFW_KEY_A) && glfwGetKey(windowId, GLFW_KEY_D) ||
-                ((left || right));
+    bool both = (glfwGetKey(windowId, GLFW_KEY_A) && glfwGetKey(windowId, GLFW_KEY_D) || (left || right));
 
     if (both) {
         texture = textureIdle;
