@@ -11,6 +11,7 @@
 #include "Enemy.h"
 #include "../Animation.h"
 #include "Platform.h"
+#include "Checkpoint.h"
 
 
 class Mario : public GameObject {
@@ -25,7 +26,9 @@ public:
 
     void onCollision() override;
 
-    float getVelocityX(float& velocity, float x, float delta) override;
+    float getVelocityX(float &velocity, float x, float delta) override;
+
+    void respawn();
 
 private:
     Animation *animation;
@@ -42,6 +45,7 @@ private:
     bool jumping = false;
     float jumpForce = 1440;
     float speed = 500.0f;
+    glm::vec2 lastPosition;
     Texture *texture;
     Texture *textureJump;
     Texture *textureIdle;

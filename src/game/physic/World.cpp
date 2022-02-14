@@ -12,14 +12,22 @@ void World::registerBody(GameObject *body) {
 void World::renderObjects() {
     Renderer::beginScene(*camera);
 
-    for (const auto &item: bodies)
-        item->render();
+    for (const auto &item: bodies) {
+        if (item->body->pos.x < camera->position.x + width + 200 && item->body->pos.x > camera->position.x - width / 2)
+            item->render();
+    }
+
 }
 
-void World::step(float deltaTime) {
+void World::step(float deltaTime, int &width, int &height) {
 
-    camera->position.x = mario->body->pos.x - 500;
-    camera->updateView();
+    float lerp = 0.7f;
+    if (mario != nullptr) {
+        camera->position.x += (mario->body->pos.x - width / 2 - camera->position.x) * lerp * deltaTime;
+        camera->position.y += (mario->body->pos.y - height / 2 - camera->position.y) * lerp * deltaTime;
+        camera->updateView();
+    }
+
 
     for (const auto &item: bodies) {
         if (item->body->dynamic) {
@@ -72,8 +80,8 @@ World::~World() {
 }
 
 World::World(int &in_width, int &in_height) {
+    width = in_width;
+    height = in_height;
     camera = new Camera(in_width, in_height);
-    mario = new Mario({0, 200});
-    bodies.push_back(mario);
 }
 

@@ -9,7 +9,7 @@
 
 class Brick : public GameObject {
 public:
-    Brick(glm::vec2 spawnPosition);
+    explicit Brick(glm::vec2 spawnPosition);
 
     ~Brick();
 

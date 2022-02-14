@@ -14,10 +14,11 @@ ScreenEditor::ScreenEditor(int &in_width, int &in_height) :
     tags.push_back("brick");
     tags.push_back("enemy");
     tags.push_back("platform");
+    tags.push_back("checkpoint");
 
     {
         Button button;
-        button.x = tags.size() * 100 + 30;
+        button.x = tags.size() * 200 + 30;
         button.y = 50;
         button.width = 100;
         button.height = 50;
@@ -32,13 +33,15 @@ ScreenEditor::ScreenEditor(int &in_width, int &in_height) :
         buttons.push_back(button);
     }
 
+    int offset = 0;
 
     for (int i = 0; i < tags.size(); ++i) {
         auto tag = tags[i];
         Button button;
-        button.x = 0 + i * 100;
+        button.x = offset + 10;
         button.y = 50;
-        button.width = 100;
+        button.width = Renderer::getRenderData()->font2->getWidth(tag);
+        offset += button.width;
         button.height = 50;
 
         button.buttonFont = Renderer::getRenderData()->font2;
@@ -61,6 +64,7 @@ ScreenEditor::~ScreenEditor() {
 
 
 void ScreenEditor::draw(int &mouseX, int &mouseY) {
+
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     world->renderObjects();

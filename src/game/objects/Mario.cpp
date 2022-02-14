@@ -16,6 +16,8 @@ Mario::Mario(glm::vec2 spawnPosition) {
     textures.push_back(getTexture("res/textures/mario-run1.png"));
     textures.push_back(getTexture("res/textures/mario-run2.png"));
     animation = new Animation(textures);
+    lastPosition = spawnPosition;
+
     body = new Body();
     body->tag = "mario";
     scale = {100, 100};
@@ -34,13 +36,28 @@ void Mario::update(float deleteTime) {
     body->vel.y -= GRAVITY;
     movement(deleteTime);
 
-    if (body->contact[0] != nullptr && body->contact[2] == nullptr) {
+    bool bottom = body->contact[0] != nullptr;
+    bool right = body->contact[1] != nullptr;
+    bool top = body->contact[2] != nullptr;
+    bool left = body->contact[3] != nullptr;
+
+    if (body->pos.y < 10) {
+        respawn();
+    }
+
+
+    jumping = !bottom;
+
+    if (bottom && !top) {
         if (body->contact[0]->tag == "enemy") {
             body->vel.y = jumpForce / 2;
+            auto gameObject = (GameObject *) body->contact[0]->data;
+            gameObject->shouldDelete = true;
         }
     }
 
-    bool both = glfwGetKey(windowId, GLFW_KEY_A) && glfwGetKey(windowId, GLFW_KEY_D);
+    bool both = glfwGetKey(windowId, GLFW_KEY_A) && glfwGetKey(windowId, GLFW_KEY_D) ||
+                ((left || right));
 
     if (both) {
         texture = textureIdle;
@@ -76,6 +93,11 @@ void Mario::render() {
 }
 
 void Mario::onCollision() {
+    auto bottom = body->contact[0];
+    if (bottom != nullptr && bottom->tag == "checkpoint") {
+        auto checkpoint = (Checkpoint *) bottom->data;
+        checkpoint->active();
+    }
 }
 
 float Mario::getVelocityX(float &velocity, float x, float delta) {
@@ -108,6 +130,15 @@ void Mario::movement(float deltaTime) {
 
 
 }
+
+
+void Mario::respawn() {
+    body->pos = lastPosition;
+    body->vel.x = 0;
+    body->vel.y = 0;
+    jumping = false;
+}
+
 
 void Mario::jump() {
     if (body->contact[0] != nullptr) {

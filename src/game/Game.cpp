@@ -11,7 +11,7 @@
 static int width = 1300;
 static int height = 1100;
 
-World *world;
+static World *world;
 
 Game::Game() {
 
@@ -73,7 +73,7 @@ void Game::onMouseClick(GLFWwindow *window, int button, int action, int mods) {
 }
 
 void Game::updateWorld(float delta) {
-    world->step(delta);
+    world->step(delta, width, height);
 
 }
 

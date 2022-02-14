@@ -8,8 +8,7 @@
 
 #include "../../window/Screen.h"
 #include "../physic/World.h"
-#include "../camera/Camera.h"
-#include "../objects/Brick.h"
+
 
 struct ButtonData;
 
@@ -21,7 +20,6 @@ private:
     glm::vec2 offset = {0.0, 0.0};
     glm::vec2 last = {0.0, 0.0};
     std::string currrentTag = "";
-
 public:
     ScreenEditor(int &in_width, int &in_height);
 

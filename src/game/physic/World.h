@@ -11,6 +11,7 @@
 #include "../camera/Camera.h"
 #include "../objects/Brick.h"
 #include "../objects/Platform.h"
+#include "../objects/Checkpoint.h"
 #include "iostream"
 #include "fstream"
 #include "json/json.h"
@@ -20,12 +21,13 @@ class World {
 public:
     Camera *camera;
     Mario *mario;
+    int width, height;
 
     std::vector<GameObject *> bodies;
 
     void registerBody(GameObject *body);
 
-    void step(float deltaTime);
+    void step(float deltaTime, int &width, int &height);
 
     void renderObjects();
 
@@ -51,12 +53,14 @@ public:
         if (tag == "brick")
             object = new Brick({x, y});
         else if (tag == "mario") {
-            mario->body->pos.x = x;
-            mario->body->pos.y = y;
+            object = new Mario({x, y});
+            mario = (Mario *) object;
         } else if (tag == "enemy") {
             object = new Enemy({x, y});
         } else if (tag == "platform") {
             object = new Platform({x, y});
+        } else if (tag == "checkpoint") {
+            object = new Checkpoint({x, y});
         }
 
         return object;
@@ -216,7 +220,7 @@ public:
         return false;
     }
 
-};
 
+};
 
 #endif //MARIO_WORLD_H

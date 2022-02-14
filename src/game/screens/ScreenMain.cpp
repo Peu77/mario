@@ -4,10 +4,6 @@
 
 #include "ScreenMain.h"
 
-void test() {
-
-}
-
 ScreenMain::ScreenMain(void (*runnable)(Screen *), int &in_width, int &in_height) :
         Runnable(runnable),
         width(in_width),

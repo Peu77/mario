@@ -7,6 +7,7 @@
 
 #include "GameObject.h"
 #include "../Animation.h"
+#include "Mario.h"
 
 class Enemy : public GameObject {
 public:
