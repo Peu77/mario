@@ -37,6 +37,14 @@ Game::Game() {
 
     });
 
+    glfwSetWindowSizeCallback(window->WindowId, [](GLFWwindow *id, int w, int h) {
+        width = w;
+        height = h;
+        glViewport(0, 0, width, height);
+        world->camera->updateProj(width, height);
+        Renderer::getRenderData()->menuCamera->updateProj(width, height);
+    });
+
     world = new World(width, height);
     world->load();
 

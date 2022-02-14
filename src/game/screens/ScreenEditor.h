@@ -15,7 +15,7 @@ struct ButtonData;
 class ScreenEditor : public Screen {
 private:
     World *world;
-    int width, height;
+    int& width, &height;
     bool moving = false;
     glm::vec2 offset = {0.0, 0.0};
     glm::vec2 last = {0.0, 0.0};

@@ -13,7 +13,7 @@ void World::renderObjects() {
     Renderer::beginScene(*camera);
 
     for (const auto &item: bodies) {
-        if (item->body->pos.x < camera->position.x + width + 200 && item->body->pos.x > camera->position.x - width / 2)
+        if (item->body->pos.x < camera->position.x + width + 200 && item->body->pos.x > camera->position.x - width / 2) // only render when see
             item->render();
     }
 
@@ -79,9 +79,7 @@ World::~World() {
     bodies.clear();
 }
 
-World::World(int &in_width, int &in_height) {
-    width = in_width;
-    height = in_height;
+World::World(int &in_width, int &in_height): width(in_width), height(in_height) {
     camera = new Camera(in_width, in_height);
 }
 

@@ -21,7 +21,7 @@ class World {
 public:
     Camera *camera;
     Mario *mario;
-    int width, height;
+    int& width, height;
 
     std::vector<GameObject *> bodies;
 

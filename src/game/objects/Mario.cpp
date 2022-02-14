@@ -97,6 +97,7 @@ void Mario::onCollision() {
     if (bottom != nullptr && bottom->tag == "checkpoint") {
         auto checkpoint = (Checkpoint *) bottom->data;
         checkpoint->active();
+        lastPosition = {bottom->pos.x, bottom->pos.y + bottom->size.y};
     }
 }
 

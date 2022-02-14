@@ -14,7 +14,7 @@ class ScreenMain : public Screen {
 
 private:
     void (*Runnable)(Screen*);
-    int width, height;
+    int& width, &height;
 
 public:
     void onButtonClick();

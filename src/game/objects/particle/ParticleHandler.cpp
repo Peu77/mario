@@ -17,7 +17,6 @@ void ParticleHandler::update(float deltaTime) {
 }
 
 void ParticleHandler::render(Texture* texture) {
-    std::cout << "render particle" << std::endl;
         for (auto &item: this->particles)
             Renderer::drawQuad(item->pos, item->size, texture);
 }

@@ -8,7 +8,7 @@ Window::Window(const char *title, int width, int height) :
         Width(width), Height(height) {
 
     WindowId = glfwCreateWindow(width, height, title, nullptr, nullptr);
-    glfwSetWindowSizeLimits(WindowId, width, height, width, height);
+    //glfwSetWindowSizeLimits(WindowId, width, height, width, height);
     if (!WindowId) {
         glfwTerminate();
     }

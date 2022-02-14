@@ -16,6 +16,8 @@ public:
 
     Camera(int width, int height);
 
+    void updateProj(int &width, int &height);
+
     void updateView();
 };
 

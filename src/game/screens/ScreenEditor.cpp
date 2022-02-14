@@ -109,6 +109,7 @@ void ScreenEditor::onRelease(int &mouseX, int &mouseY, int &button) {
 }
 
 void ScreenEditor::update(int &mouseX, int &mouseY, float deltaTime) {
+    world->camera->updateProj(width, height);
     if (moving) {
         world->camera->position.x = std::max(offset.x - mouseX + last.x, 0.0f);
         world->camera->position.y = std::max(offset.y - mouseY + last.y, 0.0f);
