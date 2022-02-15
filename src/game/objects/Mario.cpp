@@ -4,9 +4,15 @@
 
 #include <memory>
 #include "Mario.h"
+#include "irrKlang/include/irrKlang.h"
 
+using namespace irrklang;
+
+static std::string name = "sysdefault:CARD=Headset";
+static ISoundEngine *SoundEngine = createIrrKlangDevice(irrklang::ESOD_ALSA, ESEO_DEFAULT_OPTIONS, name.c_str());
 
 Mario::Mario(glm::vec2 spawnPosition) {
+    SoundEngine->setSoundVolume(0.05);
     windowId = Renderer::getRenderData()->window;
     textureIdle = getTexture("res/textures/mario.png");
     texture = textureIdle;
@@ -142,6 +148,8 @@ void Mario::respawn() {
 
 void Mario::jump() {
     if (body->contact[0] != nullptr) {
+       auto sound = SoundEngine->play2D("res/sound/mario-jump-sound.wav", false);
+
         jumping = true;
         body->vel.y = jumpForce;
     }
