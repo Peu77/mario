@@ -2,8 +2,6 @@
 #include "json/json.h"
 #include "irrKlang/include/irrKlang.h"
 
-using namespace irrklang;
-
 int main() {
 
    // std::string name = "sysdefault:CARD=Headset";

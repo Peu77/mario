@@ -3,6 +3,9 @@
 //
 
 #include "Renderer.h"
+#include "vector"
+
+std::vector<float> lights;
 
 void Renderer::init(int &in_width, int &in_height, GLFWwindow *window) {
     renderData = new RenderData();
@@ -16,9 +19,14 @@ void Renderer::init(int &in_width, int &in_height, GLFWwindow *window) {
         renderData->program = Program::loadProgram("main");
     }
     renderData->menuCamera = new Camera(in_width, in_height);
-    auto fontShader =  Program::loadProgram("font");
+    auto fontShader = Program::loadProgram("font");
     renderData->font = new Font(&renderData->menuCamera->proj, fontShader, 58);
     renderData->font2 = new Font(&renderData->menuCamera->proj, fontShader, 30);
+
+    lights.push_back(100);
+    lights.push_back(150);
+    lights.push_back(600);
+    lights.push_back(150);
 
     float positions[] = {
             -0.5f, -0.5f, 0.f, 0.f,
@@ -82,9 +90,12 @@ void Renderer::drawQuad(glm::vec2 position, glm::vec2 scale, Texture *texture) {
     model = glm::scale(model, {scale.x, scale.y, 0});
 
 
+
     renderData->programTexture->bind();
 
     renderData->programTexture->uploadUniformMat4f("u_model", model);
+    renderData->programTexture->uploadUniform1i("size", 4);
+    renderData->programTexture->uploadUniform1farray("lights",4, &lights[0]);
 
     texture->Bind();
     glBindVertexArray(renderData->vertexArray);
