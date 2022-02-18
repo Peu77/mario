@@ -67,7 +67,7 @@ void Renderer::beginScene(const Camera &camera) {
 }
 
 void Renderer::drawQuad(glm::vec2 position, glm::vec2 scale) {
-    drawQuad(position, scale, {1.0, 0.0, 0.0, 1.0});
+    drawQuad(position, scale, {0.0, 0.0, 0.0, 1.0});
 }
 
 void Renderer::drawQuad(glm::vec2 position, glm::vec2 scale, Texture *texture) {
