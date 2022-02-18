@@ -18,15 +18,15 @@ ScreenEditor::ScreenEditor(int &in_width, int &in_height) :
     tags.push_back("bitcoin");
 
     {
-        Button button;
-        button.x = tags.size() * 200 + 30;
-        button.y = 50;
-        button.width = 100;
-        button.height = 50;
+        auto button = new Button();
+        button->x = tags.size() * 200 + 30;
+        button->y = 50;
+        button->width = 100;
+        button->height = 50;
 
-        button.buttonFont = Renderer::getRenderData()->font2;
-        button.text = "save";
-        button.runnable = [](void *screen) {
+        button->buttonFont = Renderer::getRenderData()->font2;
+        button->text = "save";
+        button->runnable = [](void *screen) {
             auto editor = (ScreenEditor *) screen;
 
             editor->world->save();
@@ -38,18 +38,18 @@ ScreenEditor::ScreenEditor(int &in_width, int &in_height) :
 
     for (int i = 0; i < tags.size(); ++i) {
         auto tag = tags[i];
-        Button button;
-        button.x = offset;
-        button.y = 50;
-        button.width = Renderer::getRenderData()->font2->getWidth(tag);
-        offset += button.width + 40;
-        button.height = 50;
+        auto button = new Button();
+        button->x = offset;
+        button->y = 50;
+        button->width = Renderer::getRenderData()->font2->getWidth(tag);
+        offset += button->width + 40;
+        button->height = 50;
 
-        button.buttonFont = Renderer::getRenderData()->font2;
-        button.text = tag;
-        button.data = new ButtonData{this, tag};
+        button->buttonFont = Renderer::getRenderData()->font2;
+        button->text = tag;
+        button->data = new ButtonData{this, tag};
 
-        button.runnable = [](void *data) {
+        button->runnable = [](void *data) {
             auto buttonData = (ButtonData *) data;
             buttonData->screenEditor->currrentTag = buttonData->tag;
         };

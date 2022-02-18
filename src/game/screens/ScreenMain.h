@@ -28,6 +28,9 @@ public:
     void onRelease(int& mouseX, int& mouseY, int& button) override;
 
     void update(int &mouseX, int &mouseY, float deltaTime) override;
+
+private:
+    Texture* background;
 };
 
 

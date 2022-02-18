@@ -4,44 +4,46 @@
 
 #include "ScreenMain.h"
 
+Button *gameButton;
+Button *editorButton;
+
 ScreenMain::ScreenMain(void (*runnable)(Screen *), int &in_width, int &in_height) :
         Runnable(runnable),
         width(in_width),
         height(in_height) {
-    {
-        Button button;
-        button.x = 500;
-        button.y = 500;
-        button.width = 200;
-        button.height = 100;
-        button.text = "game";
 
-        button.runnable = [](void *data) {
+    background = getTexture("res/textures/background.jpg");
+
+    {
+        gameButton = new Button();
+        gameButton->width = 200;
+        gameButton->height = 100;
+        gameButton->text = "game";
+
+        gameButton->runnable = [](void *data) {
             auto main = (ScreenMain *) data;
             main->Runnable(nullptr);
         };
 
-        button.buttonFont = Renderer::getRenderData()->font;
+        gameButton->buttonFont = Renderer::getRenderData()->font;
 
-        buttons.push_back(button);
+        buttons.push_back(gameButton);
     }
     {
-        Button button;
-        button.x = 500;
-        button.y = 650;
-        button.width = 200;
-        button.height = 100;
-        button.text = "editor";
+        editorButton = new Button();
+        editorButton->width = 200;
+        editorButton->height = 100;
+        editorButton->text = "editor";
 
-        button.runnable = [](void *data) {
+        editorButton->runnable = [](void *data) {
             auto main = (ScreenMain *) data;
             auto screenEditor = new ScreenEditor(main->width, main->height);
             main->Runnable(screenEditor);
         };
 
-        button.buttonFont =  Renderer::getRenderData()->font;
+        editorButton->buttonFont = Renderer::getRenderData()->font;
 
-        buttons.push_back(button);
+        buttons.push_back(editorButton);
     }
 }
 
@@ -50,11 +52,16 @@ void ScreenMain::onButtonClick() {
 }
 
 void ScreenMain::draw(int &mouseX, int &mouseY) {
+    Renderer::drawQuad({width / 2, height / 2}, {width, height}, background);
     renderButtons(mouseX, mouseY);
 }
 
 void ScreenMain::update(int &mouseX, int &mouseY, float deltaTime) {
+    gameButton->x = width / 2 - gameButton->width - 10;
+    gameButton->y = height / 2 + gameButton->height / 2;
 
+    editorButton->x = width / 2 + 10;
+    editorButton->y = height / 2 + editorButton->height / 2;
 }
 
 void ScreenMain::onClick(int &mouseX, int &mouseY, int &button) {

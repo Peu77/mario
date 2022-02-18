@@ -28,7 +28,7 @@ void Platform::update(float deleteTime) {
         if (offset > 0) {
             offset--;
             body->vel.x = -90;
-        }else
+        } else
             right = true;
     }
 
