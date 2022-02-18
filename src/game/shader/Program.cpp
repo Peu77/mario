@@ -72,8 +72,8 @@ void Program::uploadUniform1farray(const std::string &name, int size, float *v) 
 }
 
 Program *Program::loadProgram(const std::string &name) {
-    Shader vertex("res/shaders/" + name + ".vertex", GL_VERTEX_SHADER);
-    Shader fragment("res/shaders/" + name + ".fragment", GL_FRAGMENT_SHADER);
+    Shader vertex("res/shaders/" + name + "/vertex.glsl", GL_VERTEX_SHADER);
+    Shader fragment("res/shaders/" + name + "/fragment.glsl", GL_FRAGMENT_SHADER);
     auto fontProgram = new Program(&vertex, &fragment);
     return fontProgram;
 }

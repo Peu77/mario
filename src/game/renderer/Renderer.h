@@ -11,6 +11,7 @@
 #include "GLFW/glfw3.h"
 #include "../texture/Texture.h"
 #include "font.h"
+#include "vector"
 
 struct RenderData {
     unsigned int vertexArray;
@@ -22,6 +23,7 @@ struct RenderData {
     Font *font2;
     Camera *menuCamera;
     GLFWwindow* window;
+    std::vector<float> *lights = new std::vector<float>();
 };
 
 static RenderData *renderData;

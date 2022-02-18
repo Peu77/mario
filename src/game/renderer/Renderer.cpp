@@ -3,30 +3,17 @@
 //
 
 #include "Renderer.h"
-#include "vector"
-
-std::vector<float> lights;
 
 void Renderer::init(int &in_width, int &in_height, GLFWwindow *window) {
     renderData = new RenderData();
     renderData->window = window;
-    {
-        Shader vertex("res/shaders/texture.vertex", GL_VERTEX_SHADER);
-        Shader fragment("res/shaders/texture.fragment", GL_FRAGMENT_SHADER);
-        renderData->programTexture = new Program(&vertex, &fragment);
-    }
-    {
-        renderData->program = Program::loadProgram("main");
-    }
-    renderData->menuCamera = new Camera(in_width, in_height);
+    renderData->programTexture = Program::loadProgram("texture");
+    renderData->program = Program::loadProgram("color");
     auto fontShader = Program::loadProgram("font");
+
+    renderData->menuCamera = new Camera(in_width, in_height);
     renderData->font = new Font(&renderData->menuCamera->proj, fontShader, 58);
     renderData->font2 = new Font(&renderData->menuCamera->proj, fontShader, 30);
-
-    lights.push_back(100);
-    lights.push_back(150);
-    lights.push_back(600);
-    lights.push_back(150);
 
     float positions[] = {
             -0.5f, -0.5f, 0.f, 0.f,
@@ -90,12 +77,21 @@ void Renderer::drawQuad(glm::vec2 position, glm::vec2 scale, Texture *texture) {
     model = glm::scale(model, {scale.x, scale.y, 0});
 
 
-
     renderData->programTexture->bind();
 
+    auto lights = renderData->lights;
+    auto light_size = lights->size();
+
+    if (light_size == 0) {
+        //add light temp light, that the game not crash when the size is 0 :D
+        renderData->lights->push_back(-100);
+        renderData->lights->push_back(-100);
+    }
+
     renderData->programTexture->uploadUniformMat4f("u_model", model);
-    renderData->programTexture->uploadUniform1i("size", 4);
-    renderData->programTexture->uploadUniform1farray("lights",4, &lights[0]);
+    renderData->programTexture->uploadUniform1i("light_size", light_size);
+    renderData->programTexture->uploadUniform1farray("lights", light_size, &lights->at(0));
+
 
     texture->Bind();
     glBindVertexArray(renderData->vertexArray);

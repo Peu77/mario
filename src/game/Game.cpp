@@ -108,7 +108,6 @@ void Game::render(int &mouseX, int &mouseY) {
 }
 
 void Game::runTick() {
-
     double lastTime = glfwGetTime();
     while (!glfwWindowShouldClose(window->WindowId)) {
         glClearColor(0.0, 0.0, 0.0, 1.0);
@@ -135,7 +134,6 @@ glm::vec2 Game::getMousePosition(GLFWwindow *window) {
     glfwGetCursorPos(window, &mouseX, &mouseY);
 
     int realMouseY = height - (int) mouseY;
-    //std::cout << "mouseX: " << realMouseY << " mouseY: " << realMouseY << std::endl;
     return {mouseX, realMouseY};
 }
 

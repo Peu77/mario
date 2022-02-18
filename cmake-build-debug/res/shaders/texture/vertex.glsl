@@ -11,8 +11,7 @@ out vec2 texCoords;
 out vec4 world_position;
 
 void main(){
-texCoords = position.zw;
-vec4 pos = u_projection * u_view  * u_model * vec4(position.xy, 1, 1);
-world_position = u_model * vec4(position.xy, 1, 1);
-gl_Position = pos;
+    texCoords = position.zw;
+    world_position = u_model * vec4(position.xy, 1, 1);
+    gl_Position = u_projection * u_view  * u_model * vec4(position.xy, 1, 1);
 }

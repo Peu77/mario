@@ -63,9 +63,9 @@ void Mario::update(float deleteTime) {
         }
     }
 
-    bool both = (glfwGetKey(windowId, GLFW_KEY_A) && glfwGetKey(windowId, GLFW_KEY_D) || (left || right));
+    bool both = ((glfwGetKey(windowId, GLFW_KEY_A) && glfwGetKey(windowId, GLFW_KEY_D) ) || (left || right));
 
-    if (both) {
+    if (both && !jumping) {
         texture = textureIdle;
     } else if ((glfwGetKey(windowId, GLFW_KEY_A) || glfwGetKey(windowId, GLFW_KEY_D)) && !jumping) {
         texture = animation->getNext(deleteTime);
@@ -98,6 +98,7 @@ void Mario::render() {
     }
 }
 
+
 void Mario::onCollision() {
     auto bottom = body->contact[0];
     if (bottom != nullptr && bottom->tag == "checkpoint") {
@@ -105,6 +106,14 @@ void Mario::onCollision() {
         checkpoint->active();
         lastPosition = {bottom->pos.x, bottom->pos.y + bottom->size.y};
     }
+
+    for ( auto &item : body->contact)
+        if(item != nullptr && item->tag == "bitcoin")
+        {
+            auto gameObject = (GameObject*) item->data;
+            gameObject->shouldDelete = true;
+        }
+
 }
 
 float Mario::getVelocityX(float &velocity, float x, float delta) {

@@ -23,7 +23,7 @@ Checkpoint::Checkpoint(glm::vec2 spawnPosition) {
 
 Checkpoint::~Checkpoint() {
     delete &particleHandler;
-};
+}
 
 void Checkpoint::update(float deleteTime) {
     particleHandler->update(deleteTime);

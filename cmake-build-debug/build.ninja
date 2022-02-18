@@ -100,6 +100,13 @@ build CMakeFiles/mario.dir/src/game/camera/Camera.cpp.o: CXX_COMPILER__mario_Deb
   OBJECT_DIR = CMakeFiles/mario.dir
   OBJECT_FILE_DIR = CMakeFiles/mario.dir/src/game/camera
 
+build CMakeFiles/mario.dir/src/game/objects/Bitcoin.cpp.o: CXX_COMPILER__mario_Debug /home/peu77/Coding/private/mario/src/game/objects/Bitcoin.cpp || cmake_object_order_depends_target_mario
+  DEP_FILE = CMakeFiles/mario.dir/src/game/objects/Bitcoin.cpp.o.d
+  FLAGS = -g -std=gnu++23
+  INCLUDES = -I/usr/include/freetype2 -I/home/peu77/Coding/private/mario/./libs
+  OBJECT_DIR = CMakeFiles/mario.dir
+  OBJECT_FILE_DIR = CMakeFiles/mario.dir/src/game/objects
+
 build CMakeFiles/mario.dir/src/game/objects/Brick.cpp.o: CXX_COMPILER__mario_Debug /home/peu77/Coding/private/mario/src/game/objects/Brick.cpp || cmake_object_order_depends_target_mario
   DEP_FILE = CMakeFiles/mario.dir/src/game/objects/Brick.cpp.o.d
   FLAGS = -g -std=gnu++23
@@ -220,7 +227,7 @@ build CMakeFiles/mario.dir/libs/std_image/std_image.cpp.o: CXX_COMPILER__mario_D
 #############################################
 # Link the executable mario
 
-build mario: CXX_EXECUTABLE_LINKER__mario_Debug CMakeFiles/mario.dir/libs/glad/src/glad.c.o CMakeFiles/mario.dir/src/game/Animation.cpp.o CMakeFiles/mario.dir/src/game/Game.cpp.o CMakeFiles/mario.dir/src/game/camera/Camera.cpp.o CMakeFiles/mario.dir/src/game/objects/Brick.cpp.o CMakeFiles/mario.dir/src/game/objects/Checkpoint.cpp.o CMakeFiles/mario.dir/src/game/objects/Enemy.cpp.o CMakeFiles/mario.dir/src/game/objects/Mario.cpp.o CMakeFiles/mario.dir/src/game/objects/Platform.cpp.o CMakeFiles/mario.dir/src/game/objects/particle/ParticleHandler.cpp.o CMakeFiles/mario.dir/src/game/physic/World.cpp.o CMakeFiles/mario.dir/src/game/renderer/Renderer.cpp.o CMakeFiles/mario.dir/src/game/screens/ScreenEditor.cpp.o CMakeFiles/mario.dir/src/game/screens/ScreenMain.cpp.o CMakeFiles/mario.dir/src/game/shader/Program.cpp.o CMakeFiles/mario.dir/src/game/shader/Shader.cpp.o CMakeFiles/mario.dir/src/game/texture/Texture.cpp.o CMakeFiles/mario.dir/src/main.cpp.o CMakeFiles/mario.dir/src/window/Window.cpp.o CMakeFiles/mario.dir/libs/std_image/std_image.cpp.o | ../libs/irrKlang/lib/libIrrKlang.so ../libs/GLFW/lib/libglfw.so /usr/lib/libfreetype.so /usr/lib/libGLX.so /usr/lib/libOpenGL.so
+build mario: CXX_EXECUTABLE_LINKER__mario_Debug CMakeFiles/mario.dir/libs/glad/src/glad.c.o CMakeFiles/mario.dir/src/game/Animation.cpp.o CMakeFiles/mario.dir/src/game/Game.cpp.o CMakeFiles/mario.dir/src/game/camera/Camera.cpp.o CMakeFiles/mario.dir/src/game/objects/Bitcoin.cpp.o CMakeFiles/mario.dir/src/game/objects/Brick.cpp.o CMakeFiles/mario.dir/src/game/objects/Checkpoint.cpp.o CMakeFiles/mario.dir/src/game/objects/Enemy.cpp.o CMakeFiles/mario.dir/src/game/objects/Mario.cpp.o CMakeFiles/mario.dir/src/game/objects/Platform.cpp.o CMakeFiles/mario.dir/src/game/objects/particle/ParticleHandler.cpp.o CMakeFiles/mario.dir/src/game/physic/World.cpp.o CMakeFiles/mario.dir/src/game/renderer/Renderer.cpp.o CMakeFiles/mario.dir/src/game/screens/ScreenEditor.cpp.o CMakeFiles/mario.dir/src/game/screens/ScreenMain.cpp.o CMakeFiles/mario.dir/src/game/shader/Program.cpp.o CMakeFiles/mario.dir/src/game/shader/Shader.cpp.o CMakeFiles/mario.dir/src/game/texture/Texture.cpp.o CMakeFiles/mario.dir/src/main.cpp.o CMakeFiles/mario.dir/src/window/Window.cpp.o CMakeFiles/mario.dir/libs/std_image/std_image.cpp.o | ../libs/irrKlang/lib/libIrrKlang.so ../libs/GLFW/lib/libglfw.so /usr/lib/libfreetype.so /usr/lib/libGLX.so /usr/lib/libOpenGL.so
   FLAGS = -g
   LINK_LIBRARIES = -Wl,-rpath,/home/peu77/Coding/private/mario/libs/irrKlang/lib:/home/peu77/Coding/private/mario/libs/GLFW/lib  -lIrrKlang  ../libs/GLFW/lib/libglfw.so  -lglfw  -ldl  /usr/lib/libfreetype.so  -ljsoncpp  /usr/lib/libGLX.so  /usr/lib/libOpenGL.so
   LINK_PATH = -L/home/peu77/Coding/private/mario/libs/irrKlang/lib

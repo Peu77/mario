@@ -15,6 +15,10 @@ struct Body;
 
 class GameObject {
 public:
+    virtual ~GameObject(){
+        std::cout << "destroy object" << std::endl;
+    }
+
     virtual void update(float deltaTime) {
     };
 
@@ -42,6 +46,7 @@ struct Body {
     Body *contact[4];
     void *data;
     bool dynamic = false;
+    bool canCollide = true;
     std::string tag;
 };
 

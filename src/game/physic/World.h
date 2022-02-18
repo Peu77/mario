@@ -12,6 +12,7 @@
 #include "../objects/Brick.h"
 #include "../objects/Platform.h"
 #include "../objects/Checkpoint.h"
+#include "../objects/Bitcoin.h"
 #include "iostream"
 #include "fstream"
 #include "json/json.h"
@@ -21,7 +22,7 @@ class World {
 public:
     Camera *camera;
     Mario *mario;
-    int& width, height;
+    int &width, height;
 
     std::vector<GameObject *> bodies;
 
@@ -33,14 +34,23 @@ public:
 
     void removeObject(GameObject &object) {
         for (int i = 0; i < bodies.size(); i++)
-            if (bodies.at(i) == &object)
+            if (bodies.at(i) == &object) {
+                delete bodies.at(i);
                 bodies.erase(bodies.begin() + i);
+
+
+            }
     }
 
     void removeObject(Body &object) {
         for (int i = 0; i < bodies.size(); i++)
-            if (bodies.at(i)->body == &object)
+            if (bodies.at(i)->body == &object){
+                auto d = bodies.at(i);
+                delete &d;
                 bodies.erase(bodies.begin() + i);
+
+            }
+
     }
 
     World(int &in_width, int &in_height);
@@ -61,12 +71,16 @@ public:
             object = new Platform({x, y});
         } else if (tag == "checkpoint") {
             object = new Checkpoint({x, y});
+        } else if (tag == "bitcoin") {
+            object = new Bitcoin({x, y});
         }
 
         return object;
     }
 
     void load() {
+        Renderer::getRenderData()->lights->clear();
+
         Json::Value root;
         Json::Reader reader;
         std::ifstream stream("map.json");
@@ -212,8 +226,9 @@ public:
             if (contact_normal.y < 0) r_dynamic->contact[2] = r_static; else nullptr;
             if (contact_normal.x > 0) r_dynamic->contact[3] = r_static; else nullptr;
 
-            r_dynamic->vel += contact_normal * glm::vec2(std::abs(r_dynamic->vel.x), std::abs(r_dynamic->vel.y)) *
-                              (1 - contact_time);
+            if (r_static->canCollide)
+                r_dynamic->vel += contact_normal * glm::vec2(std::abs(r_dynamic->vel.x), std::abs(r_dynamic->vel.y)) *
+                                  (1 - contact_time);
             return true;
         }
 
