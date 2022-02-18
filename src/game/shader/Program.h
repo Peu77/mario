@@ -30,6 +30,7 @@ public:
     void uploadUniform3f(const std::string& name, float v0, float v1, float v2);
     void uploadUniform4f(const std::string& name, float v0, float v1, float v2,float v3);
     void uploadUniform1i(const std::string& name, int i);
+    void uploadUniform1f(const std::string& name, float v);
 
 
     static Program* loadProgram(const std::string& name);

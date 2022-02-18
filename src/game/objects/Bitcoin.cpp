@@ -15,19 +15,21 @@ Bitcoin::Bitcoin(glm::vec2 spawnPosition) {
     body->size = scale;
     body->canCollide = false;
 
+    lightX = new float{spawnPosition.x};
+    lightY = new float{spawnPosition.y};
 
-    Renderer::getRenderData()->lights->push_back(spawnPosition.x);
-    Renderer::getRenderData()->lights->push_back(spawnPosition.y);
+    Renderer::getRenderData()->lights->push_back(lightX);
+    Renderer::getRenderData()->lights->push_back(lightY);
 }
 
 Bitcoin::~Bitcoin() {
     auto light = Renderer::getRenderData()->lights;
     for (int i = 0; i < light->size(); i += 2) {
-        float x = light->at(i);
-        float y = light->at(i + 1);
-        if (x == body->pos.x && y == body->pos.y) {
-           light->erase(light->begin() + i);
-           light->erase(light->begin() + i);
+        auto x = light->at(i);
+        auto y = light->at(i + 1);
+        if (x == lightX && y == lightY) {
+            light->erase(light->begin() + i);
+            light->erase(light->begin() + i);
 
         }
     }

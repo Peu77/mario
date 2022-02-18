@@ -71,11 +71,17 @@ void Program::uploadUniform1farray(const std::string &name, int size, float *v) 
     glUniform1fv(getUniformLocation(name), size, v);
 }
 
+void Program::uploadUniform1f(const std::string &name, float v) {
+    glUniform1f(getUniformLocation(name),  v);
+}
+
 Program *Program::loadProgram(const std::string &name) {
     Shader vertex("res/shaders/" + name + "/vertex.glsl", GL_VERTEX_SHADER);
     Shader fragment("res/shaders/" + name + "/fragment.glsl", GL_FRAGMENT_SHADER);
     auto fontProgram = new Program(&vertex, &fragment);
     return fontProgram;
 }
+
+
 
 

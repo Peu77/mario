@@ -23,7 +23,7 @@ struct RenderData {
     Font *font2;
     Camera *menuCamera;
     GLFWwindow* window;
-    std::vector<float> *lights = new std::vector<float>();
+    std::vector<float*> *lights = new std::vector<float*>();
 };
 
 static RenderData *renderData;

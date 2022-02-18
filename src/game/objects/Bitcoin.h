@@ -23,6 +23,8 @@ public:
 
 private:
     Texture *texture;
+    float *lightX;
+    float *lightY;
 };
 
 

@@ -76,7 +76,6 @@ void Renderer::drawQuad(glm::vec2 position, glm::vec2 scale, Texture *texture) {
 
     model = glm::scale(model, {scale.x, scale.y, 0});
 
-
     renderData->programTexture->bind();
 
     auto lights = renderData->lights;
@@ -84,14 +83,23 @@ void Renderer::drawQuad(glm::vec2 position, glm::vec2 scale, Texture *texture) {
 
     if (light_size == 0) {
         //add light temp light, that the game not crash when the size is 0 :D
-        renderData->lights->push_back(-100);
-        renderData->lights->push_back(-100);
+
+        auto *x = new float{-100};
+
+        renderData->lights->push_back(x);
+        renderData->lights->push_back(x);
     }
 
     renderData->programTexture->uploadUniformMat4f("u_model", model);
     renderData->programTexture->uploadUniform1i("light_size", light_size);
-    renderData->programTexture->uploadUniform1farray("lights", light_size, &lights->at(0));
 
+    float array[light_size];
+
+    for (int i = 0; i < light_size; ++i) {
+        array[i] = *lights->at(i);
+    }
+
+    renderData->programTexture->uploadUniform1farray("lights", light_size, array);
 
     texture->Bind();
     glBindVertexArray(renderData->vertexArray);

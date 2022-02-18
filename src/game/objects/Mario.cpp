@@ -8,11 +8,11 @@
 
 using namespace irrklang;
 
-//static std::string name = "sysdefault:CARD=Headset";
-//static ISoundEngine *SoundEngine = createIrrKlangDevice(irrklang::ESOD_ALSA, ESEO_DEFAULT_OPTIONS, name.c_str());
+static std::string name = "front:CARD=Headset";
+static ISoundEngine *SoundEngine = createIrrKlangDevice(irrklang::ESOD_ALSA, ESEO_DEFAULT_OPTIONS, name.c_str());
 
 Mario::Mario(glm::vec2 spawnPosition) {
-   //SoundEngine->setSoundVolume(0.02);
+    SoundEngine->setSoundVolume(0.00);
 
     windowId = Renderer::getRenderData()->window;
     textureIdle = getTexture("res/textures/mario.png");
@@ -63,7 +63,7 @@ void Mario::update(float deleteTime) {
         }
     }
 
-    bool both = ((glfwGetKey(windowId, GLFW_KEY_A) && glfwGetKey(windowId, GLFW_KEY_D) ) || (left || right));
+    bool both = ((glfwGetKey(windowId, GLFW_KEY_A) && glfwGetKey(windowId, GLFW_KEY_D)) || (left || right));
 
     if (both && !jumping) {
         texture = textureIdle;
@@ -107,10 +107,9 @@ void Mario::onCollision() {
         lastPosition = {bottom->pos.x, bottom->pos.y + bottom->size.y};
     }
 
-    for ( auto &item : body->contact)
-        if(item != nullptr && item->tag == "bitcoin")
-        {
-            auto gameObject = (GameObject*) item->data;
+    for (auto &item: body->contact)
+        if (item != nullptr && item->tag == "bitcoin") {
+            auto gameObject = (GameObject *) item->data;
             gameObject->shouldDelete = true;
         }
 
@@ -158,9 +157,9 @@ void Mario::respawn() {
 
 void Mario::jump() {
     if (body->contact[0] != nullptr) {
-       //auto sound = SoundEngine->play2D("res/sound/mario-jump-sound.wav", false, true);
-       //sound->setPlayPosition(200);
-       // sound->setIsPaused(false);
+        auto sound = SoundEngine->play2D("res/sound/mario-jump-sound.wav", false, true);
+        sound->setPlayPosition(200);
+         sound->setIsPaused(false);
 
         jumping = true;
         body->vel.y = jumpForce;
