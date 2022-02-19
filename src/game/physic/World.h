@@ -13,6 +13,8 @@
 #include "../objects/Platform.h"
 #include "../objects/Checkpoint.h"
 #include "../objects/Bitcoin.h"
+#include "../objects/Ground.h"
+#include "../objects/BackgroundObject.h"
 #include "iostream"
 #include "fstream"
 #include "json/json.h"
@@ -44,7 +46,7 @@ public:
 
     void removeObject(Body &object) {
         for (int i = 0; i < bodies.size(); i++)
-            if (bodies.at(i)->body == &object){
+            if (bodies.at(i)->body == &object) {
                 auto d = bodies.at(i);
                 delete &d;
                 bodies.erase(bodies.begin() + i);
@@ -57,7 +59,7 @@ public:
 
     ~World();
 
-    GameObject *genObject(const std::string &tag, int &x, int &y) {
+    GameObject *genObject(const std::string &tag, int &x, int &y, const std::string &texturePath = "", float texture_width = 256, float texture_height = 256) {
         GameObject *object = nullptr;
 
         if (tag == "brick")
@@ -73,6 +75,10 @@ public:
             object = new Checkpoint({x, y});
         } else if (tag == "bitcoin") {
             object = new Bitcoin({x, y});
+        } else if (tag == "ground") {
+            object = new Ground({x, y});
+        } else if (tag == "backgroundObject") {
+            object = new BackgroundObject(texturePath, texture_width, texture_height, {x, y});
         }
 
         return object;
@@ -105,7 +111,10 @@ public:
                 std::string tag = root[index]["tag"].asString();
                 int x = root[index]["x"].asInt();
                 int y = root[index]["y"].asInt();
-                auto object = genObject(tag, x, y);
+                float width = root[index]["width"].asFloat();
+                float height = root[index]["height"].asFloat();
+                std::string texturePath = root[index]["texturePath"].asString();
+                auto object = genObject(tag, x, y, texturePath, width, height);
                 if (object == nullptr)
                     std::cout << "cannot find tag " << tag << std::endl;
                 else
@@ -123,6 +132,9 @@ public:
             root[std::to_string(i)]["tag"] = body->body->tag;
             root[std::to_string(i)]["x"] = body->body->pos.x;
             root[std::to_string(i)]["y"] = body->body->pos.y;
+            root[std::to_string(i)]["width"] = body->textureWidth;
+            root[std::to_string(i)]["height"] = body->textureHeight;
+            root[std::to_string(i)]["texturePath"] = body->texturePath;
         }
 
         Json::StyledWriter styledWriter;

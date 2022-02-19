@@ -15,11 +15,14 @@ struct ButtonData;
 class ScreenEditor : public Screen {
 private:
     World *world;
-    int& width, &height;
+    int &width, &height;
     bool moving = false;
     glm::vec2 offset = {0.0, 0.0};
     glm::vec2 last = {0.0, 0.0};
     std::string currrentTag = "";
+    std::string currrentTexture = "";
+    float currentTextureWidth = 0;
+    float currentTextureHeight = 0;
 public:
     ScreenEditor(int &in_width, int &in_height);
 
@@ -41,6 +44,9 @@ public:
 struct ButtonData {
     ScreenEditor *screenEditor;
     std::string tag;
+    std::string texturePath = "";
+    float textureWidth = 0;
+    float textureHeight = 0;
 };
 
 

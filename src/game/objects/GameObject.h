@@ -13,9 +13,14 @@ static float GRAVITY = 40.0f;
 
 struct Body;
 
+enum Type {
+    FOREGROUND,
+    BACKGROUND
+};
+
 class GameObject {
 public:
-    virtual ~GameObject(){
+    virtual ~GameObject() {
         std::cout << "destroy object" << std::endl;
     }
 
@@ -35,6 +40,13 @@ public:
     Body *body;
     float rotation;
     glm::vec2 scale;
+    Type type = Type::FOREGROUND;
+
+    //variables for background objects
+    std::string texturePath = "none";
+    float textureWidth = 0;
+    float textureHeight = 0;
+
 };
 
 

@@ -110,7 +110,7 @@ void Game::render(int &mouseX, int &mouseY) {
 void Game::runTick() {
     double lastTime = glfwGetTime();
     while (!glfwWindowShouldClose(window->WindowId)) {
-        glClearColor(0.0, 0.0, 0.0, 1.0);
+        glClearColor(0.098, 0.011, 0.505, 1);
         glClear(GL_COLOR_BUFFER_BIT);
 
         double currentTime = glfwGetTime();

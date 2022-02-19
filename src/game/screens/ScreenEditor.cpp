@@ -9,18 +9,22 @@ ScreenEditor::ScreenEditor(int &in_width, int &in_height) :
     world = new World(in_width, in_height);
     world->load();
 
-    std::vector<std::string> tags;
-    tags.push_back("mario");
-    tags.push_back("brick");
-    tags.push_back("enemy");
-    tags.push_back("platform");
-    tags.push_back("checkpoint");
-    tags.push_back("bitcoin");
+
+    std::vector<ButtonData *> tags;
+    tags.push_back(new ButtonData{this, "mario"});
+    tags.push_back(new ButtonData{this, "brick"});
+    tags.push_back(new ButtonData{this, "enemy"});
+    tags.push_back(new ButtonData{this, "platform"});
+    tags.push_back(new ButtonData{this, "checkpoint"});
+    tags.push_back(new ButtonData{this, "bitcoin"});
+    tags.push_back(new ButtonData{this, "ground"});
+    tags.push_back(new ButtonData{this, "backgroundObject"});
+    tags.push_back(new ButtonData{this, "#cloud", "res/textures/cloud.png", 256*2, 256*2});
+    tags.push_back(new ButtonData{this, "#bush", "res/textures/bush.png", 265*2, 300});
 
     {
         auto button = new Button();
         button->x = tags.size() * 200 + 30;
-        button->y = 50;
         button->width = 100;
         button->height = 50;
 
@@ -36,22 +40,28 @@ ScreenEditor::ScreenEditor(int &in_width, int &in_height) :
 
     int offset = 0;
 
+    //generate gameObjects
     for (int i = 0; i < tags.size(); ++i) {
         auto tag = tags[i];
         auto button = new Button();
         button->x = offset;
-        button->y = 50;
-        button->width = Renderer::getRenderData()->font2->getWidth(tag);
+        button->width = Renderer::getRenderData()->font2->getWidth(tag->tag);
         offset += button->width + 40;
         button->height = 50;
 
         button->buttonFont = Renderer::getRenderData()->font2;
-        button->text = tag;
-        button->data = new ButtonData{this, tag};
+        button->text = tag->tag;
+        button->data = tag;
 
         button->runnable = [](void *data) {
             auto buttonData = (ButtonData *) data;
-            buttonData->screenEditor->currrentTag = buttonData->tag;
+            if (!buttonData->tag.starts_with("#"))
+                buttonData->screenEditor->currrentTag = buttonData->tag;
+            else {
+                buttonData->screenEditor->currrentTexture = buttonData->texturePath;
+                buttonData->screenEditor->currentTextureWidth = buttonData->textureWidth;
+                buttonData->screenEditor->currentTextureHeight = buttonData->textureHeight;
+            }
         };
 
         buttons.push_back(button);
@@ -95,12 +105,18 @@ void ScreenEditor::onRelease(int &mouseX, int &mouseY, int &button) {
         auto position = getPosition(mouseX, mouseY);
         auto objectOnCords = getGameObject(position.x, position.y);
 
-        if (button == 0 && objectOnCords == nullptr) {
-            int x = (int) position.x;
-            int y = (int) position.y;
-            auto object = world->genObject(currrentTag, x, y);
-            if (object != nullptr)
-                world->registerBody(object);
+
+        int x = (int) position.x;
+        int y = (int) position.y;
+        auto objectToSpawn = world->genObject(currrentTag, x, y, currrentTexture, currentTextureWidth,
+                                              currentTextureHeight);
+
+        if (button == 0 &&
+            (objectOnCords == nullptr || (objectOnCords != nullptr && objectOnCords->type != objectToSpawn->type))) {
+
+
+            if (objectToSpawn != nullptr)
+                world->registerBody(objectToSpawn);
         }
         if (button == 1 && objectOnCords != nullptr) {
             world->removeObject(*objectOnCords);
@@ -118,6 +134,9 @@ void ScreenEditor::update(int &mouseX, int &mouseY, float deltaTime) {
         world->camera->updateView();
     }
 
+
+    for (auto &item: buttons)
+        item->y = height - item->height / 25;
 }
 
 glm::vec2 ScreenEditor::getPosition(int &mouseX, int &mouseY) const {

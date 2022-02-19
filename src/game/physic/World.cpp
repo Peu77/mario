@@ -13,9 +13,18 @@ void World::renderObjects() {
     Renderer::beginScene(*camera);
 
     for (const auto &item: bodies) {
-        if (item->body->pos.x < camera->position.x + width + 200 &&
-            item->body->pos.x > camera->position.x - width / 2) // only render when see
-            item->render();
+        if (item->type == Type::BACKGROUND)
+            if (item->body->pos.x < camera->position.x + width + 200 &&
+                item->body->pos.x > camera->position.x - width / 2) // only render when see
+                item->render();
+    }
+
+
+    for (const auto &item: bodies) {
+        if (item->type == Type::FOREGROUND)
+            if (item->body->pos.x < camera->position.x + width + 200 &&
+                item->body->pos.x > camera->position.x - width / 2) // only render when see
+                item->render();
     }
 
 }
@@ -26,18 +35,20 @@ void World::step(float deltaTime, int &width, int &height) {
     if (mario != nullptr) {
         camera->position.x += (mario->body->pos.x - width / 2 - camera->position.x) * lerp * deltaTime;
         camera->position.y += (mario->body->pos.y - height / 2 - camera->position.y) * lerp * deltaTime;
+        camera->position.x = std::max(camera->position.x, 0.0f);
+        camera->position.y = std::max(camera->position.y, 0.0f);
         camera->updateView();
     }
 
 
     for (const auto &item: bodies) {
-        if (item->body->dynamic) {
+        if (item->body->dynamic && item->type == Type::FOREGROUND) {
             glm::vec2 cp, cn;
             float t = 0, min_t = INFINITY;
             std::vector<std::pair<int, float>> z;
             for (size_t i = 0; i < bodies.size(); i++) {
                 auto target = bodies[i];
-                if (target != item) // && !target->body->dynamic
+                if (target != item && target->type == Type::FOREGROUND) // && !target->body->dynamic
                     if (DynamicRectVsRect(item->body, deltaTime, *target->body, cp, cn, t)) {
                         z.push_back({i, t});
                     }
