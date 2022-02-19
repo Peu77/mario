@@ -24,7 +24,7 @@ add_executable(mario
         libs/glad/src/glad.c
         ${SOURCES}
         libs/std_image/std_image.h
-        libs/std_image/std_image.cpp src/game/objects/Bitcoin.cpp src/game/objects/Bitcoin.h src/game/objects/Ground.cpp src/game/objects/Ground.h src/game/objects/BackgroundObject.cpp src/game/objects/BackgroundObject.h)
+        libs/std_image/std_image.cpp src/game/objects/Bitcoin.cpp src/game/objects/Bitcoin.h src/game/objects/Ground.cpp src/game/objects/Ground.h src/game/objects/BackgroundObject.cpp src/game/objects/BackgroundObject.h src/game/objects/Fireball.cpp src/game/objects/Fireball.h)
 
 
 # include so file

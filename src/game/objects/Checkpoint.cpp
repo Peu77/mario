@@ -19,6 +19,8 @@ Checkpoint::Checkpoint(glm::vec2 spawnPosition) {
     particle = particle1;
     this->particleHandler = new ParticleHandler();
 
+    Renderer::getRenderData()->lights->push_back(new float{spawnPosition.x + body->size.x / 2 - 50});
+    Renderer::getRenderData()->lights->push_back(new float{spawnPosition.y});
 }
 
 Checkpoint::~Checkpoint() {
@@ -33,7 +35,7 @@ void Checkpoint::update(float deleteTime) {
 }
 
 void Checkpoint::render() {
-    Renderer::drawQuad({body->pos.x + 100, body->pos.y}, scale, texture);
+    Renderer::drawQuad({body->pos.x + body->size.x / 2 - 50, body->pos.y}, scale, texture);
 
     particleHandler->render(particle);
 }

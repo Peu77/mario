@@ -75,7 +75,7 @@ void World::step(float deltaTime, int &width, int &height) {
         }
 
         item->update(deltaTime);
-        if (item->shouldDelete)
+        if (item->shouldDelete  || item == nullptr)
             this->removeObject(*item);
     }
 
@@ -93,5 +93,10 @@ World::~World() {
 
 World::World(int &in_width, int &in_height) : width(in_width), height(in_height) {
     camera = new Camera(in_width, in_height);
+    theWorld = this;
+}
+
+World *World::getWorld() {
+    return theWorld;
 }
 

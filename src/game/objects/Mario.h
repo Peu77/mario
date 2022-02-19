@@ -10,6 +10,7 @@
 #include "GLFW/glfw3.h"
 #include "Enemy.h"
 #include "../Animation.h"
+#include "Fireball.h"
 #include "Platform.h"
 #include "Checkpoint.h"
 

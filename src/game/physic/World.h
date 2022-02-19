@@ -19,7 +19,6 @@
 #include "fstream"
 #include "json/json.h"
 
-
 class World {
 public:
     Camera *camera;
@@ -55,11 +54,15 @@ public:
 
     }
 
+    static World *getWorld();
+
     World(int &in_width, int &in_height);
 
     ~World();
 
-    GameObject *genObject(const std::string &tag, int &x, int &y, const std::string &texturePath = "", float texture_width = 256, float texture_height = 256) {
+    GameObject *
+    genObject(const std::string &tag, int &x, int &y, const std::string &texturePath = "", float texture_width = 256,
+              float texture_height = 256) {
         GameObject *object = nullptr;
 
         if (tag == "brick")
@@ -249,5 +252,7 @@ public:
 
 
 };
+
+static World *theWorld;
 
 #endif //MARIO_WORLD_H

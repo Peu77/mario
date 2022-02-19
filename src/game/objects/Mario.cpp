@@ -4,6 +4,7 @@
 
 #include <memory>
 #include "Mario.h"
+#include "../physic/World.h"
 #include "irrKlang/include/irrKlang.h"
 
 using namespace irrklang;
@@ -80,6 +81,11 @@ void Mario::update(float deleteTime) {
             flip();
         else if (glfwGetKey(windowId, GLFW_KEY_D) && !faceRight)
             flip();
+    }
+
+    if (glfwGetKey(windowId, GLFW_KEY_G)) {
+        auto fireball = new Fireball({body->pos.x + 100, body->pos.y}, {600, 0}, this);
+        World::getWorld()->bodies.push_back(fireball);
     }
 
 }
@@ -159,7 +165,7 @@ void Mario::jump() {
     if (body->contact[0] != nullptr) {
         auto sound = SoundEngine->play2D("res/sound/mario-jump-sound.wav", false, true);
         sound->setPlayPosition(200);
-         sound->setIsPaused(false);
+        sound->setIsPaused(false);
 
         jumping = true;
         body->vel.y = jumpForce;
